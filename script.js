@@ -23,14 +23,25 @@ function openWhatsApp(event) {
   // Exemplo: se usar Pixel depois -> fbq('track', 'Contact');
 }
 
-// Scroll suave para alvo
+/**
+ * Scroll suave para alvo
+ * @param {string} selector 
+ */
 function scrollToTarget(selector) {
   const el = document.querySelector(selector);
   if (!el) return;
   el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+/**
+ * Lógica principal do site
+ */
 document.addEventListener("DOMContentLoaded", () => {
+  
+  // ================================================
+  // GERAL
+  // ================================================
+
   // Botões que abrem o WhatsApp
   document.querySelectorAll(".js-open-whatsapp").forEach((btn) => {
     btn.addEventListener("click", (e) => openWhatsApp(e));
@@ -45,7 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // [MELHORIA A11y] Navbar mobile acessível
+  // Ano do rodapé
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+
+  // ================================================
+  // ACESSIBILIDADE (A11y)
+  // ================================================
+
+  // --- Menu Mobile Acessível ---
   const toggle = document.querySelector(".navbar__toggle");
   const mobileMenu = document.getElementById("navbarMobile");
   
@@ -75,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
     
-    // Abrir/Fechar com o botão
     toggle.addEventListener("click", () => {
       const isOpening = !mobileMenu.classList.contains("open");
       if (isOpening) {
@@ -85,30 +105,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Fechar ao clicar em um link
     mobileMenu.querySelectorAll(".js-close-mobile").forEach((link) => {
-      link.addEventListener("click", () => {
-        closeMenu();
-      });
+      link.addEventListener("click", () => closeMenu());
     });
 
-    // Fechar com a tecla 'Escape'
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileMenu.classList.contains("open")) {
         closeMenu();
       }
     });
     
-    // Prender o foco (Focus Trap)
     mobileMenu.addEventListener("keydown", (e) => {
       if (e.key !== "Tab") return;
 
-      if (e.shiftKey) { // Shift + Tab
+      if (e.shiftKey) { 
         if (document.activeElement === firstFocusableEl) {
           lastFocusableEl.focus();
           e.preventDefault();
         }
-      } else { // Tab
+      } else {
         if (document.activeElement === lastFocusableEl) {
           firstFocusableEl.focus();
           e.preventDefault();
@@ -117,75 +132,82 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Ano do rodapé
-  const yearSpan = document.getElementById("year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+  // --- Verificação de Movimento Reduzido ---
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  // Animações ao rolar
-  
   // ================================================
-  // CORREÇÃO AQUI!
-  // Agora o script procura por .animated E .animated--stagger
+  // ANIMAÇÕES
   // ================================================
+
+  // --- Animações de Scroll (IntersectionObserver) ---
   const animatedEls = document.querySelectorAll(".animated, .animated--stagger");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.16,
-    }
-  );
 
-  animatedEls.forEach((el) => observer.observe(el));
-
-  // Efeito 3D / tilt nos cards
-  function initTilt(selector) {
-    // [MELHORIA UX] Verifica se o usuário prefere redução de movimento
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (motionQuery.matches) return;
-
-    // [MELHORIA UX] Verifica se o dispositivo tem um "mouse" (ignora touch)
-    const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-    if (!pointerQuery.matches) return;
-
-    const cards = document.querySelectorAll(selector);
-    const maxRotate = 8; // graus
-
-    cards.forEach((card) => {
-      card.addEventListener("pointermove", (e) => {
-        const bounds = card.getBoundingClientRect();
-        const x = e.clientX - bounds.left;
-        const y = e.clientY - bounds.top;
-
-        const rotateY = ((x - bounds.width / 2) / bounds.width) * -maxRotate;
-        const rotateX = ((y - bounds.height / 2) / bounds.height) * maxRotate;
-
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-        card.classList.add("is-tilting");
-      });
-
-      card.addEventListener("pointerleave", () => {
-        card.style.transform = "rotateX(0) rotateY(0) translateY(0)";
-        card.classList.remove("is-tilting");
-      });
-
-      card.addEventListener("pointerdown", () => {
-        card.style.transform += " scale(0.99)";
-      });
-
-      card.addEventListener("pointerup", () => {
-        card.style.transform = card.style.transform.replace(" scale(0.99)", "");
-      });
-    });
+  if (!motionQuery.matches) {
+    // Se o usuário quer movimento, animamos
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.16,
+      }
+    );
+    animatedEls.forEach((el) => observer.observe(el));
+  } else {
+    // Se não quer movimento, apenas tornamos tudo visível
+    animatedEls.forEach((el) => el.classList.add("is-visible"));
   }
+  
 
+  // --- Animação 3D Tilt ---
+  // (A função initTilt já tem a verificação de 'motionQuery' dentro dela)
   initTilt(".card-3d");
 });
+
+
+/**
+ * Inicializa o Efeito 3D Tilt
+ * @param {string} selector 
+ */
+function initTilt(selector) {
+  const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (motionQuery.matches) return;
+
+  const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (!pointerQuery.matches) return;
+
+  const cards = document.querySelectorAll(selector);
+  const maxRotate = 8; // graus
+
+  cards.forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const bounds = card.getBoundingClientRect();
+      const x = e.clientX - bounds.left;
+      const y = e.clientY - bounds.top;
+
+      const rotateY = ((x - bounds.width / 2) / bounds.width) * -maxRotate;
+      const rotateX = ((y - bounds.height / 2) / bounds.height) * maxRotate;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      card.classList.add("is-tilting");
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "rotateX(0) rotateY(0) translateY(0)";
+      card.classList.remove("is-tilting");
+    });
+
+    card.addEventListener("pointerdown", () => {
+      card.style.transform += " scale(0.99)";
+    });
+
+    card.addEventListener("pointerup", () => {
+      card.style.transform = card.style.transform.replace(" scale(0.99)", "");
+    });
+  });
+}

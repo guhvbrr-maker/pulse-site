@@ -52,14 +52,14 @@
 </head>
 <body>
   <div class="top-bar">
-    <p>
-      Vagas limitadas para este mês — garanta seu site com <strong>condição especial</strong>.
-      <button 
-        class="top-bar__cta js-open-whatsapp"
-        data-message="Olá! Vi a barra de vagas limitadas e quero reservar minha vaga com condição especial.">
-        Quero reservar minha vaga
-      </button>
+    <p class="top-bar__text">
+      ✨ Vagas limitadas para este mês — garanta seu site com <strong>condição especial</strong>.
     </p>
+    <button 
+      class="top-bar__cta js-open-whatsapp"
+      data-message="Olá! Vi a barra de vagas limitadas e quero reservar minha vaga com condição especial.">
+      Quero reservar minha vaga
+    </button>
   </div>
 
   <header class="navbar">
@@ -115,7 +115,8 @@
 
       <div class="container hero__grid">
         
-        <div class="hero__content animated--stagger"> <p class="badge stagger-child">Para donos de negócios que querem parar de perder cliente</p>
+        <div class="hero__content animated--stagger">
+          <p class="badge stagger-child">Para donos de negócios que querem parar de perder cliente</p>
           <h1 class="stagger-child">
             Seu site profissional em até
             <span class="highlight">14 dias</span> — feito para o seu negócio
@@ -155,7 +156,10 @@
             <span>✔</span> Site feito pra vender, não só pra “ficar bonito”
           </p>
         </div>
-        <div class="hero__mockup animated"> <div class="mockup-card card-3d"> 
+
+
+        <div class="hero__mockup animated"> 
+          <div class="mockup-card card-3d"> 
             <div class="mockup-card__header">
               <span class="dot red"></span>
               <span class="dot yellow"></span>
@@ -172,8 +176,9 @@
               <div class="mockup-preview">
                 <img
                   src="images/hero-mockup-karina.jpg"
-                  alt="Exemplo de layout de site para loja de móveis"
-                  loading="lazy"
+                  alt="Captura de tela do site Móveis Karina em um navegador"
+                  loading="eager"
+                  fetchpriority="high"
                 />
               </div>
 
@@ -244,9 +249,10 @@
       </div>
     </section>
 
-    <section id="analise" class="section section--dark"> <div class="container section__narrow animated">
+    <section id="analise" class="section section--dark">
+      <div class="container section__narrow animated">
         
-        <p class="badge" style="background-color: var(--primary-soft); color: var(--primary-strong); border-color: var(--primary);">
+        <p class="badge badge--primary">
           ✨ Oferta Estratégica Pulse
         </p>
         
@@ -293,6 +299,8 @@
         
       </div>
     </section>
+
+
     <section id="problema" class="section section--alt section--3d">
       <div class="container section__narrow animated">
         <h2>Se o seu cliente não entende rápido o que você faz, ele vai para o próximo.</h2>
@@ -413,7 +421,7 @@
             <div class="visual-card__image">
               <img
                 src="images/visual-home.jpg"
-                alt="Exemplo de página inicial com headline forte"
+                alt="Screenshot de um website profissional de clínica com uma manchete clara"
                 loading="lazy"
               />
             </div>
@@ -430,7 +438,7 @@
             <div class="visual-card__image">
               <img
                 src="images/visual-servicos.jpg"
-                alt="Exemplo de seção de serviços"
+                alt="Screenshot da seção de serviços de um site, com colunas e ícones limpos"
                 loading="lazy"
               />
             </div>
@@ -447,7 +455,7 @@
             <div class="visual-card__image">
               <img
                 src="images/visual-depoimentos.jpg"
-                alt="Exemplo de seção de depoimentos"
+                alt="Screenshot da seção de depoimentos de um site, mostrando avaliações 5 estrelas"
                 loading="lazy"
               />
             </div>
@@ -657,7 +665,7 @@
           <figure class="gallery-item card-3d">
             <img
               src="images/galeria-home.jpg"
-              alt="Exemplo de página inicial de site"
+              alt="Layout de uma homepage de e-commerce minimalista"
               loading="lazy"
             />
             <figcaption>Home com chamada forte e destaque para a ação principal.</figcaption>
@@ -665,7 +673,7 @@
           <figure class="gallery-item card-3d">
             <img
               src="images/galeria-sobre.jpg"
-              alt="Exemplo de seção sobre a empresa"
+              alt="Layout de uma página 'Sobre Nós' com foto e texto"
               loading="lazy"
             />
             <figcaption>Seção “Sobre” que gera conexão sem textão cansativo.</figcaption>
@@ -673,7 +681,7 @@
           <figure class="gallery-item card-3d">
             <img
               src="images/galeria-servicos-3d.jpg"
-              alt="Exemplo de seção de serviços"
+              alt="Layout de uma seção de serviços com ícones 3D em estilo 'clay'"
               loading="lazy"
             />
             <figcaption>Blocos de serviços com ícones 3D fáceis de entender.</figcaption>
@@ -681,7 +689,7 @@
           <figure class="gallery-item card-3d">
             <img
               src="images/galeria-prints-wpp.jpg"
-              alt="Exemplo de seção de depoimentos"
+              alt="Layout de uma seção de prova social com prints de WhatsApp"
               loading="lazy"
             />
             <figcaption>Área de depoimentos e provas sociais para reforçar confiança.</figcaption>
@@ -699,7 +707,7 @@
             <div class="case-image">
               <img
                 src="images/case-barbearia.jpg"
-                alt="Exemplo visual de site para barbearia"
+                alt="Captura de tela de um site profissional para barbearia"
                 loading="lazy"
               />
             </div>
@@ -713,7 +721,7 @@
             <div class="case-image">
               <img
                 src="images/case-clinica.jpg"
-                alt="Exemplo visual de site para clínica"
+                alt="Captura de tela de um site profissional para clínica médica"
                 loading="lazy"
               />
             </div>
@@ -727,7 +735,7 @@
             <div class="case-image">
               <img
                 src="images/case-loja-local.jpg"
-                alt="Exemplo visual de site para loja local"
+                alt="Captura de tela de um site profissional para uma loja de decoração"
                 loading="lazy"
               />
             </div>
@@ -767,7 +775,7 @@
           <div class="about-photo-wrapper card-3d">
             <img
               src="images/guh-foto.jpg"
-              alt="Representação visual do Guh trabalhando com tecnologia e marketing"
+              alt="Foto profissional de Guh, o fundador da Pulse"
               loading="lazy"
               class="about-photo"
             />
