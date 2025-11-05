@@ -9,14 +9,24 @@
 
 html {
   scroll-behavior: smooth;
+  /* FLUIDEZ 1: Tipografia Fluida
+    1rem = 15px em celulares. 
+    Isso escala TUDO (textos, paddings, margins) 
+    para telas menores.
+  */
+  font-size: 15px; 
 }
 
 body {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  /* Cor de fundo e texto padrão do Light Mode */
   background: var(--bg-body);
   color: var(--color-text);
+  /* FLUIDEZ 2: Melhor Legibilidade 
+    FLUIDEZ 3: "Cinto de Segurança" para telas < 320px
+  */
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* ========= VARIÁVEIS (LIGHT MODE + AZUL) ========= */
@@ -48,8 +58,6 @@ body {
 
 /* ========= LAYOUT ========= */
 
-/* body já estilizado acima */
-
 .section {
   /* MOBILE-FIRST: Padding de celular é o padrão */
   padding: 4.2rem 1.25rem;
@@ -78,6 +86,9 @@ body {
   text-align: center;
   font-size: 0.9rem;
   padding: 0.5rem 1.5rem;
+  /* ATUALIZAÇÃO: Gradiente animado */
+  background-size: 200% 100%;
+  animation: gradient-flow 8s linear infinite;
 }
 
 .top-bar p {
@@ -136,6 +147,8 @@ body {
   /* Gradiente de logo ajustado para azul */
   background: radial-gradient(circle at 30% 20%, #a5b4fc, var(--primary-strong));
   box-shadow: 0 0 0 4px var(--primary-soft);
+  /* ATUALIZAÇÃO: Animação de pulso */
+  animation: pulse-glow 2.5s infinite ease-out;
 }
 
 .logo-text {
@@ -251,12 +264,33 @@ body {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #f9fafb;
   box-shadow: 0 16px 40px rgba(37, 99, 235, 0.35);
+  /* ATUALIZAÇÃO: Efeito Shine */
+  position: relative;
+  overflow: hidden;
 }
 
 .btn--primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 18px 50px rgba(37, 99, 235, 0.5);
 }
+
+/* ATUALIZAÇÃO: Efeito Shine (pseudo-elemento) */
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: translateX(-100%) rotate(10deg);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.btn--primary:hover::after {
+  transform: translateX(100%) rotate(10deg);
+}
+
 
 .btn--ghost {
   background: transparent;
@@ -346,7 +380,7 @@ body {
 .hero__subtitle {
   color: var(--color-muted);
   max-width: 34rem;
-  line-height: 1.6;
+  /* line-height: 1.6; (removido para herdar do body) */
   margin-bottom: 1.6rem;
 }
 
@@ -401,8 +435,6 @@ body {
 .hero__mockup {
   display: flex;
   justify-content: center;
-  /* MOBILE-FIRST: Mockup vem primeiro */
-  order: -1;
 }
 
 .mockup-card {
@@ -469,12 +501,17 @@ body {
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   margin-bottom: 0.9rem;
+
+  /* ATUALIZAÇÃO: Força a proporção 16:9 */
+  aspect-ratio: 16 / 9;
 }
 
 .mockup-preview img {
   display: block;
   width: 100%;
-  height: auto;
+  /* ATUALIZAÇÃO: Força a imagem a preencher o container */
+  height: 100%;
+  object-fit: cover;
 }
 
 .mockup-list {
@@ -502,7 +539,7 @@ body {
   color: var(--color-muted);
   max-width: 40rem;
   margin: 0 auto 2.5rem;
-  line-height: 1.6;
+  /* line-height: 1.6; (removido para herdar do body) */
 }
 
 /* Texto claro para seções escuras */
@@ -533,6 +570,7 @@ body {
   gap: 1.5rem;
 }
 
+/* FLUIDEZ: Os cards auto-fit já são fluidos por natureza */
 .cards--3 {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
@@ -642,12 +680,16 @@ body {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
+  /* ATUALIZAÇÃO: Força a proporção 16:9 */
+  aspect-ratio: 16 / 9;
 }
 
 .visual-card__image img {
   display: block;
   width: 100%;
-  height: auto;
+  /* ATUALIZAÇÃO: Força a imagem a preencher o container */
+  height: 100%;
+  object-fit: cover;
 }
 
 .visual-card__content h3 {
@@ -705,7 +747,7 @@ body {
 
 .gallery-item img {
   width: 100%;
-  height: auto;
+  height: auto; /* Deixamos a galeria fluida, sem aspect-ratio */
   display: block;
   border-radius: 14px;
   margin-bottom: 0.6rem;
@@ -733,6 +775,14 @@ body {
   flex-direction: column;
   gap: 0.9rem;
   position: relative;
+  /* ATUALIZAÇÃO: Transição de Hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ATUALIZAÇÃO: Efeito Hover em cards não-3D */
+.pricing-card:not(.card-3d):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
 }
 
 .pricing-card--featured {
@@ -838,6 +888,14 @@ body {
 .card--case {
   /* Fundo verde-água suave */
   background: radial-gradient(circle at top left, rgba(20, 184, 166, 0.08), var(--bg-surface));
+  /* ATUALIZAÇÃO: Transição de Hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ATUALIZAÇÃO: Efeito Hover em cards não-3D */
+.card--case:not(.card-3d):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
 }
 
 .case-image {
@@ -845,12 +903,16 @@ body {
   overflow: hidden;
   margin-bottom: 0.7rem;
   border: 1px solid var(--border-subtle);
+  /* ATUALIZAÇÃO: Força a proporção 16:10 */
+  aspect-ratio: 16 / 10;
 }
 
 .case-image img {
   display: block;
   width: 100%;
-  height: auto;
+  /* ATUALIZAÇÃO: Força a imagem a preencher o container */
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ========= SOBRE ========= */
@@ -880,12 +942,16 @@ body {
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   background: radial-gradient(circle at top left, var(--primary-soft), var(--bg-surface));
+  /* ATUALIZAÇÃO: Força a proporção 1:1 */
+  aspect-ratio: 1 / 1;
 }
 
 .about-photo {
   width: 100%;
-  height: auto;
   display: block;
+  /* ATUALIZAÇÃO: Força a imagem a preencher o container */
+  height: 100%;
+  object-fit: cover;
 }
 
 .about-highlights {
@@ -1039,21 +1105,42 @@ body {
 
 /* ========= ANIMAÇÕES SCROLL ========= */
 
-.animated {
+.animated,
+.animated--stagger,
+.stagger-child {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s cubic-bezier(0.22, 0.8, 0.32, 1),
     transform 0.8s cubic-bezier(0.22, 0.8, 0.32, 1);
 }
 
-.animated--delay {
-  transition-delay: 0.12s;
-}
-
+/* Blocos simples tornam-se visíveis */
 .animated.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Blocos Stagger (pais) TAMBÉM se tornam visíveis */
+.animated--stagger.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Os filhos do Stagger tornam-se visíveis em cascata */
+.animated--stagger.is-visible .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays da cascata (só se aplica aos filhos) */
+.animated--stagger.is-visible .stagger-child:nth-child(1) { transition-delay: 0.1s; }
+.animated--stagger.is-visible .stagger-child:nth-child(2) { transition-delay: 0.2s; }
+.animated--stagger.is-visible .stagger-child:nth-child(3) { transition-delay: 0.3s; }
+.animated--stagger.is-visible .stagger-child:nth-child(4) { transition-delay: 0.4s; }
+.animated--stagger.is-visible .stagger-child:nth-child(5) { transition-delay: 0.5s; }
+.animated--stagger.is-visible .stagger-child:nth-child(6) { transition-delay: 0.6s; }
+/* ================================== */
+
 
 /* ========= 3D / TILT ========= */
 
@@ -1103,32 +1190,54 @@ body {
 
 /*
 ==========================================
-NOVOS ESTILOS PARA A SEÇÃO DE ANÁLISE
+ESTILOS PARA A SEÇÃO DE ANÁLISE
 ==========================================
 */
 .analise-list {
   list-style: none;
   margin: 1.5rem 0 2rem;
   padding: 0;
-  /* MOBILE-FIRST: O texto já é centralizado pelo section__narrow, a lista acompanha */
-  text-align: left; 
+  /* Centraliza o bloco da lista, mas alinha o texto interno à esquerda */
   display: inline-block; 
+  text-align: left;
+  max-width: 100%; /* Garante que não estoure */
 }
 
 .analise-list li {
   font-size: 0.95rem;
-  color: #e5e7eb; /* Texto claro */
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
+  color: #e5e7eb; /* Cor clara */
+  
+  /* CORREÇÃO: Usar Grid para alinhar ícone e o novo <div> */
+  display: grid;
+  /* Coluna do ícone (auto) e coluna do texto (1fr) */
+  grid-template-columns: auto 1fr; 
+  align-items: start; /* Alinha pelo topo */
+  gap: 0.75rem; /* Espaço entre ícone e texto */
 }
 
 .analise-list li + li {
-  margin-top: 0.75rem;
+  margin-top: 1.25rem; /* Aumentar espaçamento entre itens */
 }
 
 .analise-list li span {
   font-size: 1.1rem;
+  margin-top: 0.2rem; /* Leve ajuste vertical */
+  line-height: 1; /* Garante que o ícone não tenha altura de linha extra */
+}
+
+/* NOVO: Estiliza o <div> wrapper */
+.analise-list li div {
+  line-height: 1.5; /* Altura de linha só para o texto */
+  color: #d1d5db; /* Cor da descrição (cinza claro) */
+}
+
+/* NOVO: Transforma o <strong> em um "título" de bloco */
+.analise-list li strong {
+  display: block; /* Força o texto de baixo a quebrar a linha */
+  color: #f9fafb;  /* Cor do título (branco) */
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.2rem; /* Pequeno espaço entre título e descrição */
 }
 
 .analise-hook {
@@ -1136,11 +1245,10 @@ NOVOS ESTILOS PARA A SEÇÃO DE ANÁLISE
   color: #f9fafb; /* Texto branco */
   line-height: 1.6;
   margin-bottom: 1.5rem;
-}
-
-.analise-hook strong {
-  color: var(--accent); /* Destaca com o verde do WhatsApp */
-  font-size: 1.2rem;
+  /* Garante que o bloco de texto não fique largo demais */
+  max-width: 40rem; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -1167,11 +1275,23 @@ NOVOS ESTILOS PARA A SEÇÃO DE ANÁLISE
     /* Retorna para linha */
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+  }
+
+  /* FLUIDEZ 4: Transição de grid no tablet */
+  .about-grid {
+    /* Grid de 2 colunas mais cedo */
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
   }
 }
 
 /* Breakpoint grande (desktop) */
 @media (min-width: 900px) {
+  /* FLUIDEZ 1: Retorna ao font-size padrão */
+  html {
+    font-size: 16px;
+  }
+
   .section {
     /* Padding de desktop */
     padding: 6rem 1.5rem;
@@ -1204,14 +1324,40 @@ NOVOS ESTILOS PARA A SEÇÃO DE ANÁLISE
   }
 
   .hero__mockup {
-    /* Mockup volta para a direita */
+    /* CORREÇÃO: Mockup volta para a direita no desktop */
     order: 0;
   }
 
-  .about-grid {
-    /* Grid de 2 colunas */
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+  /* O .about-grid já foi definido em 640px, 
+    então não precisamos re-declarar aqui.
+  */
+}
+
+/* FLUIDEZ 5: Layout para "PC Gigante" */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1280px;
   }
+}
+
+/*
+==========================================
+NOVOS KEYFRAMES PARA ANIMAÇÕES
+==========================================
+*/
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 4px var(--primary-soft);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.05);
+  }
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 
@@ -1222,7 +1368,9 @@ NOVOS ESTILOS PARA A SEÇÃO DE ANÁLISE
   }
 
   /* Desliga a animação de scroll */
-  .animated {
+  .animated, 
+  .animated--stagger,
+  .stagger-child {
     opacity: 1;
     transform: translateY(0);
     transition: none;
@@ -1240,7 +1388,16 @@ NOVOS ESTILOS PARA A SEÇÃO DE ANÁLISE
   .btn, 
   .nav-link::after,
   .top-bar__cta,
-  .whatsapp-float {
+  .whatsapp-float,
+  .pricing-card,
+  .card--case,
+  .btn--primary::after {
     transition: none;
+  }
+
+  /* Desliga novas animações */
+  .top-bar,
+  .logo-dot {
+    animation: none !important;
   }
 }

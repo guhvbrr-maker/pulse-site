@@ -70,9 +70,10 @@
       </div>
       <nav class="navbar__menu">
         <a href="#para-quem" class="nav-link">É pra mim?</a>
-        <a href="#analise" class="nav-link">Análise Grátis</a> <a href="#beneficios" class="nav-link">Por que ter um site</a>
+        <a href="#analise" class="nav-link">Análise Grátis</a> 
+        <a href="#beneficios" class="nav-link">Por que ter um site</a>
         <a href="#planos" class="nav-link">Planos</a>
-        <a href="#faq" class...="nav-link">Dúvidas</a>
+        <a href="#faq" class="nav-link">Dúvidas</a>
       </nav>
       <button 
         class="btn btn--ghost js-open-whatsapp desktop-only"
@@ -93,7 +94,8 @@
   <div class="navbar-mobile" id="navbarMobile" role="dialog" aria-modal="true">
     <nav class="navbar-mobile__menu">
       <a href="#para-quem" class="nav-link js-close-mobile">É pra mim?</a>
-      <a href="#analise" class="nav-link js-close-mobile">Análise Grátis</a> <a href="#beneficios" class="nav-link js-close-mobile">Por que ter um site</a>
+      <a href="#analise" class="nav-link js-close-mobile">Análise Grátis</a> 
+      <a href="#beneficios" class="nav-link js-close-mobile">Por que ter um site</a>
       <a href="#visual" class="nav-link js-close-mobile">Por dentro</a>
       <a href="#planos" class="nav-link js-close-mobile">Planos</a>
       <a href="#cases" class="nav-link js-close-mobile">Cenários</a>
@@ -112,20 +114,20 @@
       <div class="hero-decor hero-decor--two"></div>
 
       <div class="container hero__grid">
-        <div class="hero__content animated">
-          <p class="badge">Para donos de negócios que querem parar de perder cliente</p>
-          <h1>
+        
+        <div class="hero__content animated--stagger"> <p class="badge stagger-child">Para donos de negócios que querem parar de perder cliente</p>
+          <h1 class="stagger-child">
             Seu site profissional em até
             <span class="highlight">14 dias</span> — feito para o seu negócio
             atrair clientes todos os dias.
           </h1>
-          <p class="hero__subtitle">
+          <p class="hero__subtitle stagger-child">
             Se você é dono de <strong>loja, clínica, barbearia, estúdio, escritório ou presta serviços</strong>,
             já anuncia ou posta nas redes, mas sente que as pessoas <strong>somem depois do clique</strong>,
             este site foi pensado exatamente para você.
           </p>
 
-          <div class="hero__cta-group">
+          <div class="hero__cta-group stagger-child">
             <button 
               class="btn btn--primary btn--lg js-open-whatsapp"
               data-message="Olá! Vi o site da Pulse e quero um orçamento para o meu negócio.">
@@ -136,7 +138,7 @@
             </button>
           </div>
 
-          <div class="hero__meta">
+          <div class="hero__meta stagger-child">
             <div class="hero__meta-item">
               <span class="hero__meta-value">7–14</span>
               <span class="hero__meta-label">dias para publicar</span>
@@ -145,21 +147,15 @@
               <span class="hero__meta-value">100%</span>
               <span class="hero__meta-label">feito sob medida para você</span>
             </div>
-            <div class="hero__meta-item">
-              <span class="hero__meta-value">+1</span>
-              <span class="hero__meta-label">negócio testado na prática</span>
-            </div>
           </div>
 
-          <p class="hero__note">
+          <p class="hero__note stagger-child">
             <span>✔</span> Falo a sua língua, não linguagem técnica •
             <span>✔</span> Você fala comigo, não com uma agência gigante •
             <span>✔</span> Site feito pra vender, não só pra “ficar bonito”
           </p>
         </div>
-
-        <div class="hero__mockup animated animated--delay">
-          <div class="mockup-card card-3d"> 
+        <div class="hero__mockup animated"> <div class="mockup-card card-3d"> 
             <div class="mockup-card__header">
               <span class="dot red"></span>
               <span class="dot yellow"></span>
@@ -175,7 +171,7 @@
 
               <div class="mockup-preview">
                 <img
-                  src="https://via.placeholder.com/640x360?text=Exemplo+de+site+M%C3%B3veis+Karina"
+                  src="images/hero-mockup-karina.jpg"
                   alt="Exemplo de layout de site para loja de móveis"
                   loading="lazy"
                 />
@@ -261,9 +257,27 @@
         </p>
         
         <ul class="analise-list">
-          <li><span>🎯</span> <strong>Gera Urgência:</strong> Você vai descobrir o que eles estão acertando (e o que você pode fazer melhor).</li>
-          <li><span>♟️</span> <strong>Posiciona como Estrategista:</strong> Não sou um "fazedor de site", sou um parceiro para fazer você vender mais.</li>
-          <li><span>📈</span> <strong>Foco em Resultados:</strong> Quem pede essa análise está genuinamente preocupado em crescer.</li>
+          <li>
+            <span>🎯</span> 
+            <div> 
+              <strong>Gera Urgência:</strong> 
+              Você vai descobrir o que eles estão acertando (e o que você pode fazer melhor).
+            </div>
+          </li>
+          <li>
+            <span>♟️</span> 
+            <div> 
+              <strong>Posiciona como Estrategista:</strong> 
+              Não sou um "fazedor de site", sou um parceiro para fazer você vender mais.
+            </div>
+          </li>
+          <li>
+            <span>📈</span> 
+            <div> 
+              <strong>Foco em Resultados:</strong> 
+              Quem pede essa análise está genuinamente preocupado em crescer.
+            </div>
+          </li>
         </ul>
 
         <p class="analise-hook">
@@ -398,7 +412,7 @@
           <article class="visual-card card-3d">
             <div class="visual-card__image">
               <img
-                src="https://via.placeholder.com/640x360?text=Home+com+headline+forte"
+                src="images/visual-home.jpg"
                 alt="Exemplo de página inicial com headline forte"
                 loading="lazy"
               />
@@ -415,7 +429,7 @@
           <article class="visual-card card-3d">
             <div class="visual-card__image">
               <img
-                src="https://via.placeholder.com/640x360?text=Se%C3%A7%C3%A3o+de+servi%C3%A7os"
+                src="images/visual-servicos.jpg"
                 alt="Exemplo de seção de serviços"
                 loading="lazy"
               />
@@ -432,7 +446,7 @@
           <article class="visual-card card-3d">
             <div class="visual-card__image">
               <img
-                src="https://via.placeholder.com/640x360?text=Depoimentos+e+provas+sociais"
+                src="images/visual-depoimentos.jpg"
                 alt="Exemplo de seção de depoimentos"
                 loading="lazy"
               />
@@ -642,7 +656,7 @@
         <div class="gallery-grid">
           <figure class="gallery-item card-3d">
             <img
-              src="https://via.placeholder.com/640x360?text=Exemplo+de+Home"
+              src="images/galeria-home.jpg"
               alt="Exemplo de página inicial de site"
               loading="lazy"
             />
@@ -650,7 +664,7 @@
           </figure>
           <figure class="gallery-item card-3d">
             <img
-              src="https://via.placeholder.com/640x360?text=Exemplo+de+Se%C3%A7%C3%A3o+Sobre"
+              src="images/galeria-sobre.jpg"
               alt="Exemplo de seção sobre a empresa"
               loading="lazy"
             />
@@ -658,7 +672,7 @@
           </figure>
           <figure class="gallery-item card-3d">
             <img
-              src="https://via.placeholder.com/640x360?text=Exemplo+de+Servi%C3%A7os"
+              src="images/galeria-servicos-3d.jpg"
               alt="Exemplo de seção de serviços"
               loading="lazy"
             />
@@ -666,7 +680,7 @@
           </figure>
           <figure class="gallery-item card-3d">
             <img
-              src="https://via.placeholder.com/640x360?text=Exemplo+de+Depoimentos"
+              src="images/galeria-prints-wpp.jpg"
               alt="Exemplo de seção de depoimentos"
               loading="lazy"
             />
@@ -684,7 +698,7 @@
           <article class="card card--case card-3d"> 
             <div class="case-image">
               <img
-                src="https://via.placeholder.com/480x300?text=Barbearia"
+                src="images/case-barbearia.jpg"
                 alt="Exemplo visual de site para barbearia"
                 loading="lazy"
               />
@@ -698,7 +712,7 @@
           <article class="card card--case card-3d"> 
             <div class="case-image">
               <img
-                src="https://via.placeholder.com/480x300?text=Cl%C3%ADnica"
+                src="images/case-clinica.jpg"
                 alt="Exemplo visual de site para clínica"
                 loading="lazy"
               />
@@ -712,7 +726,7 @@
           <article class="card card--case card-3d"> 
             <div class="case-image">
               <img
-                src="https://via.placeholder.com/480x300?text=Loja+local"
+                src="images/case-loja-local.jpg"
                 alt="Exemplo visual de site para loja local"
                 loading="lazy"
               />
@@ -752,7 +766,7 @@
         <div class="about-side">
           <div class="about-photo-wrapper card-3d">
             <img
-              src="https://via.placeholder.com/480x480?text=Guh+%7C+M%C3%B3veis+Karina"
+              src="images/guh-foto.jpg"
               alt="Representação visual do Guh trabalhando com tecnologia e marketing"
               loading="lazy"
               class="about-photo"

@@ -124,7 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Animações ao rolar
-  const animatedEls = document.querySelectorAll(".animated");
+  
+  // ================================================
+  // CORREÇÃO AQUI!
+  // Agora o script procura por .animated E .animated--stagger
+  // ================================================
+  const animatedEls = document.querySelectorAll(".animated, .animated--stagger");
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
