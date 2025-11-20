@@ -69,7 +69,7 @@
   </script>
 
   <style>
-    /* Estilos do Popup de Saída (mantidos no HTML para simplicidade) */
+    /* Estilos do Popup de Saída */
     #exit-popup {
       display: none;
       position: fixed;
@@ -77,29 +77,291 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
       justify-content: center;
       align-items: center;
       padding: 1rem;
     }
+    
+    #exit-popup.hidden {
+      display: none !important;
+    }
+    
     #exit-popup-content {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 16px;
-      max-width: 500px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
+      max-width: 560px;
+      width: 100%;
       text-align: center;
       position: relative;
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+      animation: popupSlideIn 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
+    
+    @keyframes popupSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    #exit-popup-content h2 {
+      color: #ef4444;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    
+    #exit-popup-content h3 {
+      color: #0f172a;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    
     #close-popup {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 15px;
+      right: 20px;
       background: transparent;
       border: none;
-      font-size: 1.75rem;
+      font-size: 2rem;
       cursor: pointer;
       color: #94a3b8;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+    
+    #close-popup:hover {
+      color: #0f172a;
+    }
+    
+    .exit-popup-bonus-image {
+      margin: 1rem auto 1.5rem;
+      max-width: 120px;
+    }
+    
+    .bonus-gift-img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+    }
+    
+    .exit-popup-intro {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+    
+    .exit-popup-bonus-list {
+      text-align: left;
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem auto;
+      max-width: 450px;
+    }
+    
+    .exit-popup-bonus-list li {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: rgba(59, 130, 246, 0.05);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    
+    .exit-popup-bonus-list li strong {
+      color: #0f172a;
+    }
+    
+    #exit-popup-content .btn {
+      margin: 1.5rem auto 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .exit-popup-microcopy {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .exit-popup-deny {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-decoration: none;
+      padding: 0.5rem;
+      transition: color 0.2s ease;
+    }
+    
+    .exit-popup-deny:hover {
+      color: #64748b;
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 640px) {
+      #exit-popup-content {
+        padding: 2rem 1.5rem;
+        max-width: 95%;
+      }
+      
+      #exit-popup-content h2 {
+        font-size: 1.25rem;
+      }
+      
+      #exit-popup-content h3 {
+        font-size: 1.1rem;
+      }
+      
+      .exit-popup-bonus-list li {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Countdown Timer Styles */
+    #countdown-timer {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #fbbf24;
+      margin-left: 1rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(251, 191, 36, 0.1);
+      border-radius: 6px;
+      display: inline-block;
+    }
+    
+    @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+      }
+      
+      #countdown-timer {
+        margin-left: 0;
+        font-size: 0.85rem;
+      }
+    }
+    
+    /* CTA Microcopy Styles */
+    .cta-microcopy-urgency,
+    .cta-microcopy-guarantee {
+      font-size: 0.875rem;
+      line-height: 1.4;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    }
+    
+    .cta-microcopy-urgency {
+      color: #ef4444;
+      font-weight: 600;
+    }
+    
+    .cta-microcopy-guarantee {
+      color: #475569;
+      font-weight: 500;
+    }
+    
+    /* Urgency Critical Style for Top Bar */
+    .urgency-critical {
+      animation: urgencyPulse 2s ease-in-out infinite;
+      color: #ef4444 !important;
+      font-weight: 700 !important;
+    }
+    
+    @keyframes urgencyPulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.85;
+      }
+    }
+    
+    /* Calculator CTA Button */
+    .btn-cta-perda-calc {
+      display: inline-block;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+      margin: 1rem auto;
+      max-width: 600px;
+      width: 100%;
+    }
+    
+    .btn-cta-perda-calc:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(239, 68, 68, 0.4);
+    }
+    
+    .btn-cta-perda-calc #cta-calc-value {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+    
+    .animated-currency {
+      animation: currencyBounce 0.6s ease-out;
+    }
+    
+    @keyframes currencyBounce {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Analysis Section Video Preview */
+    .analise-video-preview {
+      max-width: 560px;
+      margin: 1.5rem auto;
+      text-align: center;
+    }
+    
+    .analise-preview-img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+    
+    .analise-video-duration {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      margin: 1rem auto 1.5rem;
+      max-width: 600px;
+    }
+    
+    .analise-video-duration b {
+      color: #60a5fa;
+      font-weight: 700;
     }
 
     /* FASE 2 - Glassmorphism com fallback leve para celulares simples */
@@ -181,6 +443,7 @@
     <p class="top-bar__text" id="vagas-topo">
       🔥 AGENDA ABERTA: Vagas limitadas para esta semana.
     </p>
+    <div id="countdown-timer" class="countdown-timer"></div>
   </div>
 
   <header class="navbar">
@@ -253,7 +516,8 @@
               >
                 QUERO CLIENTES NO MEU WHATSAPP
               </button>
-              <p class="hero__guarantee">🔒 Garantia de 7 dias ou seu dinheiro de volta</p>
+              <p class="cta-microcopy-urgency">Vagas limitadas para esta semana. Agende seu horário agora!</p>
+              <p class="cta-microcopy-guarantee">Seu risco é zero: 7 dias de garantia ou seu dinheiro de volta.</p>
             </div>
           </div>
 
@@ -445,9 +709,14 @@
             </strong>
           </p>
 
+          <a href="#" class="btn btn-cta-perda-calc" id="cta-calc-button">
+            Não perca mais! Transforme esses R$ <span id="cta-calc-value">10.400</span> em vendas com seu site!
+          </a>
+
           <button
             class="btn btn--danger btn--lg js-open-whatsapp"
             data-message="Olá! Vi o prejuízo na Calculadora e quero resolver isso."
+            style="margin-top: 1rem;"
           >
             CHEGA! QUERO RESOLVER ISSO AGORA
           </button>
@@ -474,6 +743,14 @@
         <h2 class="analise-section-heading">
           Vou gravar a tela do meu PC e te mostrar: <span class="highlight-blue">Como passar seu concorrente no Google.</span>
         </h2>
+
+        <div class="analise-video-preview">
+          <img src="images/analise-preview.webp" alt="Preview do vídeo de análise personalizado" class="analise-preview-img" />
+        </div>
+
+        <p class="analise-video-duration">
+          Neste vídeo personalizado de <b>2 a 3 minutos</b>, você verá onde seus concorrentes estão te superando no Google, quais palavras-chave iremos usar e um plano prático para dominar sua região.
+        </p>
 
         <p
           class="section__subtitle section__subtitle--light analise-section-subtitle"
@@ -518,6 +795,9 @@
         >
           QUERO MEU VÍDEO DE ANÁLISE
         </button>
+        
+        <p class="cta-microcopy-urgency">Vagas limitadas! Receba sua análise em até 24h.</p>
+        <p class="cta-microcopy-guarantee">100% gratuito. Sem compromisso de compra.</p>
         
         <p class="section__note section__note--analise">
           👆 Toque no botão. É 100% Grátis de verdade.
@@ -864,6 +1144,9 @@
               QUERO MEU SITE + BÔNUS
             </button>
 
+            <p class="cta-microcopy-urgency">Apenas 3 vagas disponíveis esta semana!</p>
+            <p class="cta-microcopy-guarantee">Garantia total de 7 dias. Risco zero para você.</p>
+
             <div class="trust-footer">
               <div class="trust-item">
                 <span>🛡️ 7 Dias de Garantia</span>
@@ -1104,6 +1387,9 @@
           RECEBER CLIENTES PELO WHATSAPP
         </button>
 
+        <p class="cta-microcopy-urgency">Últimas vagas! Não perca esta oportunidade.</p>
+        <p class="cta-microcopy-guarantee">Garantia incondicional de 7 dias ou dinheiro de volta.</p>
+
         <div class="fallback-cta fallback-cta--hidden">
           <p>Ainda em dúvida? Me chama no WhatsApp sem compromisso.</p>
           <p>
@@ -1155,461 +1441,39 @@
     </div>
   </footer>
 
-  <div id="exit-popup">
+  <div id="exit-popup" class="hidden">
     <div id="exit-popup-content">
       <button id="close-popup" aria-label="Fechar popup">&times;</button>
-      <h3>
-        Antes de sair!
-      </h3>
-      <p>
-        Receba sua <strong>Análise Gratuita</strong> e descubra por que você
-        está perdendo clientes para o concorrente.
-      </p>
+      
+      <h2>ESPERA! NÃO VÁ EMBORA DE MÃOS VAZIAS...</h2>
+      <h3>Garanta seu Bônus EXCLUSIVO AGORA!</h3>
+      
+      <div class="exit-popup-bonus-image">
+        <img src="images/bonus-icon.webp" alt="Caixa de presente com bônus exclusivos" class="bonus-gift-img" />
+      </div>
+      
+      <p class="exit-popup-intro">Receba GRATUITAMENTE no seu WhatsApp:</p>
+      
+      <ul class="exit-popup-bonus-list">
+        <li>✅ <strong>Análise de Concorrência em Vídeo</strong> - Descubra onde você está perdendo clientes</li>
+        <li>✅ <strong>3 Ideias de Marketing Local</strong> - Ações práticas para sua região</li>
+        <li>✅ <strong>Guia: WhatsApp para Vendas</strong> - Converta conversas em clientes pagantes</li>
+      </ul>
+      
       <button
         class="btn btn--primary btn--lg js-open-whatsapp"
-        data-message="Olá! Quase saí do site, mas quero minha Análise Gratuita."
+        data-message="Olá! Quase saí do site, mas quero meus Bônus Grátis!"
       >
-        PEGAR MINHA ANÁLISE GRÁTIS
+        🎁 QUERO MEU BÔNUS GRÁTIS
       </button>
-      <p class="cta-microcopy">Sem compromisso • Entrega em 24h</p>
+      
+      <p class="exit-popup-microcopy">Receba tudo no seu WhatsApp em segundos!</p>
+      
+      <a href="#" id="deny-popup" class="exit-popup-deny">
+        Não, obrigado. Prefiro continuar perdendo clientes para meus concorrentes.
+      </a>
     </div>
   </div>
 
-  <script>
-    // =========================================
-    // 1. CONFIGURAÇÕES GERAIS & WHATSAPP
-    // =========================================
-    const WHATSAPP_NUMBER = "5544991310383"; // SEU NÚMERO
-    const WHATSAPP_MESSAGE_DEFAULT =
-      "Olá, vi o site da Pulse e quero saber mais.";
-
-    function openWhatsApp(event) {
-      let message = WHATSAPP_MESSAGE_DEFAULT;
-      const clickedEl = event.currentTarget;
-      if (clickedEl && clickedEl.dataset.message) {
-        message = clickedEl.dataset.message;
-      }
-      const encoded = encodeURIComponent(message);
-      const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encoded}`;
-      window.open(url, "_blank", "noopener");
-    }
-
-    function scrollToTarget(selector) {
-      const el = document.querySelector(selector);
-      if (!el) return;
-      const headerOffset = 80; // Ajuste conforme altura do seu navbar fixo
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
-
-    // =========================================
-    // 2. LÓGICA DE URGÊNCIA AUTOMÁTICA (VAGAS)
-    // =========================================
-    function atualizarVagasAutomaticas() {
-      const agora = new Date();
-      const diaSemana = agora.getDay(); // 0 (Domingo) - 6 (Sábado)
-      const hora = agora.getHours();
-      const hoje = agora.toLocaleDateString("pt-BR");
-
-      const vagasSalvas = localStorage.getItem("pulse_vagas_hoje");
-      const dataSalva = localStorage.getItem("pulse_data");
-
-      let vagasStatus = "3 VAGAS";
-      let msgTopo =
-        "🔥 AGENDA ABERTA: Apenas 3 vagas disponíveis para esta semana.";
-      let msgSticky = "🔥 <strong>Restam 3 VAGAS!</strong>";
-      let msgFinal = "3 VAGAS";
-      let ctaComprarTexto = "RECEBER CLIENTES PELO WHATSAPP";
-      let ctaComprarMsg =
-        "Olá! Quero garantir uma das últimas vagas para o meu site.";
-      let ctaDuvidaMsg = "Olá Gustavo! Estou em dúvida, pode me ajudar?";
-      let esgotado = false;
-
-      switch (diaSemana) {
-        case 0: // Domingo
-        case 6: // Sábado
-          esgotado = true;
-          break;
-        case 1: // Segunda
-          vagasStatus = "3 VAGAS";
-          msgTopo =
-            "🔥 AGENDA ABERTA: Apenas 3 vagas disponíveis para esta semana.";
-          msgSticky = "🔥 <strong>Restam 3 VAGAS!</strong>";
-          msgFinal = "3 VAGAS";
-          break;
-        case 2: // Terça
-        case 3: // Quarta
-          vagasStatus = "2 VAGAS";
-          msgTopo =
-            "🔥 ATENÇÃO: Restam apenas 2 vagas para entrega em 72h esta semana.";
-          msgSticky = "🔥 <strong>Restam só 2 VAGAS!</strong>";
-          msgFinal = "2 VAGAS";
-          break;
-        case 4: // Quinta
-          vagasStatus = "1 VAGA";
-          msgTopo =
-            "🚨 URGENTE: Resta apenas 1 vaga! Garanta agora ou espere a próxima semana.";
-          msgSticky = "🚨 <strong>ÚLTIMA VAGA!</strong>";
-          msgFinal = "1 VAGA";
-          ctaComprarTexto = "GARANTIR ÚLTIMA VAGA";
-          break;
-        case 5: // Sexta
-          if (hora < 12) {
-            // Antes do meio-dia
-            vagasStatus = "1 VAGA";
-            msgTopo =
-              "🚨 URGENTE: Resta apenas 1 vaga! Garanta agora ou espere a próxima semana.";
-            msgSticky = "🚨 <strong>ÚLTIMA VAGA!</strong>";
-            msgFinal = "1 VAGA";
-            ctaComprarTexto = "GARANTIR ÚLTIMA VAGA";
-          } else {
-            // Depois do meio-dia
-            esgotado = true;
-          }
-          break;
-      }
-
-      if (esgotado) {
-        vagasStatus = "ESGOTADAS";
-        msgTopo =
-          "⛔ VAGAS ESGOTADAS! A agenda desta semana lotou. Entre na lista de espera para Segunda.";
-        msgSticky = "⛔ <strong>ESGOTADO</strong><br>Lista de espera";
-        msgFinal = "ESGOTADAS";
-        ctaComprarTexto = "ENTRAR NA LISTA DE ESPERA (Abre Segunda)";
-        ctaComprarMsg =
-          "Olá! As vagas da semana acabaram. Quero entrar na lista de espera para segunda-feira.";
-        ctaDuvidaMsg =
-          "Olá! Vi que as vagas esgotaram, mas tenho uma dúvida.";
-      }
-
-      // =========================================
-      // Escassez Persistente (Local Storage)
-      // Mostra 1 vaga a menos que o padrão do dia,
-      // sem nunca chegar em 0 nos dias úteis
-      // =========================================
-      if (!esgotado && dataSalva === hoje && vagasSalvas) {
-        const numeroBase = parseInt(vagasStatus, 10);
-        if (
-          Number.isFinite(numeroBase) &&
-          numeroBase > 1 &&
-          diaSemana >= 1 &&
-          diaSemana <= 5
-        ) {
-          const novoNumero = numeroBase - 1;
-          vagasStatus = novoNumero === 1 ? "1 VAGA" : `${novoNumero} VAGAS`;
-
-          if (novoNumero === 3) {
-            msgTopo =
-              "🔥 AGENDA ABERTA: Apenas 3 vagas disponíveis para esta semana.";
-            msgSticky = "🔥 <strong>Restam 3 VAGAS!</strong>";
-            msgFinal = "3 VAGAS";
-          } else if (novoNumero === 2) {
-            msgTopo =
-              "🔥 ATENÇÃO: Restam apenas 2 vagas para entrega em 72h esta semana.";
-            msgSticky = "🔥 <strong>Restam só 2 VAGAS!</strong>";
-            msgFinal = "2 VAGAS";
-          } else if (novoNumero === 1) {
-            msgTopo =
-              "🚨 URGENTE: Resta apenas 1 vaga! Garanta agora ou espere a próxima semana.";
-            msgSticky = "🚨 <strong>ÚLTIMA VAGA!</strong>";
-            msgFinal = "1 VAGA";
-            ctaComprarTexto = "GARANTIR ÚLTIMA VAGA";
-          }
-        }
-      }
-
-      try {
-        if (esgotado) {
-          localStorage.setItem("pulse_vagas_hoje", "ESGOTADAS");
-        } else {
-          localStorage.setItem("pulse_vagas_hoje", vagasStatus);
-        }
-        localStorage.setItem("pulse_data", hoje);
-      } catch (e) {
-        // Fallback silencioso se localStorage não estiver disponível
-      }
-
-      // Atualizar Textos no DOM
-      const textoTopo = document.getElementById("vagas-topo");
-      const stickyInfo =
-        document.getElementById("sticky-vagas") ||
-        document.querySelector(".sticky-mobile-cta .info");
-      const vagasFinal = document.getElementById("vagas-restantes-final");
-      const avisoPlanos = document.getElementById("aviso-planos");
-
-      if (textoTopo) textoTopo.innerHTML = msgTopo;
-      if (stickyInfo) stickyInfo.innerHTML = msgSticky;
-      if (vagasFinal) {
-        vagasFinal.innerHTML = msgFinal;
-        if (esgotado) vagasFinal.style.color = "#ef4444";
-      }
-      if (avisoPlanos) {
-        if (esgotado)
-          avisoPlanos.innerHTML =
-            "⏰ <strong>AGENDA FECHADA.</strong> Entre na lista de espera para garantir sua vaga na próxima semana.";
-        else
-          avisoPlanos.innerHTML = ` <strong>AGENDA LIMITADA:</strong> Restam apenas ${vagasStatus}. Garanta a sua!`;
-      }
-
-      // Atualizar Botões de Compra
-      const ctaComprarBotoes = [
-        document.querySelector(".btn-hero"),
-        document.getElementById("cta-plano-autoridade"),
-        document.getElementById("cta-final-comprar"),
-      ];
-
-      ctaComprarBotoes.forEach((btn) => {
-        if (btn) {
-          btn.innerHTML = ctaComprarTexto;
-          btn.setAttribute("data-message", ctaComprarMsg);
-          if (esgotado) {
-            btn.style.opacity = "0.7";
-            btn.style.background = "var(--color-muted)";
-            btn.style.borderColor = "var(--color-muted)";
-            btn.style.boxShadow = "none";
-          }
-        }
-      });
-
-      // Atualizar Botão de Dúvida Final
-      const ctaDuvidaFinal = document.getElementById("cta-final-duvida");
-      if (ctaDuvidaFinal) {
-        ctaDuvidaFinal.setAttribute("data-message", ctaDuvidaMsg);
-      }
-    }
-
-    // =========================================
-    // 3. INICIALIZAÇÃO (DOM READY)
-    // =========================================
-    document.addEventListener("DOMContentLoaded", () => {
-      // ATIVA A URGÊNCIA AUTOMÁTICA
-      atualizarVagasAutomaticas();
-
-      // =========================================
-      // LÓGICA DA CALCULADORA ROI (DOR "VISCERAL")
-    // =========================================
-      const ticketInput = document.getElementById("ticket-medio");
-      const resultadoAnual = document.getElementById("calculo-anual");
-
-      const calcularPerda = () => {
-        if (!ticketInput || !resultadoAnual) return;
-
-        const ticket = parseFloat(ticketInput.value) || 0;
-        const vendasPorSemana = 1;
-        const semanasPorAno = 52; // Usar 52 semanas para um ano completo
-
-        const perdaAnual = ticket * vendasPorSemana * semanasPorAno;
-
-        const formatador = new Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        });
-
-        resultadoAnual.textContent = `${formatador.format(perdaAnual)} por ano`;
-
-        // NOVA LÓGICA VISUAL (faz o número "sangrar")
-        if (perdaAnual > 0) {
-          resultadoAnual.style.color = "#ef4444"; // Vermelho forte
-          resultadoAnual.style.fontSize = "1.8rem"; // Destaque
-        } else {
-          resultadoAnual.style.color = "var(--color-heading)";
-          resultadoAnual.style.fontSize = "";
-          resultadoAnual.style.textDecoration = "none";
-        }
-      };
-
-      if (ticketInput) {
-        ticketInput.addEventListener("input", calcularPerda);
-        calcularPerda();
-      }
-
-      // =========================================
-      // LÓGICA DO POPUP DE SAÍDA
-      // =========================================
-      const exitPopup = document.getElementById("exit-popup");
-      const closePopup = document.getElementById("close-popup");
-      let popupShown = false;
-
-      if (exitPopup && closePopup) {
-        const showPopup = () => {
-          if (!popupShown) {
-            exitPopup.style.display = "flex"; // Usa flex para centralizar
-            popupShown = true;
-            const popupBtn = exitPopup.querySelector(".js-open-whatsapp");
-            if (popupBtn) {
-              popupBtn.addEventListener("click", openWhatsApp);
-            }
-          }
-        };
-
-        const hidePopup = () => {
-          exitPopup.style.display = "none";
-        };
-
-        document.addEventListener("mouseout", (e) => {
-          if (!e.toElement && !e.relatedTarget && e.clientY < 10) {
-            if (window.innerWidth >= 768) {
-              showPopup();
-            }
-          }
-        });
-
-        closePopup.addEventListener("click", hidePopup);
-        exitPopup.addEventListener("click", (e) => {
-          if (e.target === exitPopup) {
-            hidePopup();
-          }
-        });
-      }
-
-      // =========================================
-      // RASTREAMENTO DE BOTÕES (ORIGEM DO LEAD)
-    // =========================================
-      const botoesWhatsApp = document.querySelectorAll(".js-open-whatsapp");
-
-      // Hero / Topo (primeiro ponto de contato)
-      if (botoesWhatsApp.length > 0) {
-        botoesWhatsApp[0].dataset.message =
-          "Olá Gustavo! Vi o TOPO do site e quero garantir minha vaga.";
-      }
-
-      // Botão da Calculadora de Dor
-      const botaoCalculadora = document.querySelector(
-        "#problema .btn--danger.js-open-whatsapp"
-      );
-      if (botaoCalculadora) {
-        botaoCalculadora.dataset.message =
-          "Olá! Vi o prejuízo na Calculadora e quero resolver isso.";
-      }
-
-      // Botão do Preço (Plano Pulse)
-      const botaoPreco = document.getElementById("cta-plano-autoridade");
-      if (botaoPreco) {
-        botaoPreco.dataset.message =
-          "Olá! Vi o preço de 990 e quero fechar.";
-      }
-
-      // Botão Final / Escassez
-      const botaoFinal = document.getElementById("cta-final-comprar");
-      if (botaoFinal) {
-        botaoFinal.dataset.message =
-          "Olá! Vi que são as ÚLTIMAS VAGAS e quero garantir.";
-      }
-
-      // =========================================
-      // LISTENERS GERAIS
-      // =========================================
-      document
-        .querySelectorAll(".js-open-whatsapp")
-        .forEach((btn) => btn.addEventListener("click", openWhatsApp));
-
-      document
-        .querySelectorAll(".js-scroll-to")
-        .forEach((btn) =>
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const target = btn.dataset.target || btn.getAttribute("href");
-            if (target && target.startsWith("#")) scrollToTarget(target);
-          })
-        );
-
-      // Footer year
-      const yearSpan = document.getElementById("year");
-      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-      // Menu Mobile
-      const toggle = document.querySelector(".navbar__toggle");
-      const mobileMenu = document.getElementById("navbarMobile");
-      if (toggle && mobileMenu) {
-        const closeMenu = () => {
-          mobileMenu.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
-          document.body.style.overflow = "";
-        };
-        toggle.addEventListener("click", () => {
-          const isOpen = mobileMenu.classList.contains("open");
-          if (!isOpen) {
-            mobileMenu.classList.add("open");
-            toggle.setAttribute("aria-expanded", "true");
-            document.body.style.overflow = "hidden";
-          } else {
-            closeMenu();
-          }
-        });
-        mobileMenu
-          .querySelectorAll(".js-close-mobile")
-          .forEach((link) => link.addEventListener("click", closeMenu));
-        window.addEventListener("resize", () => {
-          if (
-            window.innerWidth >= 900 &&
-            mobileMenu.classList.contains("open")
-          )
-            closeMenu();
-        });
-      }
-
-      // Sticky Mobile CTA
-      const stickyCta = document.querySelector(".sticky-mobile-cta");
-      if (stickyCta) {
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > 300) stickyCta.classList.add("visible");
-          else stickyCta.classList.remove("visible");
-        });
-      }
-
-      // Animações de Scroll
-      const motionQuery = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      );
-      const animatedEls = document.querySelectorAll(
-        ".animated, .animated--stagger"
-      );
-      if (!motionQuery.matches && "IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.15 }
-        );
-        animatedEls.forEach((el) => observer.observe(el));
-      } else {
-        animatedEls.forEach((el) => el.classList.add("is-visible"));
-      }
-
-      // Scripts do Player de Vídeo (Se houver - mantido)
-      var youtubePlayers = document.querySelectorAll(".youtube-player");
-      youtubePlayers.forEach(function (player) {
-        var playButton = player.querySelector(".youtube-play-button");
-        var youtubeId = player.dataset.youtubeId;
-        if (playButton && youtubeId) {
-          playButton.addEventListener("click", function () {
-            var iframe = document.createElement("iframe");
-            iframe.setAttribute(
-              "src",
-              "https://www.youtube.com/embed/" + youtubeId + "?autoplay=1"
-            );
-            iframe.setAttribute("title", "Apresentação");
-            iframe.setAttribute("frameborder", "0");
-            iframe.setAttribute(
-              "allow",
-              "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            );
-            iframe.setAttribute("allowfullscreen", "");
-            player.appendChild(iframe);
-            player.classList.add("active");
-          });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
