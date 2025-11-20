@@ -1738,6 +1738,10 @@ h3 {
   line-height: 1.6;
 }
 
+.audience-card p.no-margin {
+  margin: 0;
+}
+
 .testimonial-grid-external {
   display: grid;
   grid-template-columns: 1fr;
@@ -2331,6 +2335,10 @@ h3 {
 .check-icon {
   color: #4ade80;
   font-weight: 800;
+}
+
+.check-icon--spaced {
+  margin-left: 10px;
 }
 
 .hero-conversion .hero__subtitle {
@@ -3083,5 +3091,282 @@ h3 {
     font-size: 1rem;
     margin-top: 4px;
   }
+}
+
+/* =========================================
+   UTILITY CLASSES (Refactored from inline styles)
+   ========================================= */
+
+/* Section subtitle variations */
+.section__subtitle--large {
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+
+/* Pain calculation styles */
+.pain-calc-interactive .pain-calc-label-value {
+  font-weight: 600;
+  color: var(--color-heading);
+  font-size: 0.9rem;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.pain-calc-interactive .pain-calc-note {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* Badge variations for analise section */
+.badge--analise-gift {
+  margin: 0;
+  background: rgba(22, 163, 74, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.badge--analise-gift .strikethrough-muted {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.badge--analise-gift .price-highlight {
+  color: #fff;
+}
+
+/* Analise section headings */
+.analise-section-heading {
+  margin-top: 1.5rem;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: var(--bg-body);
+}
+
+.analise-section-heading .highlight-blue {
+  color: #3b82f6;
+}
+
+.analise-section-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+/* Analise card heading colors */
+.analise-card h3.heading-blue {
+  color: #60a5fa;
+}
+
+.analise-card h3.heading-red {
+  color: #f87171;
+}
+
+.analise-card h3.heading-green {
+  color: #34d399;
+}
+
+/* Analise info box */
+.analise-info-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.analise-info-box__icon {
+  background: rgba(59, 130, 246, 0.2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.analise-info-box__title {
+  color: #fff;
+  font-weight: 600;
+  margin: 0.2rem 0;
+  font-size: 1.1rem;
+}
+
+.analise-info-box__text {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0.2rem 0;
+}
+
+/* CTA button variations */
+.btn--full-width-lg {
+  width: 100%;
+  max-width: 400px;
+  font-size: 1.1rem;
+}
+
+.section__note--analise {
+  color: #64748b;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Beneficios section */
+.section__subtitle--beneficios {
+  margin: 0 auto 2.5rem;
+}
+
+/* Prova section */
+.section__note--prova {
+  font-size: 1.1rem;
+  color: var(--color-heading);
+  margin-top: 2.5rem;
+  font-weight: 600;
+}
+
+.center--spacing-top {
+  margin-top: 2rem;
+}
+
+/* Portfolio section */
+.section__subtitle--portfolio {
+  color: #cbd5e1;
+}
+
+.cards--portfolio {
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+/* Badge color variations */
+.badge--moda {
+  background: rgba(236, 72, 153, 0.1);
+  color: #db2777;
+  border-color: rgba(236, 72, 153, 0.2);
+}
+
+.badge--delivery {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.badge--servicos {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Pricing card variations */
+.pricing-card--border-primary {
+  border: 2px solid var(--primary-strong);
+}
+
+.pricing-card .btn--lg-compact {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Garantia section box */
+.garantia-box {
+  background-color: #fff;
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.garantia-box__icon {
+  font-size: 3.5rem;
+  display: block;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.garantia-box__title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.garantia-box__text {
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  opacity: 1;
+  color: var(--color-text);
+}
+
+/* CTA Final section */
+#cta-final h2.heading-warning {
+  color: var(--primary);
+}
+
+#cta-final .subtitle-final-large {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+#cta-final .vagas-number {
+  color: #f59e0b;
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+#cta-final .subtitle-final-regular {
+  margin-top: 1rem;
+  color: var(--bg-highlight);
+}
+
+#cta-final .subtitle-final-bold {
+  font-weight: 700;
+  margin-top: 1.5rem;
+  color: var(--bg-highlight);
+}
+
+#cta-final .btn--spacing-top {
+  margin-top: 2rem;
+}
+
+.fallback-cta--hidden {
+  display: none;
+  margin-top: 0;
+  border-top: none;
+}
+
+.btn--fallback-style {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* Sticky CTA button */
+.sticky-mobile-cta .btn--sticky {
+  margin: 0;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+/* Exit popup styles */
+#exit-popup-content h3 {
+  font-size: 1.5rem;
+  color: var(--color-heading);
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+#exit-popup-content > p {
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
 }
 
