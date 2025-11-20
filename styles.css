@@ -647,14 +647,6 @@ h3 {
   font-size: var(--font-size-xl);
 }
 
-.hero__usp {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: #e2e8f0;
-}
-
 .highlight {
   background: linear-gradient(120deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
@@ -1122,7 +1114,9 @@ h3 {
 
 .card-link-wrapper {
   text-decoration: none;
-  display: block;
+  display: flex; /* Changed from block to flex for equal height cards */
+  height: 100%;
+  flex-direction: column;
   border-radius: var(--radius-md);
   transition: transform var(--dur-mid) var(--ease-standard);
 }
@@ -1138,6 +1132,10 @@ h3 {
   transition: none;
   /* Hover handled by wrapper */
   padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
 }
 
 .case-image {
@@ -2395,7 +2393,7 @@ h3 {
   border-color: rgba(59, 130, 246, 0.3);
 }
 
-.video-wrapper {
+.video-card .video-wrapper {
   border-radius: 10px; /* Radius interno menor */
   box-shadow: none;
   border: none;
@@ -2745,21 +2743,6 @@ h3 {
 /* =========================================
    CORREÇÃO ALTURA IGUAL DOS CARDS (PORTFOLIO)
    ========================================= */
-
-/* 1. Faz o link (wrapper) ocupar 100% da altura da célula do Grid */
-.card-link-wrapper {
-  display: flex !important;       /* Muda de block para flex */
-  height: 100% !important;        /* Força altura total */
-  flex-direction: column;         /* Garante estrutura vertical */
-}
-
-/* 2. Faz o card interno preencher todo o espaço e organizar o conteúdo */
-.card--case {
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100%;                   /* Preenche o wrapper */
-  justify-content: flex-start;
-}
 
 /* =========================================
    AJUSTE "UMA DOBRA" (FIT-TO-SCREEN PC)
