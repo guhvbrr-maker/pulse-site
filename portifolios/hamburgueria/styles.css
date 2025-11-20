@@ -1,0 +1,1155 @@
+/* ==================== 
+   CSS - Brasa Artesanal Hamburgueria
+   (Mobile-First)
+==================== */
+
+/* ==================== GOOGLE FONTS ==================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@500;700&display=swap');
+
+/* ==================== VARIÁVEIS CSS ==================== */
+:root {
+    /* Cores */
+    --bg-dark-primary: #0B0B0D;
+    --bg-dark-secondary: #121214;
+    --bg-dark-tertiary: #1a1a1e;
+    --bg-wood-dark: #3E2723;
+    --bg-wood-light: #5D4037;
+    
+    --primary-orange: #FF8A00;
+    --primary-orange-light: #FFB347;
+    --primary-yellow: #FFC107;
+    
+    --text-light: #F9FAFB;
+    --text-medium: #D1D5DB;
+    --text-dark: #6B7280;
+
+    /* Tipografia */
+    --font-body: 'Inter', sans-serif;
+    --font-title: 'Oswald', sans-serif;
+
+    --font-h1: 2.5rem;   /* 40px */
+    --font-h2: 2rem;     /* 32px */
+    --font-h3: 1.5rem;   /* 24px */
+    --font-normal: 1rem; /* 16px */
+    --font-small: 0.875rem; /* 14px */
+    
+    /* Outros */
+    --header-height: 4.5rem; /* 72px */
+    --container-width-desktop: 1120px;
+    --border-radius: 8px;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+}
+
+/* ==================== RESET BÁSICO ==================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* JS fará isso, mas é um bom fallback */
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-normal);
+    background-color: var(--bg-dark-primary);
+    color: var(--text-medium);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-title);
+    color: var(--text-light);
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-orange);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==================== CLASSES REUTILIZÁVEIS ==================== */
+.container {
+    max-width: var(--container-width-desktop);
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.section {
+    padding: 6rem 0 2rem;
+}
+
+.section__title {
+    font-size: var(--font-h2);
+    margin-bottom: 1rem;
+}
+
+.section__subtitle {
+    display: block;
+    font-size: var(--font-small);
+    color: var(--primary-orange);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.section__description {
+    font-size: var(--font-normal);
+    color: var(--text-medium);
+    margin-bottom: 2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ==================== ÍCONES SIMPLES (CSS/HTML) ==================== */
+/* Ícone de Check (Hero, Combo) */
+.icon-check {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--primary-orange);
+    border-radius: 50%;
+    position: relative;
+    margin-right: 8px;
+    top: 2px;
+}
+.icon-check::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 7px;
+    border: solid var(--bg-dark-primary);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    top: 3px;
+    left: 6px;
+}
+
+/* Ícone Instagram */
+.icon-instagram {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-orange);
+    border-radius: 6px;
+    position: relative;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.icon-instagram::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--primary-orange);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.icon-instagram::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: var(--primary-orange);
+    border-radius: 50%;
+    top: 2px;
+    right: 2px;
+}
+
+/* Ícone WhatsApp */
+.icon-whatsapp {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #25D366;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.icon-whatsapp::before {
+    content: '✆'; /* Telefone simples */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(20deg);
+}
+
+
+/* ==================== BOTÕES ==================== */
+.button {
+    display: inline-block;
+    padding: 0.9rem 1.75rem;
+    font-family: var(--font-title);
+    font-size: var(--font-normal);
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.button--large {
+    padding: 1.1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.button--small {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.875rem;
+}
+
+/* Botão Primário (Fogo/Cheddar) */
+.button--primary {
+    background: linear-gradient(145deg, var(--primary-yellow), var(--primary-orange));
+    color: var(--bg-wood-dark);
+    box-shadow: 0 4px 15px rgba(255, 138, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Efeito de brilho quente */
+.button--primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+}
+
+.button--primary:hover {
+    color: var(--bg-dark-primary);
+    box-shadow: 0 6px 20px rgba(255, 138, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.button--primary:hover::before {
+    transform: translateX(100%);
+}
+
+/* Botão Secundário (Outline) */
+.button--secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-orange-light);
+    color: var(--primary-orange-light);
+}
+
+.button--secondary:hover {
+    background-color: var(--primary-orange-light);
+    color: var(--bg-dark-primary);
+    transform: translateY(-2px);
+}
+
+/* ==================== HEADER (NAVBAR) ==================== */
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: transparent;
+    transition: var(--transition);
+}
+
+.nav {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo-text {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+/* ESTILO PARA O LOGO (IMAGEM) */
+.nav__logo-img {
+    width: 160px; /* Ajuste o tamanho do seu logo aqui */
+    height: auto;
+    vertical-align: middle;
+}
+
+.nav__button {
+    display: none; /* Escondido no mobile, aparece no desktop */
+}
+
+.nav__toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 101;
+}
+
+.nav__toggle span {
+    width: 28px;
+    height: 3px;
+    background-color: var(--text-light);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+/* Animação do Toggle (Hambúrguer para X) */
+.nav__toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.nav__toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.nav__toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+
+/* Menu Mobile */
+@media (max-width: 767px) {
+    .nav__menu {
+        position: fixed;
+        background-color: var(--bg-dark-primary);
+        top: 0;
+        right: -100%; /* Começa fora da tela */
+        width: 100%;
+        height: 100vh;
+        padding: 6rem 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s cubic-bezier(0.1, 0.7, 0.3, 1);
+        z-index: 100;
+    }
+
+    .nav__menu.show-menu {
+        right: 0;
+    }
+
+    .nav__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    .nav__link {
+        font-family: var(--font-title);
+        font-size: 1.75rem;
+        color: var(--text-light);
+        font-weight: 500;
+        text-transform: uppercase;
+        transition: var(--transition);
+        white-space: nowrap; 
+    }
+
+    .nav__link:hover {
+        color: var(--primary-orange);
+    }
+}
+
+/* Efeito de Navbar com Scroll (Blur) */
+.header.scrolled {
+    background-color: rgba(11, 11, 13, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    height: calc(var(--header-height) - 1rem);
+}
+
+/* ==================== HERO ==================== */
+.hero {
+    padding-top: calc(var(--header-height) + 4rem);
+    padding-bottom: 4rem;
+    background-color: var(--bg-dark-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero__container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.hero__content {
+    text-align: center;
+}
+
+.hero__title {
+    font-size: var(--font-h1);
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.hero__subtitle {
+    font-size: var(--font-normal);
+    font-family: var(--font-body);
+    font-weight: 400;
+    text-transform: none;
+    color: var(--text-medium);
+    margin-bottom: 2rem;
+}
+
+.hero__benefits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.hero__benefits li {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-normal);
+}
+
+.hero__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.hero__image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero__img-placeholder {
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 450px;
+    border: 4px solid var(--bg-wood-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    object-fit: cover; /* Garante que a imagem preencha */
+    aspect-ratio: 1 / 1; /* Mantém a proporção quadrada */
+}
+
+.hero__badge {
+    position: absolute;
+    bottom: 20px;
+    right: 0px;
+    background: linear-gradient(145deg, var(--primary-orange), var(--primary-yellow));
+    color: var(--bg-dark-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius) 0 var(--border-radius) 0;
+    font-family: var(--font-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--font-small);
+    box-shadow: 0 4px 10px rgba(255, 138, 0, 0.3);
+}
+
+/* Glow de "Brasa" no fundo */
+.hero__glow {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 138, 0, 0.15) 0%, rgba(255, 138, 0, 0) 70%);
+    filter: blur(30px);
+    z-index: 0;
+}
+
+.hero__container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== COMBO DESTAQUE ==================== */
+.combo {
+    background-color: var(--bg-dark-primary);
+}
+
+.combo__container {
+    align-items: center;
+}
+
+.combo__image {
+    position: relative;
+}
+
+.combo__img-placeholder {
+    border-radius: var(--border-radius);
+    border: 4px solid var(--bg-wood-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.combo__badge {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    background-color: var(--primary-yellow);
+    color: var(--bg-dark-primary);
+    padding: 0.75rem;
+    border-radius: 50%;
+    font-family: var(--font-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--font-small);
+    line-height: 1;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-15deg);
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+}
+
+.combo__description {
+    margin-bottom: 1.5rem;
+}
+
+.combo__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem; /* Ajustado */
+}
+
+.combo__details li {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-normal);
+}
+
+/* ESTILO DO PREÇO (COMBO) */
+.combo__price {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-yellow);
+    line-height: 1.1;
+    margin-bottom: 1.5rem; /* Espaço antes do botão */
+}
+
+/* ==================== CARDÁPIO ==================== */
+.menu {
+    background-color: var(--bg-dark-secondary);
+}
+
+.menu__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.menu-card {
+    background-color: var(--bg-dark-primary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--bg-dark-tertiary);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: var(--transition);
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 138, 0, 0.1);
+    border-color: var(--primary-orange);
+}
+
+.menu-card__image {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1; /* Proporção da imagem (Alterado de 3/2 para 1/1) */
+}
+
+.menu-card__content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.menu-card__title {
+    font-size: var(--font-h3);
+    margin-bottom: 0.5rem;
+}
+
+.menu-card__description {
+    font-size: var(--font-small);
+    color: var(--text-medium);
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Empurra o preço e o botão para baixo */
+}
+
+/* ESTILO DO PREÇO (CARD) */
+.menu-card__price {
+    font-family: var(--font-title);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem; /* Espaço antes do botão */
+}
+
+.menu-card__badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--primary-orange);
+    color: var(--bg-dark-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 5px;
+    font-family: var(--font-title);
+    font-size: var(--font-small);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* ==================== DIFERENCIAIS ==================== */
+.features__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: var(--bg-dark-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 1px solid var(--bg-dark-tertiary);
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--bg-wood-light);
+}
+
+/* ESTILO ATUALIZADO PARA ÍCONES (IMAGEM) */
+.feature-card__icon {
+    height: 60px; /* Define uma altura fixa para os ícones */
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+.feature-card__icon img {
+    height: 100%; /* Faz a imagem preencher a altura */
+    width: auto;
+    object-fit: contain;
+}
+
+
+.feature-card__title {
+    font-size: var(--font-h3);
+    margin-bottom: 0.5rem;
+}
+
+.feature-card__description {
+    font-size: var(--font-normal);
+    color: var(--text-medium);
+}
+
+/* ==================== COMO PEDIR ==================== */
+.how-to {
+    background-color: var(--bg-dark-secondary);
+    border-top: 2px solid var(--bg-wood-dark);
+    border-bottom: 2px solid var(--bg-wood-dark);
+}
+
+.how-to__steps {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Linha conectora (para desktop) */
+.how-to__steps::before {
+    content: '';
+    display: none; /* Ativado no desktop */
+}
+
+.how-to__step {
+    text-align: center;
+    position: relative;
+}
+
+.how-to__step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, var(--primary-yellow), var(--primary-orange));
+    color: var(--bg-dark-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-title);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem auto;
+    border: 4px solid var(--bg-wood-dark);
+    box-shadow: 0 4px 15px rgba(255, 138, 0, 0.3);
+}
+
+.how-to__step-title {
+    font-size: var(--font-h3);
+    margin-bottom: 0.5rem;
+}
+
+.how-to__step-description {
+    font-size: var(--font-normal);
+    color: var(--text-medium);
+}
+
+.how-to__cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* ==================== DEPOIMENTOS ==================== */
+.testimonials__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.testimonial-card {
+    background-color: var(--bg-dark-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--bg-dark-tertiary);
+    position: relative;
+}
+
+.testimonial-card__rating {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background-color: var(--primary-yellow);
+    color: var(--bg-dark-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-title);
+    font-weight: 700;
+}
+
+.testimonial-card::before {
+    content: '“';
+    font-family: var(--font-title);
+    font-size: 5rem;
+    color: var(--primary-orange);
+    opacity: 0.1;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    line-height: 1;
+}
+
+.testimonial-card__text {
+    font-size: var(--font-normal);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-card__author {
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: var(--font-normal);
+}
+
+/* ==================== SOBRE / HISTÓRIA ==================== */
+.about {
+    background-color: var(--bg-dark-secondary);
+}
+
+.about__container {
+    align-items: center;
+    gap: 3rem;
+}
+
+.about__description {
+    margin-bottom: 1.5rem;
+}
+
+.about__img-placeholder {
+    border-radius: var(--border-radius);
+    border: 4px solid var(--bg-wood-light);
+    object-fit: cover;
+    aspect-ratio: 4 / 5; /* Proporção da imagem */
+}
+
+/* ==================== CONTATO / LOCALIZAÇÃO ==================== */
+.contact__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.contact__info-block {
+    margin-bottom: 2.5rem;
+}
+
+.contact__info-block h3 {
+    font-size: var(--font-h3);
+    margin-bottom: 1rem;
+    color: var(--primary-orange-light);
+}
+
+.contact__info-block p {
+    font-size: var(--font-normal);
+    line-height: 1.7;
+}
+
+.contact__whatsapp-number {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.contact__social {
+    font-family: var(--font-body);
+    font-size: var(--font-normal);
+    font-weight: 700;
+    color: var(--primary-orange-light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.contact__social:hover {
+    color: var(--primary-yellow);
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 400px;
+    background-color: var(--bg-dark-secondary);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed var(--bg-wood-light);
+    color: var(--text-dark);
+    padding: 2rem;
+}
+
+/* Estilo para o Iframe do Google Maps */
+.contact__map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    border: 0;
+    border-radius: var(--border-radius);
+    filter: grayscale(80%) invert(90%); /* Efeito dark mode para o mapa */
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background-color: var(--bg-dark-primary);
+    border-top: 4px solid var(--bg-wood-dark);
+    padding: 4rem 0 2rem;
+    text-align: center;
+}
+
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer__title {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.footer__subtitle {
+    font-size: var(--font-normal);
+    color: var(--text-medium);
+    margin-bottom: 1.5rem;
+}
+
+.footer__copy {
+    font-size: var(--font-small);
+    color: var(--text-dark);
+}
+
+.footer__dev {
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    opacity: 0.5;
+}
+
+/* ==================== BOTÃO FLUTUANTE WHATSAPP ==================== */
+.floating-wa {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--font-normal);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 50;
+    transition: var(--transition);
+}
+
+.floating-wa:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.floating-wa .icon-whatsapp {
+    margin-right: 0;
+}
+
+/* ==================== ANIMAÇÃO DE SCROLL ==================== */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ========================================================
+   MEDIA QUERIES - DESKTOP
+   (A partir de 768px)
+======================================================== */
+@media (min-width: 768px) {
+    /* Ajustes de fonte para telas maiores */
+    :root {
+        --font-h1: 3.5rem;   /* 56px */
+        --font-h2: 2.5rem;     /* 40px */
+        --font-h3: 1.75rem;   /* 28px */
+    }
+
+    /* Layout */
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .section {
+        padding: 8rem 0 4rem;
+    }
+    .section.hero {
+        padding-top: calc(var(--header-height) + 6rem);
+        padding-bottom: 6rem;
+    }
+
+    /* Header (Desktop) */
+    .nav__toggle {
+        display: none;
+    }
+
+    .nav__menu {
+        position: static;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        padding: 0;
+        
+        display: flex;
+        align-items: center;
+
+        /* Empurra o menu para a direita */
+        margin-left: auto;
+        /* margin-right: 2.5rem; <-- Removido pois o botão foi comentado */
+    }
+
+    .nav__list {
+        display: flex; 
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .nav__link {
+        font-family: var(--font-body);
+        font-size: var(--font-normal);
+        font-weight: 500;
+        text-transform: none;
+        color: var(--text-medium);
+        white-space: nowrap; 
+    }
+    .nav__link:hover {
+        color: var(--text-light);
+    }
+
+    .nav__actions {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .nav__button {
+        display: inline-block;
+    }
+
+    /* Hero (Desktop) */
+    .hero__container {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .hero__content {
+        text-align: left;
+    }
+
+    .hero__benefits {
+        align-items: flex-start;
+    }
+
+    .hero__buttons {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .hero__image {
+        order: 2; /* Coloca imagem à direita */
+    }
+
+    .hero__content {
+        order: 1;
+    }
+
+    .hero__badge {
+        right: 20px;
+    }
+
+    /* Combo (Desktop) */
+    .combo__container {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 4rem;
+    }
+
+    /* Cardápio (Desktop) */
+    .menu__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Diferenciais (Desktop) */
+    .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Como Pedir (Desktop) */
+    .how-to__steps {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+    
+    /* Linha conectora */
+    .how-to__steps::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 60%;
+        height: 3px;
+        background-color: var(--bg-wood-light);
+        opacity: 0.5;
+        top: 30px; /* Alinha com o centro dos números */
+        left: 20%;
+        z-index: 0;
+    }
+    .how-to__step {
+        z-index: 1; /* Para ficar acima da linha */
+    }
+
+    /* Depoimentos (Desktop) */
+    .testimonials__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Sobre (Desktop) */
+    .about__container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Contato (Desktop) */
+    .contact__grid {
+        grid-template-columns: 1fr 1.2fr;
+    }
+
+    /* Botão Flutuante (Esconder no desktop) */
+    .floating-wa {
+        display: none;
+    }
+}
+
+/* ========================================================
+   MEDIA QUERIES - DESKTOP GRANDE
+   (A partir de 1024px)
+======================================================== */
+@media (min-width: 1024px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .menu__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero__glow {
+        width: 500px;
+        height: 500px;
+        top: -100px;
+        background: radial-gradient(circle, rgba(255, 138, 0, 0.2) 0%, rgba(255, 138, 0, 0) 60%);
+    }
+}

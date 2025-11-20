@@ -1,1525 +1,1713 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Pulse | Seu Site Profissional em 72 Horas úteis (Pagamento Único)</title>
-    <meta
-      name="description"
-      content="Tenha seu site profissional pronto em 72 horas úteis. Pagamento único, sem taxa de agência. Feito para negócios locais em todo o Brasil."
-    />
+  <title>
+    Pulse | Site Profissional para Negócios Locais (Pagamento Único)
+  </title>
+  <meta
+    name="description"
+    content="Site profissional pronto em 72h. Pagamento único, sem mensalidades. Feito para negócios locais pararem de perder clientes no Google e recebê-los direto no WhatsApp."
+  />
 
-    <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://www.pulsesites.com.br/" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.pulsesites.com.br/" />
 
-    <meta
-      property="og:title"
-      content="Pulse | Seu Site Profissional em 72 Horas úteis"
-    />
-    <meta
-      property="og:description"
-      content="Chega de perder clientes para o concorrente no Google. Site profissional com pagamento único e entrega em 72h úteis."
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://www.pulsesites.com.br/images/compartilhamento.webp"
-    />
+  <meta
+    property="og:title"
+    content="Pulse | O Site que Entrega Clientes no seu WhatsApp"
+  />
+  <meta
+    property="og:description"
+    content="Chega de perder clientes para o concorrente no Google. Site profissional com pagamento único e entrega em 72h úteis."
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:image"
+    content="https://www.pulsesites.com.br/images/compartilhamento.webp"
+  />
 
-    <link rel="icon" href="images/favicon.ico" />
+  <link rel="icon" href="images/favicon.ico" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-    <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Pulse Sites",
-        "image": "https://www.pulsesites.com.br/images/logo.webp",
-        "description": "Criação de sites profissionais de alta conversão em 72h úteis.",
-        "priceRange": "R$990 - R$1390",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "BR"
-        },
-        "telephone": "+5544999998888",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Pulse Sites",
+      "image": "https://www.pulsesites.com.br/images/logo.webp",
+      "description": "Criação de sites profissionais de alta conversão para negócios locais em 72h úteis.",
+      "priceRange": "R$990 - R$1390",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      },
+      "telephone": "+5544999998888",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
       }
-    </script>
+    }
+  </script>
 
-    <style>
-      /* Barra fixa apenas no mobile */
-      .sticky-mobile-cta {
-        position: fixed;
-        bottom: 0;
-        left: 0;
+  <style>
+    /* Estilos do Popup de Saída (mantidos no HTML para simplicidade) */
+    #exit-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+    #exit-popup-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+    #close-popup {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 1.75rem;
+      cursor: pointer;
+      color: #94a3b8;
+    }
+
+    /* FASE 2 - Glassmorphism com fallback leve para celulares simples */
+    .card,
+    .problema-card,
+    .audience-card,
+    .testimonial,
+    .pricing-card,
+    .zigzag-item__text {
+      /* 1. Fallback Sólido (Para celulares antigos/Android de entrada) */
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #e2e8f0;
+
+      /* Restante das propriedades (padding, radius, shadow) mantidas... */
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      box-shadow: var(--glass-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* 2. Efeito Vidro (Só ativa se o navegador aguentar) */
+    @supports ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+      .card,
+      .problema-card,
+      .audience-card,
+      .testimonial,
+      .pricing-card,
+      .zigzag-item__text {
+        background: rgb(245 245 245); /* Sua variável translúcida */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--primary);
+      }
+    }
+
+    /* FASE 2 - Contraste melhor para vista cansada */
+    p {
+      color: #334155; /* Slate 700 */
+    }
+    .section__subtitle {
+      color: #475569; /* Slate 600 */
+    }
+
+    /* FASE 2 - Botões pensados para dedo no mobile */
+    @media (max-width: 768px) {
+      .btn {
+        min-height: 48px;
         width: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-top: 1px solid #e2e8f0;
-        padding: 12px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 998; /* Fica abaixo do WhatsApp Float se precisar */
-        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
-        transform: translateY(101%);
-        transition: transform 0.4s ease-out;
+        font-size: 1rem;
       }
-      .sticky-mobile-cta.visible {
-        transform: translateY(0);
-      }
-      .sticky-mobile-cta .info {
-        font-size: 0.9rem;
-        line-height: 1.2;
-        color: var(--color-heading);
-      }
-      .sticky-mobile-cta .info strong {
-        color: #ef4444;
-      }
-      @media (min-width: 768px) {
-        .sticky-mobile-cta {
-          display: none !important;
-        }
-      }
-    </style>
+    }
 
-    <script defer src="script.js"></script>
-  </head>
-  <body>
-    <div class="top-bar">
-      <p class="top-bar__text" id="vagas-topo">
-        🔥 Atenção: Restam <strong>apenas 3 vagas</strong> para esta semana.
-        <span style="opacity: 0.8; font-size: 0.9em"
-          >(Atualizado às <span class="hora-atual">--:--</span>)</span
-        >
-      </p>
-    </div>
+    /* Estilo da evidência visual da Móveis Karina */
+    .prova-evidencia {
+      margin: 2rem auto 1.5rem;
+      max-width: 640px;
+      text-align: center;
+    }
+    .prova-evidencia img {
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
+      display: block;
+    }
+    .prova-evidencia__caption {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+  </style>
 
-    <header class="navbar">
-      <div class="navbar__inner container">
-        <div class="navbar__brand">
-          <img
-            src="images/logo.webp"
-            alt="Pulse - Sites Profissionais"
-            class="logo-image"
-          />
-        </div>
-        <nav class="navbar__menu">
-          <a href="#para-quem" class="nav-link">É pra mim?</a>
-          <a href="#analise" class="nav-link">Análise Grátis</a>
-          <a href="#beneficios" class="nav-link">Por que ter um site</a>
-          <a href="#planos" class="nav-link">Planos</a>
-          <a href="#faq" class="nav-link">Dúvidas</a>
-        </nav>
+  <script defer src="script.js"></script>
+</head>
 
-        <button
-          class="navbar__toggle mobile-only"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          aria-controls="navbarMobile"
-        >
-          <span></span><span></span><span></span>
-        </button>
+<body>
+  <div class="top-bar">
+    <p class="top-bar__text" id="vagas-topo">
+      🔥 AGENDA ABERTA: Vagas limitadas para esta semana.
+    </p>
+  </div>
+
+  <header class="navbar">
+    <div class="navbar__inner container">
+      <div class="navbar__brand">
+        <img
+          src="images/logo.webp"
+          alt="Pulse - Sites Profissionais"
+          class="logo-image"
+        />
       </div>
-    </header>
-
-    <div
-      class="navbar-mobile"
-      id="navbarMobile"
-      role="dialog"
-      aria-modal="true"
-    >
-      <nav class="navbar-mobile__menu">
-        <a href="#para-quem" class="nav-link js-close-mobile">É pra mim?</a>
-        <a href="#analise" class="nav-link js-close-mobile">Análise Grátis</a>
-        <a href="#beneficios" class="nav-link js-close-mobile"
-          >Por que ter um site</a
-        >
-        <a href="#planos" class="nav-link js-close-mobile">Planos</a>
-        <a href="#faq" class="nav-link js-close-mobile">Dúvidas</a>
-        <button
-          class="btn btn--primary js-open-whatsapp"
-          data-message="Olá! Vi o site da Pulse e quero minha Análise de Inteligência Grátis."
-        >
-          Pedir Análise Grátis
-        </button>
-      </nav>
+      <!-- <nav class="navbar__menu">
+        <a href="#problema" class="nav-link">O Problema</a>
+        <a href="#analise" class="nav-link">Análise Grátis</a>
+        <a href="#beneficios" class="nav-link">Benefícios</a>
+        <a href="#planos" class="nav-link">Planos</a>
+        <a href="#faq" class="nav-link">Dúvidas</a>
+      </nav> -->
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </header>
 
-    <main>
-      <section id="hero" class="hero section">
-        <div class="hero-decor hero-decor--one"></div>
-        <div class="hero-decor hero-decor--two"></div>
+  <div class="navbar-mobile" id="navbarMobile" role="dialog" aria-modal="true">
+    <nav class="navbar-mobile__menu">
+      <a href="#problema" class="nav-link js-close-mobile">O Problema</a>
+      <a href="#analise" class="nav-link js-close-mobile">Análise Grátis</a>
+      <a href="#beneficios" class="nav-link js-close-mobile">Benefícios</a>
+      <a href="#planos" class="nav-link js-close-mobile">Planos</a>
+      <a href="#faq" class="nav-link js-close-mobile">Dúvidas</a>
+      <button
+        class="btn btn--primary js-open-whatsapp"
+        data-message="Olá! Vi o site da Pulse e quero minha Análise Gratuita."
+      >
+        Pedir Análise Grátis
+      </button>
+    </nav>
+  </div>
 
-        <div class="container hero__grid">
-          <div class="hero__content animated--stagger">
+  <main>
+    <section id="hero" class="hero-conversion">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-glow"></div>
+
+      <div class="container h-100">
+        <div class="hero__split">
+          
+          <div class="hero__text-col animated--stagger">
+            <div class="badge-hero stagger-child">
+              <span class="pulse-dot"></span> Vagas Abertas
+            </div>
+            
             <h1 class="stagger-child">
-              Site Pronto em 72h que Entrega Clientes no seu WhatsApp.
+              O Seu Site Profissional em 72h para Trazer Os Clientes do Google Direto no seu WhatsApp.
             </h1>
-            <p class="hero__usp highlight stagger-child">
-              Sem Mensalidades, Só Pagamento Único!
+
+            <p class="hero__usp stagger-child">
+              <span class="check-icon">✓</span> Sem Mensalidades 
+              <span class="check-icon" style="margin-left: 10px">✓</span> Só Pagamento Único!
             </p>
 
             <p class="hero__subtitle stagger-child">
-              Feito para donos de negócios locais ou prestadores de serviços
-              <strong>em todo o Brasil</strong> que precisam de uma "vitrine
-              24h" no Google para parar de perder vendas para a concorrência.
+              Você é o melhor da sua cidade, mas seus clientes não te acham no Google. Nós consertamos isso. Rápido. Sem precisar entender de tecnologia.
             </p>
 
-            <div class="hero__cta-group stagger-child">
+            <div class="hero__cta-wrapper stagger-child">
               <button
-                class="btn btn-hero btn--primary btn--lg js-scroll-to"
-                data-target="#planos"
-                style="margin: 0;"
+                class="btn btn-hero btn--primary btn--glow js-open-whatsapp"
+                data-message="Olá Gustavo! Vi o vídeo e quero garantir minha vaga."
               >
-                Ver Planos e Valores
+                QUERO CLIENTES NO MEU WHATSAPP
               </button>
-            </div>
-
-            <ul class="hero__note stagger-child">
-              <li><span>✔</span> Falo sua língua, sem "linguagem de TI"</li>
-              <li>
-                <span>✔</span> Você fala comigo, não com uma agência impessoal
-              </li>
-              <li>
-                <span>✔</span> Foco em trazer clientes, não só em "ficar
-                bonito"
-              </li>
-            </ul>
-          </div>
-
-          <div class="hero__mockup animated">
-            <div class="video-wrapper">
-              <iframe
-                src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO_HERO"
-                title="Vídeo Hero"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                srcdoc="<style>body,html{margin:0;padding:0;height:100%}a{display:block;width:100%;height:100%;background-image:url(images/capa.webp);background-size:cover;background-position:center;cursor:pointer;position:relative}svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;fill:rgba(255,255,255,0.9);filter:drop-shadow(0 0 10px rgba(0,0,0,0.5))}</style><a href='https://www.youtube.com/embed/SEU_ID_DO_VIDEO_HERO?autoplay=1'><svg viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z'/></svg></a>"
-              >
-              </iframe>
+              <p class="hero__guarantee">🔒 Garantia de 7 dias ou seu dinheiro de volta</p>
             </div>
           </div>
-        </div>
 
-        <div class="custom-shape-divider-bottom-waves">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              class="wave-fill-light"
-            ></path>
-            <path
-              d="M985.66,92.83C906.67,72,823.78,31.74,741.54,14.19c-82.26-17.54-168.06-16.52-250.45.39-58.84,11.73-114.9,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.83C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-              class="wave-fill-main"
-            ></path>
-          </svg>
-        </div>
-      </section>
-
-      <section
-        id="diferencial"
-        class="section section--alt"
-        style="padding-top: 0; padding-bottom: 4rem"
-      >
-        <div class="container animated">
-          <div class="about-grid">
-            <div>
-              <h2 style="text-align: left; margin-top: 0">
-                <span
-                  style="font-size: 2.5rem; display: block; line-height: 1"
-                  >🤝</span
+          <div class="hero__video-col animated">
+            <div class="video-card">
+              <div class="live-badge">
+                <span class="blink">●</span> Assista Agora
+              </div>
+              
+              <div class="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO_HERO"
+                  title="Vídeo Hero"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="eager"
                 >
-                O meu diferencial não é só saber fazer sites.<br />
-                <strong>É saber como vender.</strong>
-              </h2>
-              <p
-                class="section__subtitle"
-                style="
-                  text-align: left;
-                  font-size: 1.1rem;
-                  max-width: 100%;
-                  margin: 1.5rem 0 0;
-                "
-              >
-                Muitas agências sabem de código, mas nunca gerenciaram um negócio
-                real. Eu sou lojista, assim como você. Eu sei o que é depender
-                de cliente entrando na porta e sei como um site pode transformar
-                isso.
-              </p>
-              <p style="font-size: 1.1rem; line-height: 1.6">
-                Eu não vendo "teoria", eu vendo resultado prático.
-              </p>
-            </div>
-            <div class="about-side">
-              <div class="about-photo-wrapper card-3d">
-                <img
-                  src="images/guh-foto.webp"
-                  alt="Gustavo, lojista e desenvolvedor da Pulse"
-                  loading="lazy"
-                  decoding="async"
-                  class="about-photo"
-                  style="width: 100%; height: 100%; object-fit: cover"
-                />
+                </iframe>
               </div>
             </div>
+            <div class="arrow-indicator desktop-only">
+              👆 Veja o que iremos fazer no seu negócio
+            </div>
           </div>
+
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="para-quem" class="section">
-        <div class="container section__narrow animated">
-          <h2>Você é o melhor da cidade. Pena que o Google não sabe disso.</h2>
-          <p class="section__subtitle">
-            O "boca a boca" ainda é rei, mas hoje ele começa no Google. Se você
-            não está lá, você não existe. Seu negócio sofre com isso?
-          </p>
-
-          <ul class="pain-list">
-            <li>
-              <span>😫</span>
-              <div>
-                <strong>Seu "catálogo" é um Instagram bagunçado:</strong> O
-                cliente se sente perdido no seu feed e acaba desistindo.
-              </div>
-            </li>
-            <li>
-              <span>💔</span>
-              <div>
-                <strong>Clientes te procuram, mas acham seu concorrente:</strong>
-                Você sabe que é melhor, mas ele é o único que aparece no Google.
-              </div>
-            </li>
-            <li>
-              <span>🤯</span>
-              <div>
-                <strong>Você virou um "balcão de informações":</strong> Seu
-                WhatsApp só serve para responder "onde fica?" e "quanto custa?"
-                o dia inteiro.
-              </div>
-            </li>
-          </ul>
-
-          <div class="center" style="margin-top: 2rem">
-            <button
-              class="btn btn--primary btn--lg js-open-whatsapp"
-              data-message="Olá! Eu sofro com esses problemas. Quero minha Análise de Inteligência Grátis."
-            >
-              Sim, quero a Análise Grátis para resolver isso
-            </button>
+    <section id="diferencial" class="section section--alt">
+      <div class="container animated">
+        <div class="diferencial-wrapper">
+          <div class="diferencial-photo-wrapper">
+            <img
+              src="images/guh-foto.webp"
+              alt="Gustavo, lojista e desenvolvedor da Pulse"
+              class="diferencial-photo"
+            />
           </div>
-        </div>
-      </section>
 
-      <section id="analise" class="section section--dark">
-        <div class="container section__narrow animated">
-          <p
-            class="badge"
-            style="
-              background: rgba(255, 255, 255, 0.1);
-              color: #ffffff;
-              border: 1px solid rgba(255, 255, 255, 0.25);
-            "
-          >
-            🎁 CONSULTORIA INICIAL GRÁTIS (VALOR: R$ 300)
-          </p>
-
-          <h2 style="margin-top: 1rem">
-            Descubra os segredos do seu concorrente antes de me contratar
+          <h2 class="diferencial-h2">
+            O meu diferencial não é só saber fazer sites.
           </h2>
 
-          <p
-            class="section__subtitle section__subtitle--light"
-            style="font-size: 1.1rem; line-height: 1.6"
-          >
-            Eu vou analisar pessoalmente o que ele está fazendo na internet para
-            roubar seus clientes e te entregar um
-            <strong>relatório simples e direto</strong> no seu WhatsApp.
-            <strong>Normalmente cobro R$300</strong> por essa consultoria, mas
-            você recebe de graça para conhecer meu trabalho.
+          <h3 class="diferencial-h3">É saber como vender.</h3>
+
+          <p class="diferencial-p">
+            Eu sou lojista, assim como você. Sei como é difícil pagar aluguel e funcionários. Criei esse método para o comerciante ou empreendedor VENDER MAIS.
           </p>
 
-          <div class="analise-grid">
-            <article class="analise-card">
-              <h3>🔍 O que ele faz certo</h3>
-              <p>
-                Vou te mostrar as melhores estratégias que ele usa hoje para
-                atrair clientes (para a gente modelar no seu negócio).
-              </p>
-            </article>
-
-            <article class="analise-card">
-              <h3>🎯 Onde ele está errando</h3>
-              <p>
-                Vou achar os buracos e pontos fracos no atendimento online dele
-                para sua empresa entrar e dominar.
-              </p>
-            </article>
-
-            <article class="analise-card">
-              <h3>🚀 Como passar na frente</h3>
-              <p>
-                Um passo a passo prático para você neutralizar a vantagem dele
-                no Google nas próximas semanas.
-              </p>
-            </article>
-          </div>
-
-          <p class="analise-hook">
-            Pare de apenas "achar" e comece a ter certeza.<br />
-            <strong>Receba essa consultoria profissional sem pagar nada.</strong>
-          </p>
-
-          <button
-            class="btn btn--primary btn--lg js-open-whatsapp"
-            data-message="Olá! Vi no site sobre o Raio-X gratuito do concorrente. Quero receber essa análise."
-          >
-            💬 Quero meu Raio-X Grátis
-          </button>
-          <p class="section__note" style="color: #94a3b8; margin-top: 1rem">
-            Entrega em PDF direto no seu WhatsApp. Sem compromisso de fechar o
-            site.
+          <p class="diferencial-p-bold">
+            Eu não vendo "teoria", eu vendo o seu resultado prático.
           </p>
         </div>
-      </section>
-
-      <section id="problema" class="section section--alt section--3d">
-        <div class="container section__narrow animated">
-          <h2>O cliente pesquisa, não te acha e compra do seu concorrente.</h2>
-          <p class="section__subtitle">
-            Você mata um leão por dia na sua loja física, mas na internet sua
-            empresa parece "invisível" ou amadora. Você se identifica com isso?
-          </p>
-
-          <div class="focused-blocks">
-            <article class="focused-block card-3d">
-              <div class="icon-3d">
-                <span>👻</span>
-              </div>
-              <div class="focused-block__content">
-                <h3>A sensação de "Loja Fantasma"</h3>
-                <p>
-                  Só ter Instagram passa insegurança. O cliente pensa: "Será que
-                  essa empresa existe mesmo ou é golpe?". Sem um site oficial,
-                  você perde os melhores compradores.
-                </p>
-              </div>
-            </article>
-
-            <article class="focused-block card-3d">
-              <div class="icon-3d">
-                <span>💸</span>
-              </div>
-              <div class="focused-block__content">
-                <h3>Dinheiro deixado na mesa (Google)</h3>
-                <p>
-                  Neste exato momento, tem alguém na sua cidade pesquisando pelo
-                  seu serviço no Google. Se você não aparece lá, você acabou de
-                  dar esse cliente de presente para o concorrente.
-                </p>
-              </div>
-            </article>
-
-            <article class="focused-block card-3d">
-              <div class="icon-3d">
-                <span>😫</span>
-              </div>
-              <div class="focused-block__content">
-                <h3>Escravo do WhatsApp</h3>
-                <p>
-                  Você passa o dia respondendo "quanto custa?" e "qual o
-                  endereço?" em vez de fechar vendas reais. Um site responde
-                  isso por você 24 horas por dia, no automático.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="beneficios" class="section section--3d">
-        <div class="container animated">
-          <h2>Seu melhor vendedor nunca dorme (e não pede comissão).</h2>
-          <p class="section__subtitle">
-            Enquanto você descansa, seu site continua trabalhando: apresentando
-            sua empresa, quebrando objeções e enviando clientes prontos para o
-            seu WhatsApp.
-          </p>
-
-          <div class="zigzag-wrapper">
-            <article class="zigzag-item">
-              <div class="zigzag-item__text">
-                <span class="badge badge--soft">Benefício 01</span>
-                <h3>Receba clientes prontos para comprar</h3>
-                <p>
-                  O site filtra o "curioso". Ele responde o básico: o que você
-                  faz, para quem, como funciona e onde fica. Quando a pessoa te
-                  chama no WhatsApp, ela já vem com intenção real de fechar
-                  negócio.
-                </p>
-              </div>
-              <div class="zigzag-item__image card-3d">
-                <img
-                  src="images/zigzag-1.webp"
-                  alt="Ilustração de uma conversa no WhatsApp gerando vendas"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </article>
-
-            <article class="zigzag-item">
-              <div class="zigzag-item__text">
-                <span class="badge badge--soft">Benefício 02</span>
-                <h3>Passe a confiança de uma grande empresa</h3>
-                <p>
-                  Você pode ter um time enxuto, mas um site profissional te
-                  coloca no mesmo nível visual de grandes marcas. Para o
-                  cliente, seu negócio e do seu concorrente gigante parecem ter
-                  o mesmo tamanho e confiança.
-                </p>
-              </div>
-              <div class="zigzag-item__image card-3d">
-                <img
-                  src="images/zigzag-2.webp"
-                  alt="Ilustração de um site profissional ganhando um prêmio ou troféu"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </article>
-
-            <article class="zigzag-item">
-              <div class="zigzag-item__text">
-                <span class="badge badge--soft">Benefício 03</span>
-                <h3>Domine as buscas na sua região</h3>
-                <p>
-                  O "boca a boca" é limitado. O Google apresenta você para
-                  <strong>pessoas desconhecidas</strong> que estão procurando seu serviço
-                  AGORA no seu bairro ou cidade. É uma fonte inesgotável de
-                  novos contatos.
-                </p>
-              </div>
-              <div class="zigzag-item__image card-3d">
-                <img
-                  src="images/zigzag-3.webp"
-                  alt="Ilustração de um mapa local com pin no negócio"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="visual" class="section section--visual">
-        <div class="container animated">
-          <h2>Não é só "bonito". É uma máquina de convencer.</h2>
-          <p class="section__subtitle">
-            Cada detalhe desse layout foi desenhado com um único objetivo: fazer
-            o visitante confiar em você e clicar no botão do WhatsApp.
-          </p>
-
-          <div class="visual-grid">
-            <article class="visual-card card-3d">
-              <div class="visual-card__image">
-                <img
-                  src="images/visual-home.webp"
-                  alt="Screenshot de um website profissional de clínica com uma manchete clara"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="visual-card__content">
-                <h3>A "Vitrine" que faz o cliente ficar</h3>
-                <p>
-                  Você tem 3 segundos para convencer. Nosso layout mostra quem
-                  você é e o que vende logo de cara, impedindo que ele volte
-                  para o Google e clique no concorrente.
-                </p>
-              </div>
-            </article>
-
-            <article class="visual-card card-3d">
-              <div class="visual-card__image">
-                <img
-                  src="images/visual-servicos.webp"
-                  alt="Screenshot da seção de serviços de um site, com colunas e ícones limpos"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="visual-card__content">
-                <h3>Ofertas que dão vontade de comprar</h3>
-                <p>
-                  Trocamos o "textão chato" por blocos diretos e persuasivos. O
-                  cliente entende rápido o que ganha ao te contratar e sente
-                  vontade de chamar na hora.
-                </p>
-              </div>
-            </article>
-
-            <article class="visual-card card-3d">
-              <div class="visual-card__image">
-                <img
-                  src="images/visual-depoimentos.webp"
-                  alt="Screenshot da seção de depoimentos de um site, mostrando avaliações 5 estrelas"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div class="visual-card__content">
-                <h3>O fim da desconfiança</h3>
-                <p>
-                  Uma seção estratégica para exibir seus melhores resultados e
-                  avaliações. Isso mata o medo de "ser golpe" e faz o cliente
-                  pagar mais caro sem reclamar.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="prova" class="section section--alt">
-        <div class="container animated">
-          <h2>Eu não só falo, eu faço: A virada real da Móveis Karina</h2>
-          <p class="section__subtitle">
-            Eu apliquei meu próprio método na minha loja. Saímos da dependência
-            do Instagram para uma estrutura de vendas automática. Veja o que
-            aconteceu:
-          </p>
-
-          <div class="testimonials-grid">
-            <article class="testimonial">
-              <div class="icon-3d" style="margin-bottom: 1rem; font-size: 2rem">
-                😫
-              </div>
-              <p class="testimonial__quote">
-                <strong>ANTES (O Caos):</strong>
-                "A gente dependia da sorte no Instagram e perdia horas no
-                WhatsApp respondendo apenas 'qual o preço?' e 'entrega aqui?'.
-                Muito trabalho, pouca venda."
-              </p>
-            </article>
-
-            <article
-              class="testimonial"
-              style="
-                border-color: var(--primary);
-                background: radial-gradient(
-                  circle at top left,
-                  var(--primary-soft),
-                  var(--bg-surface)
-                );
-              "
-            >
-              <div class="icon-3d" style="margin-bottom: 1rem; font-size: 2rem">
-                ⚡
-              </div>
-              <p class="testimonial__quote">
-                <strong>A VIRADA (Método Pulse):</strong>
-                "Criei uma vitrine que funciona como um 'vendedor digital 24h'.
-                O site mostra os produtos, tira as dúvidas chatas e já manda o
-                cliente pronto para fechar."
-              </p>
-            </article>
-
-            <article class="testimonial">
-              <div class="icon-3d" style="margin-bottom: 1rem; font-size: 2rem">
-                🚀
-              </div>
-              <p class="testimonial__quote">
-                <strong>DEPOIS (O Resultado):</strong>
-                "O tempo de atendimento caiu pela metade e tivemos um
-                <strong>aumento de 3x nos pedidos de orçamento</strong>
-                qualificados direto no WhatsApp."
-              </p>
-            </article>
-          </div>
-
-          <p
-            class="section__note"
-            style="font-size: 1rem; color: var(--color-heading); margin-top: 2rem"
-          >
-            <strong>Moral da história:</strong> Se funcionou para a minha loja,
-            vai funcionar para o seu negócio também.
-          </p>
-        </div>
-      </section>
-
-      <section id="planos" class="section">
-        <div class="container animated">
-          <h2>Investimento Único, Retorno Diário</h2>
-          <p class="section__subtitle">
-            Escolha o melhor ponto de partida para o seu negócio.
-            <strong>Sem mensalidades obrigatórias</strong> e sem letras miúdas.
-          </p>
-
-          <div class="pricing-grid">
-            <article class="pricing-card card-3d">
-              <h3>Plano 1 Página (Foco)</h3>
-              <p class="pricing-card__tagline">
-                Ideal para: Quem tem <strong>1 ou poucos serviços</strong> ou
-                produtos para vender e precisa fazer
-                <strong>promoções rápidas</strong>.
-              </p>
-
-              <p class="pricing-card__price">
-                <span
-                  class="pricing-card__anchor"
-                  style="
-                    font-size: 0.9rem;
-                    color: #94a3b8;
-                    display: block;
-                    margin-bottom: 4px;
-                  "
-                >
-                  De agência: <s>R$ 2.000</s>
-                </span>
-                <span class="pricing-card__installments">12x de</span>
-                <span class="pricing-card__value">R$ 82,50</span>
-                <span class="pricing-card__full-price">ou R$ 990 à vista</span>
-                <span
-                  style="
-                    display: block;
-                    font-size: 0.85rem;
-                    color: var(--color-muted);
-                    margin-top: 5px;
-                  "
-                >
-                  (Menos de R$ 2,75 por dia!)
-                </span>
-              </p>
-
-              <ul class="pricing-card__list">
-                <li>✅ <strong>Site One-Page (1 Página)</strong></li>
-                <li>
-                  🎁 <strong>1 Ano de Domínio + Hospedagem</strong> (MEU
-                  PRESENTE)
-                </li>
-                <li>✅ Redação Estratégica de Vendas</li>
-                <li>✅ Botões de WhatsApp e Otimização Google</li>
-              </ul>
-              <button
-                class="btn btn--ghost btn--full js-open-whatsapp"
-                data-message="Olá! Quero começar com o Plano Inicial de R$990."
-              >
-                Quero o Site Rápido
-              </button>
-            </article>
-
-            <article class="pricing-card pricing-card--featured card-3d">
-              <div class="pricing-card__badge">Mais Escolhido</div>
-
-              <h3>Plano 5 Páginas (Autoridade)</h3>
-              <p class="pricing-card__tagline">
-                Ideal para: Lojas ou empresas com
-                <strong>muitos serviços</strong> e que precisam mostrar que são
-                as <strong>melhores da região</strong>.
-              </p>
-
-              <p class="pricing-card__price">
-                <span
-                  class="pricing-card__anchor"
-                  style="
-                    font-size: 0.95rem;
-                    color: #16a34a;
-                    font-weight: 700;
-                    display: block;
-                    margin-bottom: 8px;
-                    line-height: 1.3;
-                  "
-                >
-                  🔥 Economize R$ 2.610 em relação ao preço de agência (de
-                  <s>R$ 4.000</s> por R$ 1.390)
-                </span>
-                <span class="pricing-card__installments">12x de</span>
-                <span class="pricing-card__value">R$ 115,90</span>
-                <span class="pricing-card__full-price"
-                  >ou R$ 1.390 à vista</span
-                >
-                <span
-                  style="
-                    display: block;
-                    font-size: 0.9rem;
-                    color: #16a34a;
-                    font-weight: 600;
-                    margin-top: 8px;
-                    background: #dcfce7;
-                    padding: 4px 8px;
-                    border-radius: 4px;
-                    width: fit-content;
-                  "
-                >
-                  ⚡ Apenas R$ 1,10 a mais por dia!
-                </span>
-              </p>
-
-              <ul class="pricing-card__list" style="font-size: 0.95rem">
-                <li
-                  style="margin-bottom: 0.5rem; color: var(--primary-strong)"
-                >
-                  <strong>✅ TUDO do Plano Inicial, MAIS:</strong>
-                </li>
-                <li>⭐ <strong>Site Completo (ATÉ 5 PÁGINAS!)</strong></li>
-                <li>
-                  🎁 <strong>1 Ano de Domínio + Hospedagem</strong> (MEU
-                  PRESENTE)
-                </li>
-                <li>
-                  ⭐ <strong>BÔNUS:</strong> Página de Links para Instagram/Facebook
-                  <span
-                    style="font-size: 0.85em; color: #16a34a; font-weight: 700"
-                    >(de <s>R$197</s> por R$0)</span
-                  >
-                </li>
-                <li>⭐ Design Premium com mais seções</li>
-              </ul>
-              <button
-                class="btn btn--primary btn--full js-open-whatsapp"
-                data-message="Olá! Quero garantir minha vaga no Plano Completo de R$1390."
-              >
-                QUERO A ESTRUTURA COMPLETA
-              </button>
-            </article>
-          </div>
-
-          <div
-            class="pricing-help"
-            style="
-              text-align: center;
-              margin-top: 0;
-              padding: 1.5rem;
-              background-color: var(--color-bg-alt);
-              border-radius: 12px;
-              border: 1px solid var(--color-border);
-            "
-          >
-            <p
-              style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem"
-            >
-              Ainda na dúvida de qual escolher?
-            </p>
-            <button
-              class="btn btn--md btn--primary js-open-whatsapp"
-              data-message="Olá! Estou em dúvida sobre qual plano é melhor para mim. Pode me ajudar?"
-            >
-              💬 Me chame no WhatsApp (sem compromisso)
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="garantia" class="section section--alt">
-        <div class="container section__narrow animated">
-          <div
-            style="
-              background-color: #fff;
-              border: 2px solid var(--color-primary);
-              border-radius: 12px;
-              padding: 2.5rem 2rem;
-              text-align: center;
-              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            "
-          >
-            <span
-              style="
-                font-size: 3.5rem;
-                display: block;
-                line-height: 1;
-                margin-bottom: 1rem;
-              "
-              >🤝</span
-            >
-            <h2
-              style="margin-top: 0; margin-bottom: 1.5rem; font-size: 1.8rem"
-            >
-              Minha Garantia Pessoal: Eu só publico o site quando você disser
-              "UAU!"
-            </h2>
-            <p
-              class="section__subtitle"
-              style="
-                margin-bottom: 0;
-                font-size: 1.1rem;
-                opacity: 1;
-                color: var(--color-text);
-              "
-            >
-              Parece loucura, mas é meu compromisso de honra. Se você não gostar
-              da primeira versão, <strong>eu ajusto ou refaço</strong>.
-              <br /><br />
-              Sem taxas extras, sem "letras miúdas" e, o mais importante:
-              <strong>sem cara feia</strong>. O site é a cara da sua empresa, e
-              ele precisa ficar perfeito para você.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="como-funciona" class="section">
-        <div class="container animated">
-          <h2>Sem reunião infinita, sem enrolação, sem agência gigante</h2>
-          <p class="section__subtitle">
-            Você fala direto comigo. Processo simples, com começo, meio e fim
-            bem definidos.
-          </p>
-
-          <ol class="steps">
-            <li class="step">
-              <span class="step__number">1</span>
-              <div>
-                <h3>Alinhamos tudo no WhatsApp</h3>
-                <p>
-                  Em uma conversa rápida, você me conta sobre seu negócio e o
-                  que precisa vender mais. Sem burocracia, direto ao ponto.
-                </p>
-              </div>
-            </li>
-            <li class="step">
-              <span class="step__number">2</span>
-              <div>
-                <h3>Eu defino a estratégia perfeita</h3>
-                <p>
-                  Te mostro qual é a estrutura de site ideal para o seu momento
-                  atual e te passo o orçamento fechado (sem taxas surpresas).
-                </p>
-              </div>
-            </li>
-            <li class="step">
-              <span class="step__number">3</span>
-              <div>
-                <h3>Eu crio, você aprova</h3>
-                <p>
-                  <strong>Eu crio todos os textos de vendas</strong> e monto o
-                  design. Você só precisa me mandar fotos básicas pelo Whats.
-                </p>
-              </div>
-            </li>
-            <li class="step">
-              <span class="step__number">4</span>
-              <div>
-                <h3>Site pronto e entregue em 72h úteis</h3>
-                <p>
-                  Após eu receber seu material, seu site estará no ar, pronto
-                  para receber clientes e vender por você em até 72 horas úteis.
-                </p>
-              </div>
-            </li>
-          </ol>
-
-          <div class="center">
-            <button
-              class="btn btn--primary btn--lg js-open-whatsapp"
-              data-message="Olá! Quero começar o Passo 1 agora."
-            >
-              🚀 Começar o Passo 1 Agora
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="galeria" class="section section--alt">
-        <div class="container animated">
-          <h2>Veja como sua empresa vai se apresentar para o mundo</h2>
-          <p class="section__subtitle">
-            Esqueça sites feios com cara de 2010. Aqui usamos layouts modernos,
-            limpos e validados para passar confiança instantânea.
-          </p>
-
-          <div class="gallery-grid">
-            <figure class="gallery-item card-3d">
-              <img
-                src="images/galeria-home.webp"
-                alt="Layout de uma homepage de e-commerce minimalista"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>
-                <strong>A "Vitrine" de 3 segundos:</strong>
-                Mostra quem você é e o que vende logo de cara, antes que ele
-                pense em voltar para o Google.
-              </figcaption>
-            </figure>
-            <figure class="gallery-item card-3d">
-              <img
-                src="images/galeria-sobre.webp"
-                alt="Layout de uma página 'Sobre Nós' com foto e texto"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>
-                <strong>Conexão Imediata:</strong>
-                Sua história contada de um jeito rápido e humano, sem aquele
-                "textão" chato que ninguém lê.
-              </figcaption>
-            </figure>
-            <figure class="gallery-item card-3d">
-              <img
-                src="images/galeria-servicos-3d.webp"
-                alt="Layout de uma seção de serviços com ícones 3D em estilo 'clay'"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>
-                <strong>Clareza Total:</strong>
-                Seus serviços explicados com ícones visuais que qualquer pessoa
-                (de 8 a 80 anos) entende na hora.
-              </figcaption>
-            </figure>
-            <figure class="gallery-item card-3d">
-              <img
-                src="images/galeria-prints-wpp.webp"
-                alt="Layout de uma seção de prova social com prints de WhatsApp"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>
-                <strong>O "Empurrãozinho" Final:</strong>
-                A prova de que você é bom, mostrada exatamente no momento que o
-                cliente está pensando em fechar.
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="center" style="margin-top: 2.5rem">
-            <button
-              class="btn btn--primary btn--lg js-scroll-to"
-              data-target="#planos"
-            >
-              😍 Quero um site lindo assim
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="cases" class="section">
-        <div class="container animated">
-          <h2>"Será que funciona para o meu ramo?"</h2>
-          <p class="section__subtitle">
-            Não importa se você vende produtos ou serviços. Se o seu cliente usa
-            o Google, nós temos a estratégia certa para você. Veja onde você se
-            encaixa:
-          </p>
-
-          <div class="cards cards--3">
-            <article class="card card--case card-3d">
-              <div class="case-image">
-                <img
-                  src="images/case-clinica.webp"
-                  alt="Site focado em transmitir autoridade e confiança"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <h3>💼 Quem vende AUTORIDADE</h3>
-              <p
-                style="
-                  font-size: 0.9rem;
-                  color: var(--primary);
-                  margin-bottom: 0.5rem;
-                  font-weight: 600;
-                "
-              >
-                (Advogados, Clínicas, Contadores, Terapeutas...)
-              </p>
-              <p>
-                Seu cliente precisa sentir segurança antes de abrir a vida (ou o
-                bolso) para você. Seu site será sua "sede digital", passando a
-                seriedade e a confiança que seu trabalho exige.
-              </p>
-            </article>
-
-            <article class="card card--case card-3d">
-              <div class="case-image">
-                <img
-                  src="images/case-barbearia.webp"
-                  alt="Site focado em visual e desejo"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <h3>🤩 Quem vende DESEJO</h3>
-              <p
-                style="
-                  font-size: 0.9rem;
-                  color: var(--primary);
-                  margin-bottom: 0.5rem;
-                  font-weight: 600;
-                "
-              >
-                (Lojas, Barbearias, Arquitetos, Estética, Festas...)
-              </p>
-              <p>
-                Transformamos seu portfólio numa vitrine irresistível. O cliente
-                para de perguntar apenas "preço" e já chega no seu WhatsApp
-                apaixonado pelo seu trabalho, pronto para agendar.
-              </p>
-            </article>
-
-            <article class="card card--case card-3d">
-              <div class="case-image">
-                <img
-                  src="images/case-loja-local.webp"
-                  alt="Site focado em contato rápido e urgência"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <h3>⚡ Quem vende URGÊNCIA</h3>
-              <p
-                style="
-                  font-size: 0.9rem;
-                  color: var(--primary);
-                  margin-bottom: 0.5rem;
-                  font-weight: 600;
-                "
-              >
-                (Mecânicos, Desentupidoras, Chaveiros, Técnicos...)
-              </p>
-              <p>
-                Seu cliente não quer ver fotos bonitas, ele tem um problema e
-                precisa de você AGORA. Seu site terá botões estratégicos focados
-                em fazer o seu telefone tocar imediatamente.
-              </p>
-            </article>
-          </div>
-
-          <div class="center" style="margin-top: 2.5rem">
-            <button
-              class="btn btn--primary btn--lg js-open-whatsapp"
-              data-message="Olá! Vi os grupos no site e acho que meu negócio se encaixa em um deles. Quero saber mais."
-            >
-              🚀 Meu negócio se encaixa! Quero começar.
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="sobre" class="section section--alt">
-        <div class="container about-grid animated">
-          <div>
-            <h2>Não sou uma agência distante. Sou lojista, igual a você.</h2>
-            <p>
-              Eu sou o <strong>Gustavo</strong>. Antes de fundar a Pulse, eu
-              senti na pele o desespero de ver a minha loja (<strong>Móveis Karina</strong>) dependendo da sorte no Instagram, enquanto os
-              concorrentes grandes dominavam o Google.
-            </p>
-            <p>
-              Eu sei o que é passar o dia respondendo "qual o valor?" no
-              WhatsApp e fechar poucas vendas. Foi para resolver ESSE meu
-              problema que eu criei o método de sites rápidos.
-            </p>
-            <p>
-              Hoje, eu não aceito dezenas de projetos. Eu pego poucos clientes
-              por mês para dar a mesma atenção que eu dou para a minha própria
-              empresa. <strong>Aqui, seu negócio é tratado como se fosse meu.</strong>
-            </p>
-          </div>
-          <div class="about-side">
-            <div class="about-photo-wrapper card-3d">
-              
-              <div class="youtube-player" data-youtube-id="SEU_VIDEO_APRESENTACAO">
-                <img src="images/capa-quem-sou-eu.webp" alt="Capa do Vídeo Apresentação Gustavo" class="youtube-cover" loading="lazy">
-                <button class="youtube-play-button" aria-label="Reproduzir vídeo"></button>
-              </div>
-              </div>
-            <p
-              style="
-                text-align: center;
-                font-size: 0.9rem;
-                color: var(--primary);
-                margin-top: 0.5rem;
-                font-weight: 600;
-              "
-            >
-              👆 Dê o play e conheça quem vai cuidar do seu projeto.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" class="section">
-        <div class="container animated">
-          <h2>O que todo mundo me pergunta antes de fechar</h2>
-          <p class="section__subtitle">
-            Jogo aberto: prefiro tirar todas as suas dúvidas agora para você
-            fechar com 100% de segurança.
-          </p>
-
-          <div class="accordion">
-            <details class="accordion__item" open>
-              <summary>Meu site vai aparecer no Google quando pesquisarem?</summary>
-              <p>
-                Com certeza! Nós configuramos toda a estrutura técnica (SEO Local) para que o Google 'leia' seu site da maneira correta. Isso aumenta drasticamente suas chances de aparecer para quem pesquisa na sua cidade, tirando você da invisibilidade.
-              </p>
-            </details>
-
-            <details class="accordion__item">
-              <summary>Qual a diferença real entre o Plano de 1 e 5 páginas?</summary>
-              <p>
-                Pense assim: o <strong>Plano de 1 Página</strong> é ideal se
-                você tem um foco principal (ex: um médico especialista ou uma
-                promoção específica). É direto ao ponto.
-                <br /><br />
-                Já o <strong>Plano de 5 Páginas</strong> é sua "loja completa"
-                na internet. Ideal se você tem vários serviços ou categorias de
-                produtos e precisa de espaço para mostrar que é uma autoridade
-                grande no mercado.
-              </p>
-            </details>
-
-            <details class="accordion__item">
-              <summary>"72 horas úteis" é sério mesmo? Parece rápido demais.</summary>              
-              <p>
-                É seríssimo e não é mágica, é método. Eu não fico "inventando
-                moda", eu uso uma estrutura validada que funciona. A partir do
-                momento que você me manda as fotos e o logo, meu foco é total em
-                colocar sua máquina de vendas no ar em 3 dias úteis.
-              </p>
-            </details>
-
-            <details class="accordion__item">
-              <summary>
-                Sou péssimo com tecnologia e não tenho textos prontos.
-              </summary>
-              <p>
-                Fique tranquilo, 90% dos meus clientes são assim!
-                <strong>Eu escrevo todos os textos</strong> vendedores para
-                você. Sua única tarefa será me mandar fotos do seu negócio pelo
-                WhatsApp (podem ser de celular mesmo, eu trato e edito elas para
-                ficarem profissionais). O trabalho chato é comigo.
-              </p>
-            </details>
-
-            <details class="accordion__item">
-              <summary>O site é meu ou eu fico "preso" pagando mensalidade?</summary>
-              <p>
-                O site é <strong>100% SEU</strong>. É como comprar uma casa
-                própria. Eu construo, te entrego a chave e você não paga
-                "aluguel" de criação nunca mais. Se um dia quiser levar o site
-                para outro profissional, você tem liberdade total.
-              </p>
-            </details>
-
-            <details class="accordion__item">
-              <summary>E se eu precisar mudar um telefone ou preço depois?</summary>
-              <p>
-                Você não fica na mão! Se você optar pela minha manutenção anual
-                (que te dou de <strong>PRESENTE</strong> no 1º ano), pequenos
-                ajustes de texto ou imagem já estão inclusos e eu faço rápido
-                para você. Apenas mudanças grandes de estrutura teriam um
-                orçamento à parte.
-              </p>
-            </details>
-
-            <details class="accordion__item">
-              <summary>E se eu não gostar do resultado final?</summary>
-              <p>
-                Risco zero. Você não paga por algo que não gosta. Antes de
-                publicar, eu te mando uma prévia e nós fazemos os ajustes
-                necessários até você dizer:
-                <strong>"Ficou perfeito, pode colocar no ar!"</strong>.
-              </p>
-            </details>
-
-            <details class="accordion__item">
-              <summary>Quais as formas de pagamento?</summary>
-              <p>
-                Para facilitar seu fluxo de caixa e garantir sua vaga na agenda,
-                você pode parcelar o investimento em até
-                <strong>12x no cartão de crédito</strong>.
-              </p>
-            </details>
-          </div>
-
-          <div class="center">
-            <button
-              class="btn btn--primary btn--lg js-open-whatsapp"
-              data-message="Olá Gustavo! Li as dúvidas frequentes, mas ainda queria te perguntar uma coisa específica do meu negócio..."
-            >
-              🤔 Sua dúvida não está aqui? Me manda um áudio!
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="cta-final" class="section section--dark">
-        <div class="container animated">
-          <h2>Chega de "dar" seus clientes de presente para a concorrência.</h2>
-          <p class="section__subtitle section__subtitle--light">
-            Você já viu que funciona. Você tem a minha garantia de risco zero. A
-            única coisa que separa sua empresa de vender mais na internet é um
-            clique no botão abaixo.
-            <strong>Vamos resolver isso hoje?</strong>
-          </p>
-
-          <button
-            class="btn btn--primary btn--lg js-open-whatsapp"
-            data-message="Olá Gustavo! Cheguei no final da página e decidi: Quero virar o jogo e ter meu site profissional."
-          >
-            🚀 QUERO VIRAR O JOGO AGORA
-          </button>
-
-          <p
-            class="cta-final__note"
-            id="vagas-final"
-            style="color: #ef4444; font-weight: 600; margin-top: 1.5rem"
-          >
-            ⚠️ Atenção: Devido à alta demanda, restam apenas 3 vagas para início imediato.
-            <br><span style="opacity: 0.8; font-size: 0.9em; font-weight: 400; color: #94a3b8;">(Atualizado hoje às <span class="hora-atual">--:--</span>)</span>
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <div class="sticky-mobile-cta">
-      <div class="info" id="sticky-vagas">
-        Carregando vagas...
       </div>
-      <button class="btn btn--primary btn--sm js-scroll-to" data-target="#planos" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
-        Ver Planos
-      </button>
-    </div>
+    </section>
 
-    <footer class="footer">
-      <div class="container footer__inner">
-        <p class="footer__brand">Pulse • Sites que vendem de verdade</p>
-        <p class="footer__meta">
-          © <span id="year"></span> Pulse. Todos os direitos reservados.
+    <section id="para-quem" class="section">
+      <div class="container section__narrow animated">
+        <h2>Para quem é o Site Pulse?</h2>
+        <p class="section__subtitle">
+          Criamos sites para negócios locais que precisam transformar cliques
+          em clientes reais no WhatsApp.
         </p>
-        <a
-          href="#hero"
-          class="footer__back-to-top js-scroll-to"
-          data-target="#hero"
-        >
-          Voltar ao topo ↑
-        </a>
+
+        <div class="audience-grid">
+          <article class="audience-card">
+            <div class="audience-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h2.64m-2.64 0l-1.14-9.42a.75.75 0 00-.74-.66H10.5a.75.75 0 00-.74.66L8.61 21m9.39-9.39l-1.42-7.42a.75.75 0 00-.73-.6H7.86a.75.75 0 00-.73.6L5.7 11.61m12.3 0v-1.11a.75.75 0 00-.75-.75H6.45a.75.75 0 00-.75.75v1.11m12.3 0c-1.35 0-2.61-.4-3.69-1.09m-6.6 1.09c-1.08.69-2.34 1.09-3.69 1.09m6.6 0a9 9 0 00-6.6 0m6.6 0H12m6.15 0a8.97 8.97 0 01-2.09 4.91m-8.12-4.91a8.97 8.97 0 002.09 4.91m8.12 0a8.97 8.97 0 01-2.09-4.91m0 0a8.97 8.97 0 00-2.09-4.91" /></svg>
+            </div>
+            <h3>Lojistas e Varejistas</h3>
+            <p style="margin: 0;">Lojas, Comércios em geral, Mercados e muito mais.</p>
+          </article>
+          <article class="audience-card">
+            <div class="audience-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.388c.527-1.105 1.689-2.012 3.034-2.498v1.125c0 .621.504 1.125 1.125 1.125h3.375c.621 0 1.125-.504 1.125-1.125V6.188c1.345.486 2.507 1.393 3.034 2.498a15.995 15.995 0 011.622 3.388c.142.348.22.729.22 1.128a8.958 8.958 0 01-2.4 5.585m-5.043-.025c.009-.01.017-.02.025-.031a6 6 0 014.288-4.288 1.04 1.04 0 00.031-.025z" /></svg>
+            </div>
+            <h3>Prestadores de Serviço</h3>
+            <p style="margin: 0;">Barbearias, Encanadores, Montadores de Móveis, Clínicas de Estética, Advogados e outros.</p>
+          </article>
+          <article class="audience-card">
+            <div class="audience-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+            </div>
+            <h3>Profissionais da Saúde</h3>
+            <p style="margin: 0;">Dentistas, médicos, psicólogos, nutricionistas e fisioterapeutas e assim por diante.</p>
+          </article>
+          <article class="audience-card">
+            <div class="audience-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84m.581-5.841a14.923 14.923 0 012.58 5.841M9.631 8.41v4.8m3.581-8.541a14.923 14.923 0 00-5.841 2.58m5.841 2.58a14.923 14.923 0 01-2.58 5.841" /></svg>
+            </div>
+            <h3>Novos Negócios</h3>
+            <p style="margin: 0;">Começando agora e precisa parecer profissional desde o dia 1.</p>
+          </article>
+        </div>
       </div>
-    </footer>
+    </section>
 
-    <script>
-      // =========================================
-      // 1. CONFIGURAÇÕES GERAIS & WHATSAPP
-      // =========================================
-      const WHATSAPP_NUMBER = "5544991310383"; // SUBSTITUA PELO SEU NÚMERO REAL
-      const WHATSAPP_MESSAGE_DEFAULT = "Olá, vi o site da Pulse e quero saber mais.";
+    <section id="problema" class="section section--alt">
+      <div class="container section__narrow animated">
+        <h2>
+          Por que seu concorrente está roubando seus clientes no <span class="highlight-danger">Google?</span>
+        </h2>
 
-      function openWhatsApp(event) {
-        let message = WHATSAPP_MESSAGE_DEFAULT;
-        const clickedEl = event.currentTarget;
-        if (clickedEl && clickedEl.dataset.message) {
-          message = clickedEl.dataset.message;
-        }
-        const encoded = encodeURIComponent(message);
-        const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encoded}`;
-        window.open(url, "_blank", "noopener");
-      }
+        <p class="problema-intro-text">
+          É frustrante, não é? Você oferece um serviço melhor, mas perde vendas para um concorrente mais caro só porque ele aparece primeiro no Google.
+        </p>
 
-      function scrollToTarget(selector) {
-        const el = document.querySelector(selector);
-        if (!el) return;
-        const headerOffset = 80;
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-      }
+        <p
+          class="section__subtitle"
+          style="margin-bottom: 2.5rem; font-size: 1.05rem"
+        >
+          A cada minuto que passa, está acontecendo isso na sua cidade:
+        </p>
 
-      // =========================================
-      // 2. DATA, HORA E VAGAS DINÂMICAS
-      // =========================================
-      function atualizarDataHora() {
-        const agora = new Date();
-        const horas = String(agora.getHours()).padStart(2, '0');
-        const minutos = String(agora.getMinutes()).padStart(2, '0');
-        // Atualiza TODOS os elementos com a classe 'hora-atual'
-        document.querySelectorAll('.hora-atual').forEach(el => {
-            el.textContent = `${horas}:${minutos}`;
-        });
-      }
+        <div class="problema-grid">
+          <article class="problema-card">
+            <div class="problema-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </div>
+            <h3>O seu Cliente procura você no Google e acha o seu concorrente</h3>
+            <p>Ele nem sabe que você existe. Resultado: venda perdida.</p>
+          </article>
 
-      function atualizarVagas() {
-        const dataHoje = new Date();
-        const diaSemana = dataHoje.getDay(); // 0 = Domingo, 1 = Segunda...
-      
-        // SELETORES BLINDADOS (Tenta pelo ID, se não achar, tenta pela classe)
-        const textoTopo = document.getElementById("vagas-topo");
-        const textoFinal = document.getElementById("vagas-final");
-        // AQUI ESTÁ A CORREÇÃO PRINCIPAL:
-        const stickyInfo = document.getElementById("sticky-vagas") || document.querySelector(".sticky-mobile-cta .info");
-      
-        // Snippets de HTML para a hora
-        const spanHoraTopo = '<span style="opacity: 0.8; font-size: 0.9em;">(Atualizado hoje às <span class="hora-atual">--:--</span>)</span>';
-        const spanHoraFinal = '<br><span style="opacity: 0.8; font-size: 0.9em; font-weight: 400; color: #94a3b8;">(Atualizado hoje às <span class="hora-atual">--:--</span>)</span>';
-      
-        let msgTopo = "", msgFinal = "", msgSticky = "";
-      
-      // --- Lógica da semana TURBINADA ---
-        if (diaSemana >= 0 && diaSemana <= 3) {
-            // Dom a Qua = 3 Vagas (Gatilho: Oportunidade Escapando)
-            msgTopo = `🔥 <strong>ATENÇÃO:</strong> A procura aumentou. Restam só <strong>2 vagas</strong> para início imediato esta semana. ${spanHoraTopo}`;
-            msgFinal = `⏳ <strong>Não deixe para amanhã:</strong> Só restam 2 vagas para começar seu projeto ainda esta semana. ${spanHoraFinal}`;
-            // Sticky Mobile
-            msgSticky = '<strong style="color: #16a34a;">Restam só 2 vagas</strong><br>para início imediato.';
-      
-        } else if (diaSemana === 4) {
-            // Qui = 1 Vaga (Gatilho: Ultimato/Alerta Vermelho)
-            msgTopo = `🚨 <strong>URGENTE:</strong> É a última vaga da semana. Se você não fechar hoje, só na próxima. ${spanHoraTopo}`;
-            msgFinal = `💥 <strong>ÚLTIMA CHAMADA:</strong> Resta apenas <strong>1 vaga</strong>. Quem chamar primeiro, leva. ${spanHoraFinal}`;
-            // Sticky Mobile
-            msgSticky = '<strong style="color: #ef4444;">🚨 ÚLTIMA VAGA</strong><br>da semana. Corre!';
-      
-        } else {
-            // Sex e Sáb = Lotado (Gatilho: Autoridade Máxima/Lista de Espera)
-            msgTopo = `⛔ <strong>ESGOTADO:</strong> Agenda da semana lotou! Entre na <strong>lista de prioridade</strong> para segunda-feira. ${spanHoraTopo}`;
-            msgFinal = `🔒 <strong>Fechamos por essa semana.</strong> Garanta seu lugar na fila preferencial para segunda-feira. ${spanHoraFinal}`;
-            // Sticky Mobile
-            msgSticky = '<strong style="color: #0f172a;">⛔ ESGOTADO</strong><br>Garanta p/ segunda.';
-        }
-            
-        // Aplica os textos
-        if (textoTopo) textoTopo.innerHTML = msgTopo;
-        if (textoFinal) textoFinal.innerHTML = msgFinal;
-        if (stickyInfo) stickyInfo.innerHTML = msgSticky; // Agora vai funcionar!
-      
-        atualizarDataHora(); 
-      }
+          <article class="problema-card">
+            <div class="problema-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+              </svg>
+            </div>
+            <h3>Seu Instagram vira um "catálogo bagunçado"</h3>
+            <p>
+              Cliente se perde no seu feed, não acha o que precisa, desiste e vai
+              embora.
+            </p>
+          </article>
 
-      // =========================================
-      // 3. INICIALIZAÇÃO (DOM READY)
-      // =========================================
-      document.addEventListener("DOMContentLoaded", () => {
-        atualizarVagas();
-        setInterval(atualizarDataHora, 60000); // Atualiza hora a cada minuto
+          <article class="problema-card">
+            <div class="problema-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3>Você vira "balcão de informações gratuito"</h3>
+            <p>
+              Passa o dia respondendo "onde fica?", "qual o preço?", "vocês
+              fazem tal coisa?"
+            </p>
+          </article>
+        </div>
 
-        // Listeners de clique
-        document.querySelectorAll(".js-open-whatsapp").forEach(btn => btn.addEventListener("click", openWhatsApp));
-        document.querySelectorAll(".js-scroll-to").forEach(btn => btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          const target = btn.dataset.target || btn.getAttribute("href");
-          if(target && target.startsWith("#")) scrollToTarget(target);
-        }));
+        <div class="pain-calculation">
+          <h3>
+            <span class="pain-calc-icon">$</span> A Conta que Dói no Bolso:
+          </h3>
+          <p class="pain-calc-intro">
+            Se você perde apenas <strong>1 cliente por semana</strong> para o
+            concorrente que aparece no Google:
+          </p>
 
-        // Footer year
-        const yearSpan = document.getElementById("year");
-        if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+          <div
+            class="pain-calc-interactive"
+          >
+            <label for="ticket-medio"
+              >Qual seu valor médio de venda por cliente?</label
+            >
+            <input
+              type="number"
+              id="ticket-medio"
+              value="200"
+            />
 
-        // Menu Mobile
-        const toggle = document.querySelector(".navbar__toggle");
-        const mobileMenu = document.getElementById("navbarMobile");
-        if(toggle && mobileMenu) {
-            const closeMenu = () => { mobileMenu.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); document.body.style.overflow = ''; };
-            toggle.addEventListener("click", () => {
-                const isOpen = mobileMenu.classList.contains("open");
-                if(!isOpen) { mobileMenu.classList.add("open"); toggle.setAttribute("aria-expanded", "true"); document.body.style.overflow = 'hidden'; }
-                else { closeMenu(); }
-            });
-            mobileMenu.querySelectorAll(".js-close-mobile").forEach(link => link.addEventListener("click", closeMenu));
-            window.addEventListener('resize', () => { if(window.innerWidth >= 900 && mobileMenu.classList.contains('open')) closeMenu(); });
-        }
+            <p
+              style="
+                font-weight: 600;
+                color: var(--color-heading);
+                font-size: 0.9rem;
+                margin: 0;
+                margin-top: 0.5rem;
+              "
+            >
+              Vendas perdidas por semana (para o Google): <strong>1</strong>
+            </p>
+            <p style="font-size: 0.9rem; margin: 0; color: var(--color-muted)">
+              (Vamos ser conservadores e estimar apenas 1)
+            </p>
+          </div>
 
-        // Sticky Mobile CTA (aparece após rolar 300px)
-        const stickyCta = document.querySelector('.sticky-mobile-cta');
-        if(stickyCta) {
-            window.addEventListener('scroll', () => {
-                if(window.scrollY > 300) stickyCta.classList.add('visible');
-                else stickyCta.classList.remove('visible');
-            });
-        }
+          <p class="pain-calc-final">
+            Você está deixando de vender:
+            <strong
+              id="calculo-anual"
+            >
+              R$ 10.400 por ano
+            </strong>
+          </p>
 
-        // Animações de Scroll
-        const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const animatedEls = document.querySelectorAll(".animated, .animated--stagger");
-        if (!motionQuery.matches && 'IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.classList.add("is-visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15 });
-            animatedEls.forEach(el => observer.observe(el));
-        } else {
-            animatedEls.forEach(el => el.classList.add("is-visible"));
-        }
+          <button
+            class="btn btn--danger btn--lg js-open-whatsapp"
+            data-message="Olá! Vi o prejuízo na Calculadora e quero resolver isso."
+          >
+            CHEGA! QUERO RESOLVER ISSO AGORA
+          </button>
 
-        // 3D Tilt
-        initTilt(".card-3d");
+          <p class="cta-microcopy">Resposta imediata no WhatsApp.</p>
+        </div>
+      </div>
+    </section>
 
-        /* ===== CÓDIGO DO PLAYER DE VÍDEO NOVO (ADICIONADO) ===== */
-        // Seleciona todos os containers de vídeo com a classe 'youtube-player'
-        var youtubePlayers = document.querySelectorAll('.youtube-player');
+    <!-- ========================================
+        SEÇÃO ANÁLISE GRATUITA OTIMIZADA
+        (Transformada em "Diagnóstico em Vídeo")
+        Copie e cole isso substituindo a seção atual
+        ======================================== -->
 
-        youtubePlayers.forEach(function(player) {
-          var playButton = player.querySelector('.youtube-play-button');
-          var youtubeId = player.dataset.youtubeId; // Pega o ID do vídeo do atributo data-youtube-id
+    <section id="analise" class="section section--dark">
+      <div class="container section__narrow animated">
+        <div class="center">
+            <p class="badge" style="margin: 0; background: rgba(22, 163, 74, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); font-size: 0.9rem; padding: 0.5rem 1rem;">
+              🎁 PRESENTE: De <span style="text-decoration: line-through; opacity: 0.7">R$ 400,00</span> por <strong style="color: #fff">R$ 0,00</strong>
+            </p>
+        </div>
 
-          // Verifica se o botão de play existe antes de adicionar o listener
-          if(playButton && youtubeId) {
-            playButton.addEventListener('click', function() {
-              // Cria o iframe do YouTube
-              var iframe = document.createElement('iframe');
-              iframe.setAttribute('src', 'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1');
-              iframe.setAttribute('title', 'Apresentação Gustavo'); // Ou o título que desejar
-              iframe.setAttribute('frameborder', '0');
-              iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-              iframe.setAttribute('allowfullscreen', '');
+        <h2 style="margin-top: 1.5rem; font-size: 2.2rem; line-height: 1.2; color: var(--bg-body);">
+          Vou gravar a tela do meu PC e te mostrar: <span style="color: #3b82f6">Como passar seu concorrente no Google.</span>
+        </h2>
+
+        <p
+          class="section__subtitle section__subtitle--light"
+          style="font-size: 1.15rem; line-height: 1.6; color: #cbd5e1;"
+        >
+          Nada de "reunião de vendas". Eu vou analisar seu negócio, gravar um vídeo curto (3 min) e te mandar no WhatsApp provando onde você está deixando dinheiro na mesa.
+        </p>
+
+        <div class="analise-grid">
+          <article class="analise-card">
+            <h3 style="color: #60a5fa">🕵️‍♂️ Espionagem Ética</h3>
+            <p>
+              Vou te mostrar exatamente o que seu concorrente está fazendo para aparecer na frente (e como vamos copiar e melhorar isso).
+            </p>
+          </article>
+
+          <article class="analise-card">
+            <h3 style="color: #f87171">📉 O Erro Deles</h3>
+            <p>Achei uma falha no site/Google deles? Te mostro como usar essa brecha para roubar a atenção do cliente para você.</p>
+          </article>
+
+          <article class="analise-card">
+            <h3 style="color: #34d399">🚀 O Plano da Virada</h3>
+            <p>Não é teoria. É um passo a passo prático: "Faça A, B e C para dominar sua região em 30 dias".</p>
+          </article>
+        </div>
+
+        <div style="
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px dashed rgba(255, 255, 255, 0.2);
+          border-radius: 16px;
+          padding: 1.5rem;
+          margin: 2rem auto;
+          max-width: 600px;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          text-align: left;
+        ">
+          <div style="
+            background: rgba(59, 130, 246, 0.2); 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            flex-shrink: 0;
+          ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </div>
+          <div>
+             <p style="color: #fff; font-weight: 600; margin: 0.2rem 0; font-size: 1.1rem;">Como você recebe?</p>
+             <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.4; margin: 0.2rem 0;">
+               Um link de vídeo direto no seu <strong>WhatsApp em poucos minutos</strong>. Você assiste quando quiser. Sem compromisso de compra.
+             </p>
+          </div>
+        </div>
+        
+        <button
+          class="btn btn--primary btn--lg js-open-whatsapp"
+          data-message="Olá! Quero receber o vídeo de análise do meu concorrente."
+          style="width: 100%; max-width: 400px; font-size: 1.1rem;"
+        >
+          QUERO MEU VÍDEO DE ANÁLISE
+        </button>
+        
+        <p class="section__note" style="color: #64748b; margin-top: 1rem; font-size: 0.9rem;">
+          👆 Toque no botão. É 100% Grátis de verdade.
+        </p>
+      </div>
+    </section>
+
+    <section id="beneficios" class="section">
+      <div class="container animated">
+        <h2>
+          O Seu Site Vai Ser Seu Melhor Vendedor: Trabalha 24h e Nunca Pede
+          Aumento
+        </h2>
+        <p class="section__subtitle"
+        style="margin: 0 auto 2.5rem;">
+          Enquanto você dorme, seu site continua apresentando sua empresa e
+          enviando clientes qualificados para seu WhatsApp.
+        </p>
+
+        <div class="zigzag-wrapper">
+          <article class="zigzag-item">
+            <div class="zigzag-item__text">
+              <span class="badge badge--soft">Benefício 01</span>
+              <h3>
+                Receba apenas clientes QUE JÁ SABEM SEU PREÇO e onde fica sua
+                empresa
+              </h3>
+              <p>
+                Chega de perder tempo com "curioso". Seu site explica tudo: o que
+                você faz, como funciona, quanto custa e onde fica. Quando a
+                pessoa te chama, ela já quer fechar negócio.
+              </p>
+            </div>
+            <div class="zigzag-item__image">
+              <img
+                src="images/zigzag-1.webp"
+                alt="Ilustração de uma conversa no WhatsApp gerando vendas"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+
+          <article class="zigzag-item">
+            <div class="zigzag-item__text">
+              <span class="badge badge--soft">Benefício 02</span>
+              <h3>Passe confiança de empresa grande</h3>
+              <p>
+                Um site profissional te coloca no mesmo nível visual das grandes
+                marcas. Para o cliente, não importa se você tem 2 ou 200
+                funcionários.
+              </p>
+            </div>
+            <div class="zigzag-item__image">
+              <img
+                src="images/zigzag-2.webp"
+                alt="Ilustração de um site profissional ganhando um prêmio ou troféu"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+
+          <article class="zigzag-item">
+            <div class="zigzag-item__text">
+              <span class="badge badge--soft">Benefício 03</span>
+              <h3>Domine as buscas na sua cidade</h3>
+              <p>
+                O Google te apresenta para pessoas que NEM SABIAM que você
+                existia. É uma fonte inesgotável de clientes novos que seus
+                concorrentes não conseguem tocar.
+              </p>
+            </div>
+            <div class="zigzag-item__image">
+              <img
+                src="images/zigzag-3.webp"
+                alt="Ilustração de um mapa local com pin no negócio"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prova" class="section section--alt">
+      <div class="container animated">
+        <h2>Eu não só falo, eu faço: A virada real da Móveis Karina</h2>
+        <p class="section__subtitle">
+          Eu apliquei meu próprio método na minha loja. Saímos da dependência do
+          Instagram para uma estrutura de vendas completa e automática. Veja o que
+          aconteceu:
+        </p>
+
+        <div class="prova-evidencia">
+          <img
+            src="images/moveis-karina-fachada.webp"
+            alt="Fachada da Móveis Karina, loja física real onde o método Pulse foi aplicado"
+            loading="lazy"
+          />
+          <p class="prova-evidencia__caption">Loja real, resultados reais.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="testimonial">
+            <div class="icon-3d icon-3d--danger">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6L9 12.75l4.286-4.286a11.948 11.948 0 014.306 6.43l.776 2.898m0 0l3.182-5.511m-3.182 5.51l-5.511-3.182" />
+              </svg>
+            </div>
+            <p class="testimonial__quote">
+              <strong>ANTES (O Caos):</strong>
+              "A gente dependia da sorte no Instagram e perdia horas no WhatsApp
+              respondendo apenas 'qual o preço?' e 'entrega aqui?'. Muito
+              trabalho, pouca venda."
+            </p>
+          </article>
+
+          <article class="testimonial testimonial--featured">
+            <div class="icon-3d">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L1.5 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L16.5 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.5 13.5L18 15.75l-1.5 2.25L15 15.75l-1.5-2.25L15 11.25l1.5 2.25z" />
+              </svg>
+            </div>
+            <p class="testimonial__quote">
+              <strong>A VIRADA (Método Pulse):</strong>
+              "Criei uma vitrine que funciona como um 'vendedor digital 24h'. O
+              site mostra os produtos, tira as dúvidas chatas e já manda o
+              cliente pronto para fechar."
+            </p>
+          </article>
+
+          <article class="testimonial">
+            <div class="icon-3d icon-3d--accent">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84m.581-5.841a14.923 14.923 0 012.58 5.841M9.631 8.41v4.8m3.581-8.541a14.923 14.923 0 00-5.841 2.58m5.841 2.58a14.923 14.923 0 01-2.58 5.841" />
+              </svg>
+            </div>
+            <p class="testimonial__quote">
+              <strong>DEPOIS (O Resultado):</strong>
+              "O tempo de atendimento
+              <strong>caiu 48%</strong> e tivemos
+              <strong>2.17x mais pedidos de orçamento</strong>
+              qualificados direto no WhatsApp."
+            </p>
+          </article>
+        </div>
+        <p
+          class="section__note"
+          style="
+            font-size: 1.1rem;
+            color: var(--color-heading);
+            margin-top: 2.5rem;
+            font-weight: 600;
+          "
+        >
+          Se funcionou no meu negócio, vai funcionar no seu também!
+        </p>
+
+        <div class="center" style="margin-top: 2rem">
+          <button
+            class="btn btn--primary btn--lg js-open-whatsapp"
+            data-message="Olá! Quero o mesmo resultado da Móveis Karina no meu negócio."
+          >
+            QUERO O MESMO RESULTADO
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="clientes-reais" class="section">
+      <div class="container animated">
+        <h2>Resultados reais de quem confiou na Pulse</h2>
+        <p class="section__subtitle">
+          Veja o que clientes reais dizem:
+        </p>
+        <div class="testimonial-grid-external">
+          <article class="testimonial-card-external">
+            <p class="testimonial-quote-external">
+              "Eu não entendia nada de site. O Gustavo foi super paciente,
+              entregou em 3 dias e na primeira semana já fechei duas vendas que
+              vieram do Google. Pagou o investimento na hora."
+            </p>
+            <div class="testimonial-author">
+              <img src="images/placeholder-cliente-1.webp" alt="Cliente 1" />
+              <div>
+                <strong>Carla Matos</strong>
+                <span>Dona da Sapataria Pingo de Ouro</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card-external">
+            <p class="testimonial-quote-external">
+              "Eu só usava o Instagram e vivia no direct respondendo 'preço'. O
+              site filtrou 90% dos curiosos. Quem me chama agora, já quer
+              agendar. Mudou meu jogo."
+            </p>
+            <div class="testimonial-author">
+              <img src="images/placeholder-cliente-2.webp" alt="Cliente 2" />
+              <div>
+                <strong>Bruno Alves</strong>
+                <span>Barbearia Navalha de Prata</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card-external">
+            <p class="testimonial-quote-external">
+              "Rápido, profissional e o preço é justo. Pagamento único foi o que
+              me convenceu. Recomendo de olhos fechados."
+            </p>
+            <div class="testimonial-author">
+              <img src="images/placeholder-cliente-3.webp" alt="Cliente 3" />
+              <div>
+                <strong>Dra. Fernanda Lima</strong>
+                <span>Clínica Estética Pele Rara</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section section--alt">
+     <div class="container animated">
+       <h2>O que vamos construir para o seu negócio</h2>
+       <p class="section__subtitle"
+       style="color: #cbd5e1">
+         Veja exemplos de sites focados em conversão para diferentes nichos que já criamos.
+       </p>
+       <div class="cards cards--3" style="margin-top: 2.5rem; text-align: left">
+         
+         <a href="/portifolios/moda/index.html" class="card-link-wrapper">
+           <article class="card card--case">
+             <div class="case-image">
+               <img
+                 src="images/case-moda.webp" 
+                 alt="Site de Loja de Roupas e Moda Feminina"
+                 loading="lazy"
+               />
+             </div>
+             <h3>Boutique & Moda</h3>
+             <p>
+               Transformamos o Instagram em uma <strong>máquina de vendas automática</strong>. O cliente vê o look, se apaixona e clica para comprar, sem você precisar ficar respondendo preço no direct.
+             </p>
+             <span class="badge badge--primary" style="background: rgba(236, 72, 153, 0.1); color: #db2777; border-color: rgba(236, 72, 153, 0.2);">Moda & Varejo</span>
+           </article>
+         </a>
+
+         <a href="/portifolios/hamburgueria/index.html" class="card-link-wrapper">
+           <article class="card card--case">
+             <div class="case-image">
+               <img
+                 src="images/case-burger.webp"
+                 alt="Site de Hamburgueria Artesanal Delivery"
+                 loading="lazy"
+               />
+             </div>
+             <h3>Hamburgueria & Delivery</h3>
+             <p>
+               Um cardápio digital que dá fome só de olhar. Otimizado para o cliente fechar o pedido em 3 cliques e <strong>livrar você das taxas abusivas</strong> dos aplicativos de entrega.
+             </p>
+             <span class="badge badge--primary" style="background: rgba(245, 158, 11, 0.1); color: #d97706; border-color: rgba(245, 158, 11, 0.2);">Delivery & Food</span>
+           </article>
+         </a>
+
+         <a href="/portifolios/engenharia/index.html" class="card-link-wrapper">
+           <article class="card card--case">
+             <div class="case-image">
+               <img
+                 src="images/case-engenharia.webp"
+                 alt="Site de Engenharia e Construção Civil"
+                 loading="lazy"
+               />
+             </div>
+             <h3>Engenharia & Construção</h3>
+             <p>
+               Para quem vende serviços de alto valor, confiança é tudo. Criamos uma presença digital robusta que transmite a <strong>autoridade técnica</strong> necessária para fechar grandes contratos.
+             </p>
+             <span class="badge badge--primary" style="background: rgba(59, 130, 246, 0.1); color: #2563eb; border-color: rgba(59, 130, 246, 0.2);">Serviços High-Ticket</span>
+           </article>
+         </a>
+
+       </div>
+     </div>
+   </section>
+
+    <section id="planos" class="section">
+      <div class="container animated">
+        <h2>Investimento Único, Retorno Diário</h2>
+        <p class="section__subtitle">
+          Simplicidade total: um único plano com tudo o que você precisa para
+          começar a vender online. <strong>Sem mensalidades.</strong>
+        </p>
+
+        <div class="pricing-grid single-plan">
+          <article class="pricing-card pricing-card--featured" style="border: 2px solid var(--primary-strong);">
+            <div class="pricing-card__badge">
+              OFERTA EXCLUSIVA: Economize R$ 1.510
+            </div>
+
+            <h3>Plano Pulse (Site Completo)</h3>
+            <p class="pricing-card__tagline">
+              A estrutura validada para transformar visitantes em clientes.
+            </p>
+
+            <div class="price-comparison-box">
+              <div class="price-comparison-row">
+                <span>Agências cobram:</span>
+                <span class="price-strike">R$ 2.500</span>
+              </div>
+              <div class="price-comparison-row">
+                <span>Freelancers cobram:</span>
+                <span class="price-strike">R$ 1.900</span>
+              </div>
+            </div>
+
+            <div class="pricing-main-value">
+              <div class="installments-header">
+                <span class="times-badge">12x</span>
+                <span class="preposition">de</span>
+              </div>
+
+              <div class="price-display">
+                <span class="currency">R$</span>
+                <span class="amount">82,50</span>
+            </div>
               
-              // Adiciona o iframe ao container do player
-              player.appendChild(iframe);
-              // Adiciona a classe 'active' para esconder a capa e o botão via CSS
-              player.classList.add('active');
-            });
+              <p class="cash-price">Total à vista: R$ 990,00</p>
+            </div>
+
+            <div class="features-grid">
+              <div class="feature-item">✅ Site Profissional (1 Pág)</div>
+              <div class="feature-item">✅ Copy (Textos) Prontos</div>
+              <div class="feature-item">✅ Botões de WhatsApp</div>
+              <div class="feature-item">✅ SEO Local (Google)</div>
+              <div class="feature-item">✅ Hospedagem Grátis (1 ano)</div>
+              <div class="feature-item">✅ Domínio Grátis (1 ano)</div>
+            </div>
+
+            <div class="bonus-box">
+              <p><strong>🎁 BÔNUS INCLUSOS:</strong></p>
+              <ul class="bonus-list">
+                <li>• Página de Links p/ Bio (<s>R$ 197</s>)</li>
+                <li>• Tutorial "Vender no WhatsApp" (<s>R$ 297</s>)</li>
+              </ul>
+            </div>
+
+            <button
+              class="btn btn--primary btn--full js-open-whatsapp"
+              data-message="Olá! Vi a oferta de R$ 990 com os Bônus e quero garantir."
+              id="cta-plano-autoridade"
+              style="margin-top: 1rem; font-size: 1.1rem;"
+            >
+              QUERO MEU SITE + BÔNUS
+            </button>
+
+            <div class="trust-footer">
+              <div class="trust-item">
+                <span>🛡️ 7 Dias de Garantia</span>
+              </div>
+              <div class="trust-item">
+                <span>🔒 Pagamento Seguro</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="pricing-warning">
+          <span class="pricing-warning__icon">⏰</span>
+          <p id="aviso-planos">
+            <strong>AGENDA LIMITADA:</strong> Para garantir a entrega em 72h, só
+            aceito 5 projetos por semana.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="garantia" class="section section--alt">
+      <div class="container section__narrow animated">
+        <div
+          style="
+            background-color: #fff;
+            border: 2px solid var(--color-primary);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+          "
+        >
+          <span
+            style="
+              font-size: 3.5rem;
+              display: block;
+              line-height: 1;
+              margin-bottom: 1rem;
+            "
+            >🛡️</span
+          >
+          <h2 style="margin-top: 0; margin-bottom: 1.5rem; font-size: 1.8rem">
+            Garantia Incondicional de 7 Dias
+          </h2>
+          <p
+            class="section__subtitle"
+            style="
+              margin-bottom: 0;
+              font-size: 1.1rem;
+              opacity: 1;
+              color: var(--color-text);
+            "
+          >
+            Se você não estiver 100% satisfeito com a primeira versão e os
+            ajustes que faremos,
+            <strong>ajustaremos até ficar perfeito ou se preferir, devolvemos seu investimento sem perguntas.</strong>
+            <br /><br />
+            Nosso compromisso é com o seu resultado. O risco é todo meu.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="section">
+      <div class="container animated">
+        <h2>Processo Simples: Do Fechamento ao Site Online</h2>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__number">1</span>
+            <div>
+              <h3>Conversa no WhatsApp (10 min)</h3>
+              <p>
+                Você me conta sobre seu negócio e objetivos. Sem reunião de 2
+                horas, sem enrolação.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__number">2</span>
+            <div>
+              <h3>Estratégia Personalizada (24h)</h3>
+              <p>
+                Eu defino a melhor estrutura para SEU negócio e te passo o
+                cronograma completo.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__number">3</span>
+            <div>
+              <h3>Criação e Aprovação (72h úteis)</h3>
+              <p>
+                Eu crio textos de vendas + design. Você manda fotos pelo WhatsApp
+                e aprova tudo online.
+              </p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__number">4</span>
+            <div>
+              <h3>Site Online e Vendendo</h3>
+              <p>
+                Em até 72h úteis, seu site está no ar recebendo clientes 24h por
+                dia.
+              </p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="center">
+          <button
+            class="btn btn--primary btn--lg js-open-whatsapp"
+            data-message="Olá! Quero começar o Passo 1 do processo agora."
+          >
+            🚀 COMEÇAR O PROCESSO AGORA
+          </button>
+        </div>
+        <p class="cta-microcopy">
+          Vamos bater um papo rápido, sem compromisso.
+        </p>
+      </div>
+    </section>
+
+    <section id="faq" class="section section--alt">
+      <div class="container animated">
+        <h2>O que todo mundo me pergunta antes de fechar</h2>
+        <p class="section__subtitle">
+          Jogo aberto: prefiro tirar todas as suas dúvidas agora para você
+          fechar com 100% de segurança.
+        </p>
+
+        <div class="accordion">
+          <details class="accordion__item" open>
+            <summary>Meu site vai aparecer no Google quando pesquisarem?</summary>
+            <p>
+              Com certeza! Nós configuramos toda a estrutura técnica (SEO Local)
+              para que o Google 'leia' seu site da maneira correta. Isso aumenta
+              drasticamente suas chances de aparecer para quem pesquisa na sua
+              cidade, tirando você da invisibilidade.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>O que é "domínio e hospedagem grátis"?</summary>
+            <p>
+              Pense no domínio como o "endereço" da sua loja (ex:
+              suaempresa.com.br) e a hospedagem como o "terreno" onde ela fica.
+              Normalmente, você pagaria uma anuidade por ambos. No Plano Pulse,
+              eu te dou o <strong>primeiro ano de ambos totalmente grátis</strong>
+              para você não se preocupar com nada.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>"72 horas" é sério mesmo? Parece rápido demais.</summary>
+            <p>
+              É seríssimo e não é mágica, é método. Eu não fico "inventando
+              moda", eu uso uma estrutura validada que funciona. A partir do
+              momento que você me manda as informações do seu negócio, meu foco é total em
+              colocar sua máquina de vendas no ar em 3 dias úteis.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>
+              Sou péssimo com tecnologia e não tenho textos prontos.
+            </summary>
+            <p>
+              Fique tranquilo, 95% dos meus clientes são assim!
+              <strong>Eu escrevo todos os textos</strong> vendedores para
+              você. Sua única tarefa será me mandar as informações do seu negócio. O trabalho chato é comigo.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>O site é meu ou eu fico pagando mensalidade?</summary>
+            <p>
+              O site é <strong>100% SEU</strong>. É como comprar uma casa
+              própria. Eu construo, te entrego a chave e você não paga "aluguel"
+              de criação nunca mais. O pagamento é único.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>E se eu precisar mudar um telefone ou preço depois?</summary>
+            <p>
+              Você não fica na mão! Pequenos ajustes de texto, foto ou telefone
+              são fáceis de fazer. Você pode me chamar e fazemos um orçamento
+              justo pelo ajuste, ou você mesmo pode editar.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>Quais as formas de pagamento?</summary>
+            <p>
+              Para facilitar seu fluxo de caixa e garantir sua vaga na agenda,
+              você pode parcelar o investimento em até
+              <strong>12x no cartão de crédito</strong>. Também aceitamos PIX
+              à vista.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>Preciso pagar mensalidade?</summary>
+            <p>
+              NÃO. <strong>NÃO existe mensalidade de criação.</strong> Você paga uma única vez pelo site e ele é seu. Depois disso, só existem os custos normais de domínio e hospedagem a partir do segundo ano, pois o primeiro ano eu dou de presente para você.
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>E se eu quiser mudar o preço de um produto depois?</summary>
+            <p>
+              Você não fica refém de mim nem de agência nenhuma. Se quiser, eu te ensino a fazer esse tipo de ajuste ou faço pra você cobrando uma taxa simbólica. O importante é: <strong>você sempre vai ter controle sobre o seu site.</strong>
+            </p>
+          </details>
+
+          <details class="accordion__item">
+            <summary>Serve para o meu negócio?</summary>
+            <p>
+              Sim. O método foi pensado para <strong>negócios locais</strong> em geral: lojas de roupas, móveis, autopeças, barbearias, restaurantes, clínicas, consultórios, oficinas, advogados, contadores, prestadores de serviço em geral, profissionais da saúde, estúdios de beleza e muito mais. Se você depende de clientes da sua cidade, esse site serve pra você.
+            </p>
+          </details>
+        </div>
+
+        <div class="center">
+          <button
+            class="btn btn--primary btn--lg js-open-whatsapp"
+            data-message="Olá Gustavo! Li as dúvidas frequentes, mas ainda queria te perguntar uma coisa específica do meu negócio..."
+          >
+            🤔 MINHA DÚVIDA NÃO ESTÁ AQUI (CHAMAR NO WHATSAPP)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta-final" class="section section--dark">
+      <div class="container section__narrow animated">
+        <h2
+        style="color: var(--primary);"
+        >⚠️ ÚLTIMO AVISO: A Agenda Vai Fechar</h2>
+
+        <p
+          class="section__subtitle section__subtitle--light"
+          style="font-size: 1.5rem; color: #fff; margin: 0"
+        >
+          Restam apenas
+          <span
+            id="vagas-restantes-final"
+            style="color: #f59e0b; font-weight: 800; font-size: 1.8rem"
+            >3 VAGAS</span
+          >
+        </p>
+
+        <p
+          class="section__subtitle section__subtitle--light"
+          style="margin-top: 1rem; color: var(--bg-highlight);"
+        >
+          Para garantir a qualidade e o prazo de 72h, eu trabalho com um número
+          <strong>limitado</strong> de clientes por semana. Quando essas vagas
+          acabarem, eu fecho a agenda e você terá que entrar na lista de espera.
+        </p>
+
+        <p
+          class="section__subtitle section__subtitle--light"
+          style="font-weight: 700; margin-top: 1.5rem; color: var(--bg-highlight);"
+        >
+          Você vai garantir a sua vaga ou vai esperar seu concorrente pegar ela
+          no seu lugar?
+        </p>
+
+        <button
+          class="btn btn--primary btn--lg js-open-whatsapp"
+          style="margin-top: 2rem"
+          data-message="Olá! Vi que são as ÚLTIMAS VAGAS e quero garantir."
+          id="cta-final-comprar"
+        >
+          RECEBER CLIENTES PELO WHATSAPP
+        </button>
+
+        <div class="fallback-cta" style="display: none; margin-top: 0; border-top: none">
+          <p>Ainda em dúvida? Me chama no WhatsApp sem compromisso.</p>
+          <p>
+            Prefiro tirar sua dúvida agora do que você se arrepender depois.
+          </p>
+          <button
+            class="btn btn--primary btn--lg js-open-whatsapp"
+            data-message="Olá Gustavo! Estou em dúvida, pode me ajudar?"
+            style="border-color: rgba(255, 255, 255, 0.3); color: #fff"
+            id="cta-final-duvida"
+          >
+            💬 TIRAR DÚVIDA NO WHATSAPP (SEM COMPROMISSO)
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button
+    class="whatsapp-float js-open-whatsapp"
+    aria-label="Falar no WhatsApp"
+    data-message="Olá! Vi o site da Pulse e quero minha Análise Gratuita."
+  >
+    <img src="images/whatsapp-icon-white.webp" alt="Falar no WhatsApp" />
+  </button>
+
+  <div class="sticky-mobile-cta">
+    <div class="info" id="sticky-vagas">🔥 <strong>Restam só 3 VAGAS!</strong></div>
+    <button
+      class="btn btn--primary btn--sm js-scroll-to"
+      data-target="#planos"
+      style="margin: 0; padding: 0.6rem 1.2rem; font-size: 0.9rem"
+    >
+      Ver Planos
+    </button>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">Pulse • Sites que vendem de verdade</p>
+      <p class="footer__meta">
+        © <span id="year"></span> Pulse. Todos os direitos reservados.
+      </p>
+      <a
+        href="#hero"
+        class="footer__back-to-top js-scroll-to"
+        data-target="#hero"
+      >
+        Voltar ao topo ↑
+      </a>
+    </div>
+  </footer>
+
+  <div id="exit-popup">
+    <div id="exit-popup-content">
+      <button id="close-popup" aria-label="Fechar popup">&times;</button>
+      <h3
+        style="
+          font-size: 1.5rem;
+          color: var(--color-heading);
+          margin-bottom: 1rem;
+          margin-top: 1rem;
+        "
+      >
+        Antes de sair!
+      </h3>
+      <p
+        style="
+          color: var(--color-muted);
+          margin-bottom: 1.5rem;
+          font-size: 1.1rem;
+        "
+      >
+        Receba sua <strong>Análise Gratuita</strong> e descubra por que você
+        está perdendo clientes para o concorrente.
+      </p>
+      <button
+        class="btn btn--primary btn--lg js-open-whatsapp"
+        data-message="Olá! Quase saí do site, mas quero minha Análise Gratuita."
+      >
+        PEGAR MINHA ANÁLISE GRÁTIS
+      </button>
+      <p class="cta-microcopy">Sem compromisso • Entrega em 24h</p>
+    </div>
+  </div> 
+
+  <script>
+    // =========================================
+    // 1. CONFIGURAÇÕES GERAIS & WHATSAPP
+    // =========================================
+    const WHATSAPP_NUMBER = "5544991310383"; // SEU NÚMERO
+    const WHATSAPP_MESSAGE_DEFAULT =
+      "Olá, vi o site da Pulse e quero saber mais.";
+
+    function openWhatsApp(event) {
+      let message = WHATSAPP_MESSAGE_DEFAULT;
+      const clickedEl = event.currentTarget;
+      if (clickedEl && clickedEl.dataset.message) {
+        message = clickedEl.dataset.message;
+      }
+      const encoded = encodeURIComponent(message);
+      const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encoded}`;
+      window.open(url, "_blank", "noopener");
+    }
+
+    function scrollToTarget(selector) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      const headerOffset = 80; // Ajuste conforme altura do seu navbar fixo
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+
+    // =========================================
+    // 2. LÓGICA DE URGÊNCIA AUTOMÁTICA (VAGAS)
+    // =========================================
+    function atualizarVagasAutomaticas() {
+      const agora = new Date();
+      const diaSemana = agora.getDay(); // 0 (Domingo) - 6 (Sábado)
+      const hora = agora.getHours();
+      const hoje = agora.toLocaleDateString("pt-BR");
+
+      const vagasSalvas = localStorage.getItem("pulse_vagas_hoje");
+      const dataSalva = localStorage.getItem("pulse_data");
+
+      let vagasStatus = "3 VAGAS";
+      let msgTopo =
+        "🔥 AGENDA ABERTA: Apenas 3 vagas disponíveis para esta semana.";
+      let msgSticky = "🔥 <strong>Restam 3 VAGAS!</strong>";
+      let msgFinal = "3 VAGAS";
+      let ctaComprarTexto = "RECEBER CLIENTES PELO WHATSAPP";
+      let ctaComprarMsg =
+        "Olá! Quero garantir uma das últimas vagas para o meu site.";
+      let ctaDuvidaMsg = "Olá Gustavo! Estou em dúvida, pode me ajudar?";
+      let esgotado = false;
+
+      switch (diaSemana) {
+        case 0: // Domingo
+        case 6: // Sábado
+          esgotado = true;
+          break;
+        case 1: // Segunda
+          vagasStatus = "3 VAGAS";
+          msgTopo =
+            "🔥 AGENDA ABERTA: Apenas 3 vagas disponíveis para esta semana.";
+          msgSticky = "🔥 <strong>Restam 3 VAGAS!</strong>";
+          msgFinal = "3 VAGAS";
+          break;
+        case 2: // Terça
+        case 3: // Quarta
+          vagasStatus = "2 VAGAS";
+          msgTopo =
+            "🔥 ATENÇÃO: Restam apenas 2 vagas para entrega em 72h esta semana.";
+          msgSticky = "🔥 <strong>Restam só 2 VAGAS!</strong>";
+          msgFinal = "2 VAGAS";
+          break;
+        case 4: // Quinta
+          vagasStatus = "1 VAGA";
+          msgTopo =
+            "🚨 URGENTE: Resta apenas 1 vaga! Garanta agora ou espere a próxima semana.";
+          msgSticky = "🚨 <strong>ÚLTIMA VAGA!</strong>";
+          msgFinal = "1 VAGA";
+          ctaComprarTexto = "GARANTIR ÚLTIMA VAGA";
+          break;
+        case 5: // Sexta
+          if (hora < 12) {
+            // Antes do meio-dia
+            vagasStatus = "1 VAGA";
+            msgTopo =
+              "🚨 URGENTE: Resta apenas 1 vaga! Garanta agora ou espere a próxima semana.";
+            msgSticky = "🚨 <strong>ÚLTIMA VAGA!</strong>";
+            msgFinal = "1 VAGA";
+            ctaComprarTexto = "GARANTIR ÚLTIMA VAGA";
+          } else {
+            // Depois do meio-dia
+            esgotado = true;
           }
-        });
-        /* ===== FIM DO CÓDIGO DO PLAYER ===== */
+          break;
+      }
+
+      if (esgotado) {
+        vagasStatus = "ESGOTADAS";
+        msgTopo =
+          "⛔ VAGAS ESGOTADAS! A agenda desta semana lotou. Entre na lista de espera para Segunda.";
+        msgSticky = "⛔ <strong>ESGOTADO</strong><br>Lista de espera";
+        msgFinal = "ESGOTADAS";
+        ctaComprarTexto = "ENTRAR NA LISTA DE ESPERA (Abre Segunda)";
+        ctaComprarMsg =
+          "Olá! As vagas da semana acabaram. Quero entrar na lista de espera para segunda-feira.";
+        ctaDuvidaMsg =
+          "Olá! Vi que as vagas esgotaram, mas tenho uma dúvida.";
+      }
+
+      // =========================================
+      // Escassez Persistente (Local Storage)
+      // Mostra 1 vaga a menos que o padrão do dia,
+      // sem nunca chegar em 0 nos dias úteis
+      // =========================================
+      if (!esgotado && dataSalva === hoje && vagasSalvas) {
+        const numeroBase = parseInt(vagasStatus, 10);
+        if (
+          Number.isFinite(numeroBase) &&
+          numeroBase > 1 &&
+          diaSemana >= 1 &&
+          diaSemana <= 5
+        ) {
+          const novoNumero = numeroBase - 1;
+          vagasStatus = novoNumero === 1 ? "1 VAGA" : `${novoNumero} VAGAS`;
+
+          if (novoNumero === 3) {
+            msgTopo =
+              "🔥 AGENDA ABERTA: Apenas 3 vagas disponíveis para esta semana.";
+            msgSticky = "🔥 <strong>Restam 3 VAGAS!</strong>";
+            msgFinal = "3 VAGAS";
+          } else if (novoNumero === 2) {
+            msgTopo =
+              "🔥 ATENÇÃO: Restam apenas 2 vagas para entrega em 72h esta semana.";
+            msgSticky = "🔥 <strong>Restam só 2 VAGAS!</strong>";
+            msgFinal = "2 VAGAS";
+          } else if (novoNumero === 1) {
+            msgTopo =
+              "🚨 URGENTE: Resta apenas 1 vaga! Garanta agora ou espere a próxima semana.";
+            msgSticky = "🚨 <strong>ÚLTIMA VAGA!</strong>";
+            msgFinal = "1 VAGA";
+            ctaComprarTexto = "GARANTIR ÚLTIMA VAGA";
+          }
+        }
+      }
+
+      try {
+        if (esgotado) {
+          localStorage.setItem("pulse_vagas_hoje", "ESGOTADAS");
+        } else {
+          localStorage.setItem("pulse_vagas_hoje", vagasStatus);
+        }
+        localStorage.setItem("pulse_data", hoje);
+      } catch (e) {
+        // Fallback silencioso se localStorage não estiver disponível
+      }
+
+      // Atualizar Textos no DOM
+      const textoTopo = document.getElementById("vagas-topo");
+      const stickyInfo =
+        document.getElementById("sticky-vagas") ||
+        document.querySelector(".sticky-mobile-cta .info");
+      const vagasFinal = document.getElementById("vagas-restantes-final");
+      const avisoPlanos = document.getElementById("aviso-planos");
+
+      if (textoTopo) textoTopo.innerHTML = msgTopo;
+      if (stickyInfo) stickyInfo.innerHTML = msgSticky;
+      if (vagasFinal) {
+        vagasFinal.innerHTML = msgFinal;
+        if (esgotado) vagasFinal.style.color = "#ef4444";
+      }
+      if (avisoPlanos) {
+        if (esgotado)
+          avisoPlanos.innerHTML =
+            "⏰ <strong>AGENDA FECHADA.</strong> Entre na lista de espera para garantir sua vaga na próxima semana.";
+        else
+          avisoPlanos.innerHTML = ` <strong>AGENDA LIMITADA:</strong> Restam apenas ${vagasStatus}. Garanta a sua!`;
+      }
+
+      // Atualizar Botões de Compra
+      const ctaComprarBotoes = [
+        document.querySelector(".btn-hero"),
+        document.getElementById("cta-plano-autoridade"),
+        document.getElementById("cta-final-comprar"),
+      ];
+
+      ctaComprarBotoes.forEach((btn) => {
+        if (btn) {
+          btn.innerHTML = ctaComprarTexto;
+          btn.setAttribute("data-message", ctaComprarMsg);
+          if (esgotado) {
+            btn.style.opacity = "0.7";
+            btn.style.background = "var(--color-muted)";
+            btn.style.borderColor = "var(--color-muted)";
+            btn.style.boxShadow = "none";
+          }
+        }
       });
 
-      // Função Tilt (mantida igual)
-      function initTilt(selector) {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-        const cards = document.querySelectorAll(selector);
-        cards.forEach(card => {
-            card.addEventListener("pointermove", e => {
-                const b = card.getBoundingClientRect();
-                const x = e.clientX - b.left;
-                const y = e.clientY - b.top;
-                const rY = ((x - b.width / 2) / b.width) * 5;
-                const rX = ((y - b.height / 2) / b.height) * -5;
-                card.style.transform = `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(-5px)`;
-            });
-            card.addEventListener("pointerleave", () => card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)");
+      // Atualizar Botão de Dúvida Final
+      const ctaDuvidaFinal = document.getElementById("cta-final-duvida");
+      if (ctaDuvidaFinal) {
+        ctaDuvidaFinal.setAttribute("data-message", ctaDuvidaMsg);
+      }
+    }
+
+    // =========================================
+    // 3. INICIALIZAÇÃO (DOM READY)
+    // =========================================
+    document.addEventListener("DOMContentLoaded", () => {
+      // ATIVA A URGÊNCIA AUTOMÁTICA
+      atualizarVagasAutomaticas();
+
+      // =========================================
+      // LÓGICA DA CALCULADORA ROI (DOR "VISCERAL")
+    // =========================================
+      const ticketInput = document.getElementById("ticket-medio");
+      const resultadoAnual = document.getElementById("calculo-anual");
+
+      const calcularPerda = () => {
+        if (!ticketInput || !resultadoAnual) return;
+
+        const ticket = parseFloat(ticketInput.value) || 0;
+        const vendasPorSemana = 1;
+        const semanasPorAno = 52; // Usar 52 semanas para um ano completo
+
+        const perdaAnual = ticket * vendasPorSemana * semanasPorAno;
+
+        const formatador = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        });
+
+        resultadoAnual.textContent = `${formatador.format(perdaAnual)} por ano`;
+
+        // NOVA LÓGICA VISUAL (faz o número "sangrar")
+        if (perdaAnual > 0) {
+          resultadoAnual.style.color = "#ef4444"; // Vermelho forte
+          resultadoAnual.style.fontSize = "1.8rem"; // Destaque
+        } else {
+          resultadoAnual.style.color = "var(--color-heading)";
+          resultadoAnual.style.fontSize = "";
+          resultadoAnual.style.textDecoration = "none";
+        }
+      };
+
+      if (ticketInput) {
+        ticketInput.addEventListener("input", calcularPerda);
+        calcularPerda();
+      }
+
+      // =========================================
+      // LÓGICA DO POPUP DE SAÍDA
+      // =========================================
+      const exitPopup = document.getElementById("exit-popup");
+      const closePopup = document.getElementById("close-popup");
+      let popupShown = false;
+
+      if (exitPopup && closePopup) {
+        const showPopup = () => {
+          if (!popupShown) {
+            exitPopup.style.display = "flex"; // Usa flex para centralizar
+            popupShown = true;
+            const popupBtn = exitPopup.querySelector(".js-open-whatsapp");
+            if (popupBtn) {
+              popupBtn.addEventListener("click", openWhatsApp);
+            }
+          }
+        };
+
+        const hidePopup = () => {
+          exitPopup.style.display = "none";
+        };
+
+        document.addEventListener("mouseout", (e) => {
+          if (!e.toElement && !e.relatedTarget && e.clientY < 10) {
+            if (window.innerWidth >= 768) {
+              showPopup();
+            }
+          }
+        });
+
+        closePopup.addEventListener("click", hidePopup);
+        exitPopup.addEventListener("click", (e) => {
+          if (e.target === exitPopup) {
+            hidePopup();
+          }
         });
       }
-    </script>
-  </body>
+
+      // =========================================
+      // RASTREAMENTO DE BOTÕES (ORIGEM DO LEAD)
+    // =========================================
+      const botoesWhatsApp = document.querySelectorAll(".js-open-whatsapp");
+
+      // Hero / Topo (primeiro ponto de contato)
+      if (botoesWhatsApp.length > 0) {
+        botoesWhatsApp[0].dataset.message =
+          "Olá Gustavo! Vi o TOPO do site e quero garantir minha vaga.";
+      }
+
+      // Botão da Calculadora de Dor
+      const botaoCalculadora = document.querySelector(
+        "#problema .btn--danger.js-open-whatsapp"
+      );
+      if (botaoCalculadora) {
+        botaoCalculadora.dataset.message =
+          "Olá! Vi o prejuízo na Calculadora e quero resolver isso.";
+      }
+
+      // Botão do Preço (Plano Pulse)
+      const botaoPreco = document.getElementById("cta-plano-autoridade");
+      if (botaoPreco) {
+        botaoPreco.dataset.message =
+          "Olá! Vi o preço de 990 e quero fechar.";
+      }
+
+      // Botão Final / Escassez
+      const botaoFinal = document.getElementById("cta-final-comprar");
+      if (botaoFinal) {
+        botaoFinal.dataset.message =
+          "Olá! Vi que são as ÚLTIMAS VAGAS e quero garantir.";
+      }
+
+      // =========================================
+      // LISTENERS GERAIS
+      // =========================================
+      document
+        .querySelectorAll(".js-open-whatsapp")
+        .forEach((btn) => btn.addEventListener("click", openWhatsApp));
+
+      document
+        .querySelectorAll(".js-scroll-to")
+        .forEach((btn) =>
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const target = btn.dataset.target || btn.getAttribute("href");
+            if (target && target.startsWith("#")) scrollToTarget(target);
+          })
+        );
+
+      // Footer year
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+      // Menu Mobile
+      const toggle = document.querySelector(".navbar__toggle");
+      const mobileMenu = document.getElementById("navbarMobile");
+      if (toggle && mobileMenu) {
+        const closeMenu = () => {
+          mobileMenu.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        };
+        toggle.addEventListener("click", () => {
+          const isOpen = mobileMenu.classList.contains("open");
+          if (!isOpen) {
+            mobileMenu.classList.add("open");
+            toggle.setAttribute("aria-expanded", "true");
+            document.body.style.overflow = "hidden";
+          } else {
+            closeMenu();
+          }
+        });
+        mobileMenu
+          .querySelectorAll(".js-close-mobile")
+          .forEach((link) => link.addEventListener("click", closeMenu));
+        window.addEventListener("resize", () => {
+          if (
+            window.innerWidth >= 900 &&
+            mobileMenu.classList.contains("open")
+          )
+            closeMenu();
+        });
+      }
+
+      // Sticky Mobile CTA
+      const stickyCta = document.querySelector(".sticky-mobile-cta");
+      if (stickyCta) {
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 300) stickyCta.classList.add("visible");
+          else stickyCta.classList.remove("visible");
+        });
+      }
+
+      // Animações de Scroll
+      const motionQuery = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+      const animatedEls = document.querySelectorAll(
+        ".animated, .animated--stagger"
+      );
+      if (!motionQuery.matches && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        animatedEls.forEach((el) => observer.observe(el));
+      } else {
+        animatedEls.forEach((el) => el.classList.add("is-visible"));
+      }
+
+      // Scripts do Player de Vídeo (Se houver - mantido)
+      var youtubePlayers = document.querySelectorAll(".youtube-player");
+      youtubePlayers.forEach(function (player) {
+        var playButton = player.querySelector(".youtube-play-button");
+        var youtubeId = player.dataset.youtubeId;
+        if (playButton && youtubeId) {
+          playButton.addEventListener("click", function () {
+            var iframe = document.createElement("iframe");
+            iframe.setAttribute(
+              "src",
+              "https://www.youtube.com/embed/" + youtubeId + "?autoplay=1"
+            );
+            iframe.setAttribute("title", "Apresentação");
+            iframe.setAttribute("frameborder", "0");
+            iframe.setAttribute(
+              "allow",
+              "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            );
+            iframe.setAttribute("allowfullscreen", "");
+            player.appendChild(iframe);
+            player.classList.add("active");
+          });
+        }
+      });
+    });
+  </script>
+</body>
 </html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brasa Artesanal Hamburgueria - Hambúrguer na Brasa</title>
+    <meta name="description" content="Hambúrguer artesanal NA BRASA, blend de 180g e maionese verde da vó. Peça agora pelo WhatsApp e receba quente!">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" href="images/favicon.webp" type="image/webp">
+
+</head>
+<body>
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#inicio" class="nav__logo">
+                <img src="images/logo-brasa-artesanal.webp" alt="Brasa Artesanal Hamburgueria" class="nav__logo-img">
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#inicio" class="nav__link">Início</a></li>
+                    <li class="nav__item"><a href="#combo-brasa-duplo" class="nav__link">Combo Brasa Duplo</a></li>
+                    <li class="nav__item"><a href="#cardapio" class="nav__link">Cardápio</a></li>
+                    <li class="nav__item"><a href="#por-que-brasa" class="nav__link">Por que a Brasa?</a></li>
+                    <li class="nav__item"><a href="#como-pedir" class="nav__link">Como Pedir</a></li>
+                    <li class="nav__item"><a href="#depoimentos" class="nav__link">Depoimentos</a></li>
+                    <li class="nav__item"><a href="#contato" class="nav__link">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__actions">
+                <div class="nav__toggle" id="nav-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero section" id="inicio">
+            <div class="hero__container container grid">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        Hambúrguer artesanal NA BRASA, do jeito que a fome pede.
+                    </h1>
+                    <h2 class="hero__subtitle">
+                        Blend de 180g, maionese verde da vó e entrega rápida que chega quente.
+                    </h2>
+                    
+                    <ul class="hero__benefits">
+                        <li><i class="icon-check"></i> Blend artesanal de 180g, maior que o do fast-food.</li>
+                        <li><i class="icon-check"></i> Maionese verde caseira grátis em todos os pedidos.</li>
+                        <li><i class="icon-check"></i> Entrega rápida com embalagem térmica.</li>
+                    </ul>
+
+                    <div class="hero__buttons">
+                        <a href="#" class="button button--primary button--large btn-whatsapp-geral" target="_blank">
+                            Pedir no WhatsApp Agora
+                        </a>
+                        <a href="#combo-brasa-duplo" class="button button--secondary button--large">
+                            Ver o Combo Brasa Duplo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero__image">
+                    <img src="images/hero-burger.webp" alt="Hambúrguer artesanal na brasa" class="hero__img-placeholder">
+                    <div class="hero__badge">
+                        <span>Sexta e Sábado até 00h</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__glow"></div>
+        </section>
+
+        <section class="combo section" id="combo-brasa-duplo">
+            <div class="combo__container container grid">
+                <div class="combo__image">
+                    <div class="combo__badge">Mais pedido da casa</div>
+                    <img src="images/combo-brasa-duplo.webp" alt="Combo Brasa Duplo" class="combo__img-placeholder">
+                </div>
+
+                <div class="combo__content">
+                    <span class="section__subtitle">Carro-Chefe</span>
+                    <h2 class="section__title">Combo Brasa Duplo</h2>
+                    <p class="combo__description">
+                        Hambúrguer duplo na brasa, batata crocante e refri gelado. É o favorito da galera para matar a fome de verdade.
+                    </p>
+                    
+                    <ul class="combo__details">
+                        <li><i class="icon-check"></i> 2 discos de 180g de carne na brasa.</li>
+                        <li><i class="icon-check"></i> Queijo derretendo de verdade, nada de foto enganosa.</li>
+                        <li><i class="icon-check"></i> Batata frita crocante e sequinha.</li>
+                        <li><i class="icon-check"></i> Refri lata gelado incluso.</li>
+                    </ul>
+
+                    <div class="combo__price">
+                        <span>R$ 48,90</span>
+                    </div>
+
+                    <a href="#" class="button button--primary button--large" id="btn-combo-duplo" target="_blank">
+                        Pedir Combo Brasa Duplo no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu section" id="cardapio">
+            <div class="container">
+                <span class="section__subtitle text-center">Nosso Cardápio</span>
+                <h2 class="section__title text-center">Os Favoritos da Brasa</h2>
+                <p class="section__description text-center">
+                    Focamos no que fazemos de melhor. Escolha o seu e peça em um clique.
+                </p>
+
+                <div class="menu__grid grid">
+                    
+                    <div class="menu-card animate-on-scroll">
+                        <img src="images/cardapio-brasa-classico.webp" alt="Brasa Clássico" class="menu-card__image">
+                        <div class="menu-card__content">
+                            <h3 class="menu-card__title">Brasa Clássico</h3>
+                            <p class="menu-card__description">
+                                Blend 180g na brasa, queijo prato derretido, pão brioche selado na manteiga e nossa maionese verde.
+                            </p>
+                            <div class="menu-card__price">
+                                <span>R$ 29,90</span>
+                            </div>
+                            <a href="#" class="button button--primary button--small btn-pedir-item" data-produto="Brasa Clássico" target="_blank">
+                                Pedir este no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="menu-card animate-on-scroll">
+                        <div class="menu-card__badge">Mais Pedido</div>
+                        <img src="images/cardapio-brasa-bacon.webp" alt="Brasa Bacon" class="menu-card__image">
+                        <div class="menu-card__content">
+                            <h3 class="menu-card__title">Brasa Bacon</h3>
+                            <p class="menu-card__description">
+                                O Clássico com 3 tiras de bacon crocante defumado, cebola caramelizada e muito queijo cheddar.
+                            </p>
+                            <div class="menu-card__price">
+                                <span>R$ 34,90</span>
+                            </div>
+                            <a href="#" class="button button--primary button--small btn-pedir-item" data-produto="Brasa Bacon" target="_blank">
+                                Pedir este no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="menu-card animate-on-scroll">
+                        <img src="images/cardapio-brasa-picanha.webp" alt="Brasa Picanha" class="menu-card__image">
+                        <div class="menu-card__content">
+                            <h3 class="menu-card__title">Brasa Picanha</h3>
+                            <p class="menu-card__description">
+                                Blend especial de picanha 180g na brasa, queijo coalho tostado, alface, tomate e pão australiano.
+                            </p>
+                            <div class="menu-card__price">
+                                <span>R$ 39,90</span>
+                            </div>
+                            <a href="#" class="button button--primary button--small btn-pedir-item" data-produto="Brasa Picanha" target="_blank">
+                                Pedir este no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="menu-card animate-on-scroll">
+                        <div class="menu-card__badge">Combo</div>
+                        <img src="images/cardapio-combo-amigos.webp" alt="Combo Amigos" class="menu-card__image">
+                        <div class="menu-card__content">
+                            <h3 class="menu-card__title">Combo Amigos</h3>
+                            <p class="menu-card__description">
+                                3 burgers (2 Clássicos + 1 Bacon), 1 batata grande e 2 refri lata. Perfeito para dividir.
+                            </p>
+                            <div class="menu-card__price">
+                                <span>R$ 99,90</span>
+                            </div>
+                            <a href="#" class="button button--primary button--small btn-pedir-item" data-produto="Combo Amigos" target="_blank">
+                                Pedir este no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="features section" id="por-que-brasa">
+            <div class="container">
+                <span class="section__subtitle text-center">Nossos Segredos</span>
+                <h2 class="section__title text-center">Por que a Brasa é diferente?</h2>
+
+                <div class="features__grid grid">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-card__icon">
+                            <img src="images/icon-brasa.webp" alt="Ícone de Brasa na Grelha">
+                        </div>
+                        <h3 class="feature-card__title">Blend 180g na Brasa</h3>
+                        <p class="feature-card__description">
+                            Nossa carne é maior, mais suculenta e feita na brasa de verdade. Nada de hambúrguer industrial congelado.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-card__icon">
+                            <img src="images/icon-maionese.webp" alt="Ícone de Maionese Caseira">
+                        </div>
+                        <h3 class="feature-card__title">Maionese Verde da Vó</h3>
+                        <p class="feature-card__description">
+                            Receita da avó do Rafael. Maionese temperada caseira, gratuita, e o motivo de muito elogio dos nossos clientes.
+                        </p>
+                    </div>
+
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-card__icon">
+                             <img src="images/icon-entrega.webp" alt="Ícone de Entrega Rápida">
+                        </div>
+                        <h3 class="feature-card__title">Entrega Quente e Rápida</h3>
+                        <p class="feature-card__description">
+                            Usamos embalagem térmica especial. Seu pedido chega quente de verdade, ideal para quem está com muita fome.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-to section" id="como-pedir">
+            <div class="container">
+                <span class="section__subtitle text-center">Sem Complicação</span>
+                <h2 class="section__title text-center">Tão fácil quanto um app</h2>
+
+                <div class="how-to__steps grid">
+                    <div class="how-to__step animate-on-scroll">
+                        <div class="how-to__step-number">1</div>
+                        <h3 class="how-to__step-title">Escolha seu lanche</h3>
+                        <p class="how-to__step-description">
+                            Veja o Combo Brasa Duplo ou os lanches do cardápio e clique no botão.
+                        </p>
+                    </div>
+
+                    <div class="how-to__step animate-on-scroll">
+                        <div class="how-to__step-number">2</div>
+                        <h3 class="how-to__step-title">Clique em 'Pedir no WhatsApp'</h3>
+                        <p class="how-to__step-description">
+                            O pedido já vai com mensagem pronta. Você só confirma e manda.
+                        </p>
+                    </div>
+
+                    <div class="how-to__step animate-on-scroll">
+                        <div class="how-to__step-number">3</div>
+                        <h3 class="how-to__step-title">Receba quente na sua casa</h3>
+                        <p class="how-to__step-description">
+                            Entrega rápida com embalagem térmica, ou retire na loja se preferir.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="how-to__cta">
+                    <a href="#" class="button button--primary button--large btn-whatsapp-geral" target="_blank">
+                        Quero pedir agora pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials section" id="depoimentos">
+            <div class="container">
+                <span class="section__subtitle text-center">O que dizem</span>
+                <h2 class="section__title text-center">Aprovado pela galera</h2>
+
+                <div class="testimonials__grid grid">
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-card__rating">4.9 ★</div>
+                        <p class="testimonial-card__text">
+                            “Hambúrguer gigante, carne suculenta e maionese surreal. Virou meu lugar favorito de sexta à noite.”
+                        </p>
+                        <span class="testimonial-card__author">Amanda G.</span>
+                    </div>
+
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-card__rating">5.0 ★</div>
+                        <p class="testimonial-card__text">
+                            “Entrega chegou muito quente e rápido. Valeu cada mordida. O combo duplo é animal.”
+                        </p>
+                        <span class="testimonial-card__author">Lucas R.</span>
+                    </div>
+
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-card__rating">4.8 ★</div>
+                        <p class="testimonial-card__text">
+                            “Tamanho, sabor e atendimento – tudo top. Nem penso mais em iFood quando quero hambúrguer.”
+                        </p>
+                        <span class="testimonial-card__author">Bruno S.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section" id="sobre">
+            <div class="about__container container grid">
+                <div class="about__content">
+                    <span class="section__subtitle">Nossa História</span>
+                    <h2 class="section__title">Feito na brasa, com história</h2>
+                    <p class="about__description">
+                        A Brasa Artesanal nasceu da vontade do Rafael Silva de fazer um hambúrguer de verdade, sem frescura, mas com muito sabor. Cansado de lanche industrial, ele decidiu focar no essencial: carne de qualidade, feita no fogo como churrasco, e a famosa maionese verde da sua avó.
+                    </p>
+                    <p class="about__description">
+                        Hoje, somos o ponto de encontro da noite com amigos, o sabor do fim de semana e a certeza de um lanche que mata a fome e alegra a noite.
+                    </p>
+                </div>
+                <div class="about__image">
+                    <img src="images/about-brasa.webp" alt="Preparo do hambúrguer na brasa" class="about__img-placeholder">
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section" id="contato">
+            <div class="container">
+                <span class="section__subtitle text-center">Peça ou Visite</span>
+                <h2 class="section__title text-center">Onde encontrar a Brasa</h2>
+
+                <div class="contact__grid grid">
+                    <div class="contact__info">
+                        <div class="contact__info-block">
+                            <h3>Faça seu pedido pelo WhatsApp:</h3>
+                            <p class="contact__whatsapp-number">(11) 99999-8888</p>
+                            <a href="#" class="button button--primary button--large btn-whatsapp-geral" target="_blank">
+                                Pedir no WhatsApp Agora
+                            </a>
+                        </div>
+
+                        <div class="contact__info-block">
+                            <h3>Horário de funcionamento:</h3>
+                            <p>Quarta e Quinta: 18h às 23h</p>
+                            <p>Sexta e Sábado: 18h às 00h</p>
+                            <p>Domingo: 18h às 23h</p>
+                            <p>Segunda e Terça: Fechado</p>
+                        </div>
+                        
+                        <div class="contact__info-block">
+                            <h3>Endereço (Retirada):</h3>
+                            <p>Rua Harmonia, 500 - Vila Madalena</p>
+                            <p>São Paulo - SP, 05435-000</p>
+                        </div>
+
+                        <div class="contact__info-block">
+                            <h3>Siga a gente:</h3>
+                            <a href="https://instagram.com/brasaartesanalsp" class="contact__social" target="_blank">
+                                <i class="icon-instagram"></i> @brasaartesanalsp
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact__map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.701150334887!2d-46.689035684476!3d-23.54341136720174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce579f1e16f3b1%3A0x6e3a0f3de0b13864!2sR.%20Harmonia%2C%20500%20-%20Vila%20Madalena%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2005435-000!5e0!3m2!1spt-BR!2sbr!4f13.1!3m1!1s0x0%3A0x0!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__content">
+                <h3 class="footer__title">Brasa Artesanal Hamburgueria</h3>
+                <p class="footer__subtitle">Hambúrguer na brasa, noite salva.</p>
+                <a href="#" class="button button--primary btn-whatsapp-geral" target="_blank">
+                    Pedir no WhatsApp
+                </a>
+            </div>
+            
+            <p class="footer__copy">
+                &copy; 2025 Brasa Artesanal Hamburgueria. Todos os direitos reservados.
+            </p>
+            <p class="footer__dev">
+                Site desenvolvido sob medida para a Brasa Artesanal Hamburgueria.
+            </p>
+        </div>
+    </footer>
+
+    <a href="#" class="floating-wa btn-whatsapp-geral" id="btn-flutuante-wa" target="_blank">
+        <i class="icon-whatsapp"></i>
+        <span>Pedir agora</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
