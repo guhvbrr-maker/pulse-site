@@ -109,7 +109,7 @@
     <div class="top-bar">
       <p class="top-bar__text" id="vagas-topo">
         🔥 Atenção: Restam <strong>apenas 3 vagas</strong> para esta semana.
-        <span style="opacity: 0.8; font-size: 0.9em"
+        <span class="top-bar__timestamp"
           >(Atualizado às <span class="hora-atual">--:--</span>)</span
         >
       </p>
@@ -190,7 +190,6 @@
               <button
                 class="btn btn-hero btn--primary btn--lg js-scroll-to"
                 data-target="#planos"
-                style="margin: 0;"
               >
                 Ver Planos e Valores
               </button>
@@ -244,35 +243,25 @@
 
       <section
         id="diferencial"
-        class="section section--alt"
-        style="padding-top: 0; padding-bottom: 4rem"
+        class="section section--alt section--diferencial"
       >
         <div class="container animated">
           <div class="about-grid">
             <div>
-              <h2 style="text-align: left; margin-top: 0">
-                <span
-                  style="font-size: 2.5rem; display: block; line-height: 1"
-                  >🤝</span
-                >
+              <h2 class="diferencial__title">
+                <span class="diferencial__emoji">🤝</span>
                 O meu diferencial não é só saber fazer sites.<br />
                 <strong>É saber como vender.</strong>
               </h2>
               <p
-                class="section__subtitle"
-                style="
-                  text-align: left;
-                  font-size: 1.1rem;
-                  max-width: 100%;
-                  margin: 1.5rem 0 0;
-                "
+                class="section__subtitle diferencial__subtitle"
               >
                 Muitas agências sabem de código, mas nunca gerenciaram um negócio
                 real. Eu sou lojista, assim como você. Eu sei o que é depender
                 de cliente entrando na porta e sei como um site pode transformar
                 isso.
               </p>
-              <p style="font-size: 1.1rem; line-height: 1.6">
+              <p class="diferencial__text">
                 Eu não vendo "teoria", eu vendo resultado prático.
               </p>
             </div>
@@ -284,7 +273,7 @@
                   loading="lazy"
                   decoding="async"
                   class="about-photo"
-                  style="width: 100%; height: 100%; object-fit: cover"
+                  class="about-photo-image"
                 />
               </div>
             </div>
@@ -325,7 +314,7 @@
             </li>
           </ul>
 
-          <div class="center" style="margin-top: 2rem">
+          <div class="center para-quem__cta-wrapper">
             <button
               class="btn btn--primary btn--lg js-open-whatsapp"
               data-message="Olá! Eu sofro com esses problemas. Quero minha Análise de Inteligência Grátis."
@@ -339,23 +328,17 @@
       <section id="analise" class="section section--dark">
         <div class="container section__narrow animated">
           <p
-            class="badge"
-            style="
-              background: rgba(255, 255, 255, 0.1);
-              color: #ffffff;
-              border: 1px solid rgba(255, 255, 255, 0.25);
-            "
+            class="badge badge--analise"
           >
             🎁 CONSULTORIA INICIAL GRÁTIS (VALOR: R$ 300)
           </p>
 
-          <h2 style="margin-top: 1rem">
+          <h2 class="analise__title">
             Descubra os segredos do seu concorrente antes de me contratar
           </h2>
 
           <p
-            class="section__subtitle section__subtitle--light"
-            style="font-size: 1.1rem; line-height: 1.6"
+            class="section__subtitle section__subtitle--light analise__subtitle"
           >
             Eu vou analisar pessoalmente o que ele está fazendo na internet para
             roubar seus clientes e te entregar um
@@ -401,7 +384,7 @@
           >
             💬 Quero meu Raio-X Grátis
           </button>
-          <p class="section__note" style="color: #94a3b8; margin-top: 1rem">
+          <p class="section__note analise__note">
             Entrega em PDF direto no seu WhatsApp. Sem compromisso de fechar o
             site.
           </p>
@@ -618,7 +601,7 @@
 
           <div class="testimonials-grid">
             <article class="testimonial">
-              <div class="icon-3d" style="margin-bottom: 1rem; font-size: 2rem">
+              <div class="icon-3d testimonial__icon">
                 😫
               </div>
               <p class="testimonial__quote">
@@ -630,17 +613,9 @@
             </article>
 
             <article
-              class="testimonial"
-              style="
-                border-color: var(--primary);
-                background: radial-gradient(
-                  circle at top left,
-                  var(--primary-soft),
-                  var(--bg-surface)
-                );
-              "
+              class="testimonial testimonial--featured"
             >
-              <div class="icon-3d" style="margin-bottom: 1rem; font-size: 2rem">
+              <div class="icon-3d testimonial__icon">
                 ⚡
               </div>
               <p class="testimonial__quote">
@@ -652,7 +627,7 @@
             </article>
 
             <article class="testimonial">
-              <div class="icon-3d" style="margin-bottom: 1rem; font-size: 2rem">
+              <div class="icon-3d testimonial__icon">
                 🚀
               </div>
               <p class="testimonial__quote">
@@ -665,8 +640,7 @@
           </div>
 
           <p
-            class="section__note"
-            style="font-size: 1rem; color: var(--color-heading); margin-top: 2rem"
+            class="section__note prova__note"
           >
             <strong>Moral da história:</strong> Se funcionou para a minha loja,
             vai funcionar para o seu negócio também.
@@ -693,13 +667,7 @@
 
               <p class="pricing-card__price">
                 <span
-                  class="pricing-card__anchor"
-                  style="
-                    font-size: 0.9rem;
-                    color: #94a3b8;
-                    display: block;
-                    margin-bottom: 4px;
-                  "
+                  class="pricing-card__anchor pricing-card__anchor--plano1"
                 >
                   De agência: <s>R$ 2.000</s>
                 </span>
@@ -707,12 +675,7 @@
                 <span class="pricing-card__value">R$ 82,50</span>
                 <span class="pricing-card__full-price">ou R$ 990 à vista</span>
                 <span
-                  style="
-                    display: block;
-                    font-size: 0.85rem;
-                    color: var(--color-muted);
-                    margin-top: 5px;
-                  "
+                  class="pricing-card__daily-cost"
                 >
                   (Menos de R$ 2,75 por dia!)
                 </span>
@@ -747,15 +710,7 @@
 
               <p class="pricing-card__price">
                 <span
-                  class="pricing-card__anchor"
-                  style="
-                    font-size: 0.95rem;
-                    color: #16a34a;
-                    font-weight: 700;
-                    display: block;
-                    margin-bottom: 8px;
-                    line-height: 1.3;
-                  "
+                  class="pricing-card__anchor pricing-card__anchor--plano2"
                 >
                   🔥 Economize R$ 2.610 em relação ao preço de agência (de
                   <s>R$ 4.000</s> por R$ 1.390)
@@ -766,25 +721,15 @@
                   >ou R$ 1.390 à vista</span
                 >
                 <span
-                  style="
-                    display: block;
-                    font-size: 0.9rem;
-                    color: #16a34a;
-                    font-weight: 600;
-                    margin-top: 8px;
-                    background: #dcfce7;
-                    padding: 4px 8px;
-                    border-radius: 4px;
-                    width: fit-content;
-                  "
+                  class="pricing-card__highlight"
                 >
                   ⚡ Apenas R$ 1,10 a mais por dia!
                 </span>
               </p>
 
-              <ul class="pricing-card__list" style="font-size: 0.95rem">
+              <ul class="pricing-card__list pricing-card__list--plano2">
                 <li
-                  style="margin-bottom: 0.5rem; color: var(--primary-strong)"
+                  class="pricing-card__list-highlight"
                 >
                   <strong>✅ TUDO do Plano Inicial, MAIS:</strong>
                 </li>
@@ -796,7 +741,7 @@
                 <li>
                   ⭐ <strong>BÔNUS:</strong> Página de Links para Instagram/Facebook
                   <span
-                    style="font-size: 0.85em; color: #16a34a; font-weight: 700"
+                    class="pricing-card__bonus-text"
                     >(de <s>R$197</s> por R$0)</span
                   >
                 </li>
@@ -813,17 +758,9 @@
 
           <div
             class="pricing-help"
-            style="
-              text-align: center;
-              margin-top: 0;
-              padding: 1.5rem;
-              background-color: var(--color-bg-alt);
-              border-radius: 12px;
-              border: 1px solid var(--color-border);
-            "
           >
             <p
-              style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem"
+              class="pricing-help__text"
             >
               Ainda na dúvida de qual escolher?
             </p>
@@ -840,38 +777,20 @@
       <section id="garantia" class="section section--alt">
         <div class="container section__narrow animated">
           <div
-            style="
-              background-color: #fff;
-              border: 2px solid var(--color-primary);
-              border-radius: 12px;
-              padding: 2.5rem 2rem;
-              text-align: center;
-              box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            "
+            class="garantia__box"
           >
             <span
-              style="
-                font-size: 3.5rem;
-                display: block;
-                line-height: 1;
-                margin-bottom: 1rem;
-              "
+              class="garantia__emoji"
               >🤝</span
             >
             <h2
-              style="margin-top: 0; margin-bottom: 1.5rem; font-size: 1.8rem"
+              class="garantia__title"
             >
               Minha Garantia Pessoal: Eu só publico o site quando você disser
               "UAU!"
             </h2>
             <p
-              class="section__subtitle"
-              style="
-                margin-bottom: 0;
-                font-size: 1.1rem;
-                opacity: 1;
-                color: var(--color-text);
-              "
+              class="section__subtitle garantia__subtitle"
             >
               Parece loucura, mas é meu compromisso de honra. Se você não gostar
               da primeira versão, <strong>eu ajusto ou refaço</strong>.
@@ -1009,7 +928,7 @@
             </figure>
           </div>
 
-          <div class="center" style="margin-top: 2.5rem">
+          <div class="center galeria__cta-wrapper">
             <button
               class="btn btn--primary btn--lg js-scroll-to"
               data-target="#planos"
@@ -1041,12 +960,7 @@
               </div>
               <h3>💼 Quem vende AUTORIDADE</h3>
               <p
-                style="
-                  font-size: 0.9rem;
-                  color: var(--primary);
-                  margin-bottom: 0.5rem;
-                  font-weight: 600;
-                "
+                class="case-subtitle"
               >
                 (Advogados, Clínicas, Contadores, Terapeutas...)
               </p>
@@ -1068,12 +982,7 @@
               </div>
               <h3>🤩 Quem vende DESEJO</h3>
               <p
-                style="
-                  font-size: 0.9rem;
-                  color: var(--primary);
-                  margin-bottom: 0.5rem;
-                  font-weight: 600;
-                "
+                class="case-subtitle"
               >
                 (Lojas, Barbearias, Arquitetos, Estética, Festas...)
               </p>
@@ -1095,12 +1004,7 @@
               </div>
               <h3>⚡ Quem vende URGÊNCIA</h3>
               <p
-                style="
-                  font-size: 0.9rem;
-                  color: var(--primary);
-                  margin-bottom: 0.5rem;
-                  font-weight: 600;
-                "
+                class="case-subtitle"
               >
                 (Mecânicos, Desentupidoras, Chaveiros, Técnicos...)
               </p>
@@ -1112,7 +1016,7 @@
             </article>
           </div>
 
-          <div class="center" style="margin-top: 2.5rem">
+          <div class="center cases__cta-wrapper">
             <button
               class="btn btn--primary btn--lg js-open-whatsapp"
               data-message="Olá! Vi os grupos no site e acho que meu negócio se encaixa em um deles. Quero saber mais."
@@ -1152,13 +1056,7 @@
               </div>
               </div>
             <p
-              style="
-                text-align: center;
-                font-size: 0.9rem;
-                color: var(--primary);
-                margin-top: 0.5rem;
-                font-weight: 600;
-              "
+              class="sobre__video-caption"
             >
               👆 Dê o play e conheça quem vai cuidar do seu projeto.
             </p>
@@ -1291,10 +1189,9 @@
           <p
             class="cta-final__note"
             id="vagas-final"
-            style="color: #ef4444; font-weight: 600; margin-top: 1.5rem"
           >
             ⚠️ Atenção: Devido à alta demanda, restam apenas 3 vagas para início imediato.
-            <br><span style="opacity: 0.8; font-size: 0.9em; font-weight: 400; color: #94a3b8;">(Atualizado hoje às <span class="hora-atual">--:--</span>)</span>
+            <br><span class="cta-final__timestamp">(Atualizado hoje às <span class="hora-atual">--:--</span>)</span>
           </p>
         </div>
       </section>
@@ -1304,7 +1201,7 @@
       <div class="info" id="sticky-vagas">
         Carregando vagas...
       </div>
-      <button class="btn btn--primary btn--sm js-scroll-to" data-target="#planos" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+      <button class="btn btn--primary btn--sm btn--sticky-mobile js-scroll-to" data-target="#planos">
         Ver Planos
       </button>
     </div>
