@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // 1. CONFIGURAÇÃO WHATSAPP
-    const whatsappNumber = '5511988887777'; // Apenas números
+    const whatsappNumber = '5544991310383'; // Apenas números
     const whatsappBaseURL = `https://wa.me/${whatsappNumber}`;
 
     function openWhatsApp(msg) {

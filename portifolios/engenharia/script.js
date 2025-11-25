@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // CONFIGURAÇÃO GERAL
     // ==========================================
-    const phoneRaw = "5519997776655"; // Número para API do WhatsApp
+    const phoneRaw = "5544991310383"; // Número para API do WhatsApp
 
     // ==========================================
     // 1. MENU MOBILE

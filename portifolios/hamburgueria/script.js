@@ -4,13 +4,55 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ==================== NÚMERO DE WHATSAPP ==================== */
-    // Edite este número para o WhatsApp da sua loja
-    const WHATSAPP_NUMBER = '5511999998888';
+    /* ==================== CONFIGURAÇÃO DO WHATSAPP ==================== */
+    // 1. Digite seu número aqui (apenas números, com código do país e DDD)
+    const WHATSAPP_NUMBER = '5544991310383'; 
+    
+    // 2. URL base do WhatsApp
     const WHATSAPP_BASE_URL = 'https://wa.me/';
 
-    // Mensagem padrão para botões genéricos
+    // 3. Mensagem padrão para botões gerais
     const DEFAULT_MESSAGE = 'Oi Rafael, quero fazer um pedido! 🍔';
+
+
+    /* ==================== ATUALIZAÇÃO DOS LINKS (BOTÕES) ==================== */
+
+    // TIPO 1: Botões Genéricos (Hero, Footer, Botão Flutuante, CTA)
+    // Procura por qualquer tag com a classe .btn-whatsapp-geral
+    const generalWaButtons = document.querySelectorAll('.btn-whatsapp-geral');
+    const encodedDefaultMessage = encodeURIComponent(DEFAULT_MESSAGE);
+    const generalWaLink = `${WHATSAPP_BASE_URL}${WHATSAPP_NUMBER}?text=${encodedDefaultMessage}`;
+    
+    generalWaButtons.forEach(button => {
+        button.href = generalWaLink;
+        // Garante que abra em nova aba
+        button.target = '_blank'; 
+    });
+
+
+    // TIPO 2: Botão Específico do Combo Duplo
+    // Procura pelo ID #btn-combo-duplo
+    const btnComboDuplo = document.getElementById('btn-combo-duplo');
+    if (btnComboDuplo) {
+        const comboMessage = 'Oi Rafael, vi no site e quero pedir o *Combo Brasa Duplo* 🍔🔥';
+        const encodedComboMessage = encodeURIComponent(comboMessage);
+        btnComboDuplo.href = `${WHATSAPP_BASE_URL}${WHATSAPP_NUMBER}?text=${encodedComboMessage}`;
+    }
+
+
+    // TIPO 3: Botões do Cardápio (Itens Individuais)
+    // Pega o nome do produto automaticamente do atributo data-produto
+    const itemButtons = document.querySelectorAll('.btn-pedir-item');
+    itemButtons.forEach(button => {
+        const productName = button.getAttribute('data-produto');
+        
+        if (productName) {
+            const itemMessage = `Oi Rafael, quero pedir o *${productName}* que vi no cardápio! 🍔`;
+            const encodedItemMessage = encodeURIComponent(itemMessage);
+            button.href = `${WHATSAPP_BASE_URL}${WHATSAPP_NUMBER}?text=${encodedItemMessage}`;
+        }
+    });
+
 
     /* ==================== MENU MOBILE (TOGGLE) ==================== */
     const navToggle = document.getElementById('nav-toggle');
@@ -24,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fechar o menu ao clicar em um link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (navMenu.classList.contains('show-menu')) {
@@ -33,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
 
     /* ==================== HEADER COM EFEITO AO ROLAR ==================== */
     const header = document.getElementById('header');
@@ -44,14 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
     }
-    
     window.addEventListener('scroll', scrollHeader);
 
-    /* ==================== ROLAGEM SUAVE (SMOOTH SCROLL) ==================== */
+
+    /* ==================== ROLAGEM SUAVE ==================== */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             
@@ -64,37 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ==================== LINKS DE WHATSAPP DINÂMICOS ==================== */
 
-    // 1. Botões genéricos
-    const generalWaButtons = document.querySelectorAll('.btn-whatsapp-geral');
-    const encodedDefaultMessage = encodeURIComponent(DEFAULT_MESSAGE);
-    const generalWaLink = `${WHATSAPP_BASE_URL}${WHATSAPP_NUMBER}?text=${encodedDefaultMessage}`;
-    
-    generalWaButtons.forEach(button => {
-        button.href = generalWaLink;
-    });
-
-    // 2. Botão do Combo Brasa Duplo
-    const btnComboDuplo = document.getElementById('btn-combo-duplo');
-    if (btnComboDuplo) {
-        const comboMessage = 'Oi Rafael, quero pedir o *Combo Brasa Duplo* 🍔🔥';
-        const encodedComboMessage = encodeURIComponent(comboMessage);
-        btnComboDuplo.href = `${WHATSAPP_BASE_URL}${WHATSAPP_NUMBER}?text=${encodedComboMessage}`;
-    }
-
-    // 3. Botões do Cardápio (Itens)
-    const itemButtons = document.querySelectorAll('.btn-pedir-item');
-    itemButtons.forEach(button => {
-        const productName = button.getAttribute('data-produto');
-        if (productName) {
-            const itemMessage = `Oi Rafael, quero pedir o *${productName}* 🍔`;
-            const encodedItemMessage = encodeURIComponent(itemMessage);
-            button.href = `${WHATSAPP_BASE_URL}${WHATSAPP_NUMBER}?text=${encodedItemMessage}`;
-        }
-    });
-
-    /* ==================== ANIMAÇÃO DE ENTRADA AO ROLAR ==================== */
+    /* ==================== ANIMAÇÃO DE ENTRADA (SCROLL) ==================== */
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
 
     if ('IntersectionObserver' in window) {
@@ -105,15 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1 // Ativa quando 10% do elemento está visível
-        });
+        }, { threshold: 0.1 });
 
         animatedElements.forEach(element => {
             observer.observe(element);
         });
     } else {
-        // Fallback para navegadores antigos (apenas mostra tudo)
         animatedElements.forEach(element => {
             element.classList.add('visible');
         });
