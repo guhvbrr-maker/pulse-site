@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Sites | Links</title>
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* * =========================================
+         * PALETA DE CORES (PULSE)
+         * =========================================
+         */
+        :root {
+            /* Paleta Fornecida */
+            --bg-body: #FFFFFF;
+            --bg-off-white: #F8FAFC;
+            --bg-dark-deep: #0F172A;
+            --bg-highlight: #F0F9FF;
+            --bg-surface: rgba(255, 255, 255, 0.75);
+            --bg-surface-alt: rgba(241, 245, 249, 0.6);
+            --color-text: #334155;
+            --color-muted: #475569;
+            --color-heading: #0f172a;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --primary-strong: #1d4ed8;
+            --accent: #6366f1;
+            --danger: #ef4444;
+            --border-subtle: rgba(255, 255, 255, 0.6);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+            /* Variáveis de Layout (Mapeamento) */
+            --page-bg: var(--bg-off-white);
+            --card-radius: 16px;
+            --transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        
+        body {
+            background-color: var(--page-bg);
+            /* Gradiente sutil no fundo para destacar o efeito glass */
+            background-image: radial-gradient(circle at top right, var(--bg-highlight) 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, #f1f5f9 0%, transparent 40%);
+            color: var(--color-heading);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-bottom: 40px;
+            z-index: 1; /* Garante que fique acima do gradiente */
+        }
+
+        /* Perfil */
+        .profile-section {
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 16px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-body);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            padding: 4px;
+            font-size: 12px;
+            border: 2px solid var(--bg-body);
+            display: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            margin-bottom: 8px; 
+            letter-spacing: -0.5px; 
+            color: var(--bg-dark-deep);
+        }
+        
+        p.bio { 
+            color: var(--color-muted); 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            padding: 0 10px; 
+            font-weight: 500;
+        }
+
+        /* Lista de Links */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .link-card {
+            /* Glassmorphism */
+            background: var(--bg-surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+            
+            padding: 18px 24px;
+            padding-left: 60px;
+            padding-right: 50px;
+            border-radius: var(--card-radius);
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--glass-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            min-height: 64px;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px) scale(1.01);
+            background: var(--bg-body);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15); /* Sombra azulada suave */
+            color: var(--primary-strong);
+        }
+
+        .link-icon { 
+            position: absolute;
+            left: 20px;
+            font-size: 1.8rem;
+            color: var(--primary); /* Ícones na cor primária */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+        
+        .link-card:hover .link-icon {
+            color: var(--primary-strong);
+        }
+
+        .link-text {
+            text-align: center;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .link-arrow { 
+            position: absolute;
+            right: 20px;
+            color: var(--color-muted); 
+            font-size: 1.2rem; 
+            opacity: 0.6; 
+            transition: transform 0.2s ease;
+        }
+
+        .link-card:hover .link-arrow {
+            transform: translateX(3px);
+            color: var(--primary-strong);
+            opacity: 1;
+        }
+
+        /* Destaque (Primary Button) */
+        .link-card.highlight {
+            background-color: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+        
+        .link-card.highlight .link-icon { color: white; }
+        .link-card.highlight .link-arrow { color: rgba(255,255,255,0.9); }
+        
+        .link-card.highlight:hover {
+            background-color: var(--primary-strong);
+            box-shadow: 0 6px 20px var(--primary-glow);
+            transform: scale(1.02);
+        }
+        
+        /* Animação de Pulso */
+        .pulse-animation {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 var(--primary-glow); }
+            70% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        /* Rodapé */
+        footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-muted);
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .pulse-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--bg-surface-alt);
+            padding: 8px 16px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--color-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .pulse-badge:hover {
+            background-color: var(--bg-body);
+            box-shadow: var(--glass-shadow);
+            color: var(--primary);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="profile-area" class="profile-section"></div>
+
+        <div id="links-area" class="links-container"></div>
+
+        <footer>
+            <p id="copyright"></p>
+            <a href="https://www.pulsesites.com.br" target="_blank" class="pulse-badge">
+                <i class="ph-fill ph-globe"></i>
+                <span>Pulse Sites Oficial</span>
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        /* * ==========================================================
+         * CONFIGURAÇÃO PULSE SITES
+         * ==========================================================
+         */
+        const CONFIG = {
+            // Nota: As cores agora são controladas principalmente pelo CSS acima.
+            // Aqui definimos os dados de conteúdo.
+            
+            // 2. Informações da Agência
+            profile: {
+                image: "images/logo_quadrada.webp", 
+                name: "Pulse Sites",
+                bio: "Transformamos ideias em sites profissionais e de alta performance. 🚀",
+                verified: true 
+            },
+
+            // 3. Links Sociais e de Contato
+            links: [
+                {
+                    id: "whatsapp",
+                    label: "Orçamento no WhatsApp",
+                    url: "https://wa.me/5544991310383?text=Ol%C3%A1%2C%20vim%20pelo%20link%20na%20bio%20e%20quero%20um%20site!",
+                    icon: "ph-whatsapp-logo",
+                    active: true,
+                    highlight: true // Botão azul com pulso
+                },
+                {
+                    id: "site",
+                    label: "Acesse nosso Site",
+                    url: "https://www.pulsesites.com.br",
+                    icon: "ph-globe",
+                    active: true,
+                    highlight: false
+                },
+                {
+                    id: "instagram",
+                    label: "Siga no Instagram",
+                    url: "https://instagram.com/pulsesites",
+                    icon: "ph-instagram-logo",
+                    active: true,
+                    highlight: false
+                },
+                {
+                    id: "facebook",
+                    label: "Curta no Facebook",
+                    url: "https://www.facebook.com/profile.php?id=61584315236640#",
+                    icon: "ph-facebook-logo",
+                    active: true,
+                    highlight: false
+                },
+                {
+                    id: "email",
+                    label: "Contato por E-mail",
+                    url: "mailto:contato@pulsesites.com.br",
+                    icon: "ph-envelope-simple",
+                    active: true,
+                    highlight: false
+                }
+            ]
+        };
+
+        /* * ==========================================================
+         * MOTOR DO SISTEMA (Lógica)
+         * ==========================================================
+         */
+        
+        function renderProfile() {
+            const area = document.getElementById('profile-area');
+            const verifiedHTML = CONFIG.profile.verified ? 
+                `<div class="verified-badge"><i class="ph-fill ph-check-circle"></i></div>` : '';
+
+            area.innerHTML = `
+                <div class="avatar-wrapper">
+                    <img src="${CONFIG.profile.image}" alt="${CONFIG.profile.name}" class="avatar">
+                    ${verifiedHTML}
+                </div>
+                <h1>${CONFIG.profile.name}</h1>
+                <p class="bio">${CONFIG.profile.bio}</p>
+            `;
+        }
+
+        function renderLinks() {
+            const area = document.getElementById('links-area');
+            let delay = 0.1;
+
+            CONFIG.links.forEach(link => {
+                if (!link.active) return;
+
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = "_blank";
+                a.className = `link-card ${link.highlight ? 'highlight pulse-animation' : ''}`;
+                
+                a.style.animation = `fadeIn 0.5s ease forwards`;
+                a.style.animationDelay = `${delay}s`;
+                a.style.opacity = '0';
+                a.style.animationFillMode = 'forwards';
+
+                a.innerHTML = `
+                    <i class="ph ${link.icon} link-icon"></i>
+                    <span class="link-text">${link.label}</span>
+                    <i class="ph-bold ph-arrow-right link-arrow"></i>
+                `;
+
+                area.appendChild(a);
+                delay += 0.1;
+            });
+        }
+
+        function renderFooter() {
+            const year = new Date().getFullYear();
+            document.getElementById('copyright').innerText = `© ${year} ${CONFIG.profile.name}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProfile();
+            renderLinks();
+            renderFooter();
+        });
+    </script>
+</body>
+</html>
