@@ -268,16 +268,28 @@
                 <span class="blink">●</span> Assista Agora
               </div>
               
-              <div class="video-wrapper">
+              <div class="video-wrapper" id="video-container">
+                
                 <iframe
-                  src="https://www.youtube.com/embed/SEU_ID_DO_VIDEO_HERO"
+                  id="video-iframe"
+                  src="https://www.youtube.com/embed/R06cFKiT-7o?rel=0&modestbranding=1&showinfo=0&controls=1"
                   title="Vídeo Hero"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                   loading="eager"
-                >
-                </iframe>
+                ></iframe>
+
+                <div class="video-cover" id="video-cover">
+                  <img src="images/capa-video.webp" alt="Assistir Vídeo" class="cover-img">
+                  
+                  <div class="play-btn-pulse">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                      <path d="M8 5v14l11-7z"></path>
+                    </svg>
+                  </div>
+                </div>
+
               </div>
             </div>
             <div class="arrow-indicator desktop-only">
@@ -1181,6 +1193,31 @@
   </div>
 
   <script>
+    /* =========================================
+       LÓGICA DO VÍDEO COVER (Solução 1)
+       ========================================= */
+    const videoContainer = document.getElementById('video-container');
+    const videoCover = document.getElementById('video-cover');
+    const videoIframe = document.getElementById('video-iframe');
+
+    if (videoContainer && videoCover && videoIframe) {
+        videoContainer.addEventListener('click', () => {
+            // 1. Esconde a capa suavemente
+            videoCover.classList.add('hidden');
+
+            // 2. Dá o Play no vídeo adicionando o autoplay na URL
+            let src = videoIframe.getAttribute('src');
+            
+            // Verifica se já tem query string (?) para concatenar certo
+            if (src.indexOf('?') > -1) {
+                src += "&autoplay=1";
+            } else {
+                src += "?autoplay=1";
+            }
+            
+            videoIframe.setAttribute('src', src);
+        });
+    }
     // =========================================
     // 1. CONFIGURAÇÕES GERAIS & WHATSAPP
     // =========================================

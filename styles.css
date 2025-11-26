@@ -2008,7 +2008,6 @@ h3 {
   .top-bar { flex-direction: row; justify-content: center; align-items: center; gap: 1.5rem; }
   
   .sticky-mobile-cta { display: none !important; }
-  .whatsapp-float { display: inline-flex; }
 
   .problema-grid, .analise-grid, .testimonials-grid, .testimonial-grid-external {
     grid-template-columns: repeat(3, 1fr);
@@ -3438,3 +3437,82 @@ h3 {
   font-size: 1.1rem;
 }
 
+/* --- ESTILO DO TRUQUE DA CAPA (Pulse Video) --- */
+
+/* Garante que o container segure os elementos absolutos */
+.video-wrapper {
+  position: relative; 
+  /* Mantém o estilo original de borda/sombra que você já tinha */
+  overflow: hidden;
+  background: #000;
+  cursor: pointer; /* Mostra que é clicável */
+}
+
+/* A Capa cobre tudo */
+.video-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5; /* Fica acima do iframe */
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Imagem de fundo da capa */
+.video-cover .cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8; /* Leve escurecida para destacar o play */
+  transition: opacity 0.3s;
+}
+
+.video-wrapper:hover .cover-img {
+  opacity: 0.6; /* Efeito ao passar o mouse */
+}
+
+/* Botão de Play Central */
+.play-btn-pulse {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: #ff0000; /* Cor vermelha (pode usar var(--primary)) */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  animation: pulse-red 2s infinite;
+  transition: transform 0.3s ease;
+
+  margin-top: 60px; /* Empurra o botão para baixo para não tampar o rosto */
+}
+
+.play-btn-pulse svg {
+  width: 40px;
+  height: 40px;
+}
+
+.video-wrapper:hover .play-btn-pulse {
+  transform: scale(1.1);
+}
+
+/* Classe para esconder a capa quando clicar */
+.video-cover.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Animação de Pulso */
+@keyframes pulse-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
