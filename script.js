@@ -2,124 +2,153 @@
  * YouTube Interaction Warmup Pattern
  * Improves FCP by deferring YouTube iframe loading until first user interaction,
  * then reveals the pre-loaded iframe on click (eliminating the 6s delay)
+ * 
+ * Strategy: On user interaction (scroll/mousemove/touchstart), create a hidden
+ * iframe with autoplay=1 and mute=1 to silently pre-load the video behind the cover.
+ * On click, hide the cover and update src with mute=0 to enable sound.
+ * 
+ * Note: While the YouTube IFrame Player API could unmute without reload, it requires
+ * loading an additional script. This approach pre-loads all YouTube resources (player,
+ * scripts, video data) during warmup, so the src update on click only needs to restart
+ * the video stream - still significantly faster than loading everything from scratch.
  */
 (function() {
   'use strict';
 
-  let warmedUpIframe = null;
-  let isWarmedUp = false;
+  var warmedUpIframe = null;
+  var isWarmedUp = false;
 
   /**
-   * Build YouTube embed URL with common parameters
+   * Build YouTube embed URL with parameters for warmup or playback
    * @param {string} videoId - YouTube video ID
-   * @param {boolean} autoplay - Whether to autoplay the video
+   * @param {boolean} muted - Whether to mute the video
    * @returns {string} The complete embed URL
    */
-  function buildEmbedUrl(videoId, autoplay) {
-    const embedUrl = new URL('https://www.youtube.com/embed/' + encodeURIComponent(videoId));
-    if (autoplay) {
-      embedUrl.searchParams.set('autoplay', '1');
-    }
-    embedUrl.searchParams.set('rel', '0');
-    embedUrl.searchParams.set('modestbranding', '1');
-    return embedUrl.toString();
+  function buildEmbedUrl(videoId, muted) {
+    var baseUrl = 'https://www.youtube.com/embed/' + encodeURIComponent(videoId);
+    var params = [
+      'autoplay=1',
+      'mute=' + (muted ? '1' : '0'),
+      'rel=0',
+      'modestbranding=1',
+      'playsinline=1'
+    ];
+    return baseUrl + '?' + params.join('&');
   }
 
   /**
    * Create and configure a YouTube iframe element
    * @param {string} src - The iframe source URL
-   * @param {boolean} hidden - Whether to create the iframe hidden
+   * @param {boolean} behindCover - Whether to position behind cover (z-index: 0)
    * @returns {HTMLIFrameElement} The configured iframe element
    */
-  function createIframe(src, hidden) {
-    const iframe = document.createElement('iframe');
+  function createIframe(src, behindCover) {
+    var iframe = document.createElement('iframe');
     iframe.setAttribute('src', src);
     iframe.setAttribute('title', 'Vídeo Hero');
     iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
     iframe.setAttribute('allowfullscreen', '');
     iframe.style.border = 'none';
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
     
-    if (hidden) {
-      iframe.style.position = 'absolute';
-      iframe.style.top = '0';
-      iframe.style.left = '0';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.style.opacity = '0';
-      iframe.style.pointerEvents = 'none';
+    if (behindCover) {
+      // Position behind cover with lower z-index
+      iframe.style.zIndex = '0';
+    } else {
+      iframe.style.zIndex = '2';
     }
     
     return iframe;
   }
 
   /**
-   * Warm up the video by creating a hidden iframe on first user interaction
-   * This pre-loads YouTube resources without showing the video
+   * Warm up the video by creating a hidden/muted iframe on first user interaction
+   * This pre-loads YouTube resources silently behind the cover
    */
   function warmUpVideo() {
     if (isWarmedUp) return;
     
-    const videoWrapper = document.querySelector('.video-wrapper');
-    if (!videoWrapper) return;
+    var videoContainer = document.getElementById('video-container');
+    if (!videoContainer) return;
 
-    const videoId = videoWrapper.dataset.videoId;
+    var videoId = videoContainer.dataset.videoId;
     if (!videoId) return;
 
     // Validate video ID format (YouTube video IDs are 11 characters, alphanumeric with - and _)
     if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) return;
 
-    // Create hidden iframe to pre-load YouTube resources
-    const iframe = createIframe(buildEmbedUrl(videoId, false), true);
+    // Create iframe with autoplay=1 and mute=1 for silent pre-loading
+    // Position it behind the cover (z-index: 0)
+    var iframe = createIframe(buildEmbedUrl(videoId, true), true);
 
-    // Inject hidden iframe into wrapper
-    videoWrapper.appendChild(iframe);
+    // Inject iframe into video-container (behind the cover)
+    videoContainer.appendChild(iframe);
     warmedUpIframe = iframe;
     isWarmedUp = true;
+  }
+
+  /**
+   * Handle click on video cover - reveal video with sound
+   */
+  function handleCoverClick() {
+    var videoContainer = document.getElementById('video-container');
+    if (!videoContainer) return;
+
+    var videoId = videoContainer.dataset.videoId;
+    if (!videoId) return;
+
+    // Validate video ID format
+    if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) return;
+
+    var videoCover = videoContainer.querySelector('.video-cover');
+
+    // Hide the cover first
+    if (videoCover) {
+      videoCover.classList.add('hidden');
+    }
+
+    if (warmedUpIframe) {
+      // Video is warmed up - update src with mute=0 to enable sound
+      // The YouTube resources (player, scripts, video data) are already cached from warmup
+      warmedUpIframe.setAttribute('src', buildEmbedUrl(videoId, false));
+      warmedUpIframe.style.zIndex = '2';
+    } else {
+      // Fallback: create iframe immediately if not warmed up yet
+      var iframe = createIframe(buildEmbedUrl(videoId, false), false);
+      videoContainer.appendChild(iframe);
+    }
   }
 
   /**
    * Initialize video interaction warmup and click handler
    */
   function initVideoWarmup() {
-    const videoWrapper = document.querySelector('.video-wrapper');
-    if (!videoWrapper) return;
+    var videoContainer = document.getElementById('video-container');
+    if (!videoContainer) return;
 
-    const videoId = videoWrapper.dataset.videoId;
+    var videoId = videoContainer.dataset.videoId;
     if (!videoId) return;
 
     // Validate video ID format
     if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) return;
 
-    const videoCover = videoWrapper.querySelector('.video-cover');
+    var videoCover = videoContainer.querySelector('.video-cover');
 
-    // Set up warmup on first user interaction
-    var interactionEvents = ['touchstart', 'scroll', 'mousemove'];
+    // Set up warmup on first user interaction (triggers only once)
+    var interactionEvents = ['scroll', 'mousemove', 'touchstart'];
 
-    interactionEvents.forEach(function(event) {
-      window.addEventListener(event, warmUpVideo, { once: true, passive: true });
+    interactionEvents.forEach(function(eventType) {
+      window.addEventListener(eventType, warmUpVideo, { once: true, passive: true });
     });
 
-    // Handle click on video cover
-    videoWrapper.addEventListener('click', function handleClick() {
-      if (warmedUpIframe) {
-        // Video is warmed up - update src with autoplay and reveal
-        warmedUpIframe.setAttribute('src', buildEmbedUrl(videoId, true));
-        warmedUpIframe.style.opacity = '1';
-        warmedUpIframe.style.pointerEvents = 'auto';
-      } else {
-        // Fallback: create iframe immediately if not warmed up yet
-        var iframe = createIframe(buildEmbedUrl(videoId, true), false);
-        videoWrapper.appendChild(iframe);
-      }
-
-      // Hide the cover
-      if (videoCover) {
-        videoCover.classList.add('hidden');
-      }
-
-      // Remove click listener after first click
-      videoWrapper.removeEventListener('click', handleClick);
-    });
+    // Handle click on video cover to reveal video with sound
+    if (videoCover) {
+      videoCover.addEventListener('click', handleCoverClick, { once: true });
+    }
   }
 
   // Initialize when DOM is ready
