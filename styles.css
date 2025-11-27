@@ -715,6 +715,7 @@ h3 {
 /* Fallback for browsers that don't support aspect-ratio */
 @supports not (aspect-ratio: 16 / 9) {
   .video-wrapper {
+    position: relative;
     padding-bottom: 56.25%;
     height: 0;
   }
