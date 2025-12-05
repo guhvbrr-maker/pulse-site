@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
+  <meta name="facebook-domain-verification" content="pcgnhb6b23sd22c94yzghs1v8hsa3j" />
+
   <title>
     Pulse | Site Profissional para Negócios Locais (Pagamento Único)
   </title>
@@ -37,6 +39,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1362568352234096');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1362568352234096&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 
   <script type="application/ld+json">
     {
@@ -1229,6 +1249,14 @@
       "Olá, vi o site da Pulse e quero saber mais.";
 
     function openWhatsApp(event) {
+      // --- CÓDIGO DO PIXEL FACEBOOK (NOVO) ---
+      // Verifica se o Pixel está carregado e dispara o evento 'Lead'
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead'); 
+        // Dica: Usamos 'Lead' (Cadastro) pois é o padrão para contato de WhatsApp.
+      }
+      // ---------------------------------------
+
       let message = WHATSAPP_MESSAGE_DEFAULT;
       const clickedEl = event.currentTarget;
       if (clickedEl && clickedEl.dataset.message) {
@@ -1238,7 +1266,7 @@
       const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encoded}`;
       window.open(url, "_blank", "noopener");
     }
-
+    
     function scrollToTarget(selector) {
       const el = document.querySelector(selector);
       if (!el) return;
